@@ -4,12 +4,10 @@ from __future__ import unicode_literals, absolute_import
 from collections import OrderedDict
 
 
-from calculate.lib.parser.parser import SyntaxParser
+from calculate.lib.parser.parser import SyntaxParser, ParseFinishedException
 
 from calculate.lib.parser.condition.syntax import condition_syntax
-
-
-
+from calculate.lib.parser.condition.tree import *
 
 
 class ConditionParser(SyntaxParser):

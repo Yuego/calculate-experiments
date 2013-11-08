@@ -6,6 +6,8 @@ class Node(object):
 
     default = 'DEFAULT'
 
+    _eval = {}
+
     def __init__(self, children=None, connector=None, negated=False):
         self.children = children and children[:] or []
         self.connector = connector or self.default
@@ -19,6 +21,8 @@ class Node(object):
         return obj
 
     def __str__(self):
+        if self.negated:
+            return '(NOT (%s: %s))' % (self.connector, ', '.join([str(x) for x in self.children]))
         return '(%s: %s)' % (self.connector, ', '.join([str(x) for x in self.children]))
 
     def __len__(self):
@@ -53,4 +57,13 @@ class Node(object):
         self.connector = self.default
 
     def evaluate(self):
-        pass
+        raise NotImplementedError
+
+    def _combine(self, other, connector):
+        if not type(other) == self.__class__:
+            raise TypeError(other)
+
+        obj = self.__class__()
+        obj.add(self, connector)
+        obj.add(other, connector)
+        return obj
