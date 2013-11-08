@@ -76,7 +76,7 @@ class TestRegistryInterface(TestCase):
 
         self.assertRaises(IndexError, _func, *('str',))
 
-    def test_forcet_variable_set(self):
+    def test_forced_variable_set(self):
         """
         Тестирует принудительное присвоение значений переменным
         """

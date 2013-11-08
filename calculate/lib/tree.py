@@ -25,8 +25,7 @@ class Node(object):
         return len(self.children)
 
     def __bool__(self):
-        #TODO: вычислить!
-        return bool(self.children)
+        return bool(self.evaluate())
 
     def __nonzero__(self):
         return type(self).__bool__(self)
@@ -52,3 +51,6 @@ class Node(object):
     def negate(self):
         self.children = [self._new_instance(self.children, self.connector, not self.negated)]
         self.connector = self.default
+
+    def evaluate(self):
+        pass

@@ -70,12 +70,18 @@ class VariableBase(type):
         else:
             setattr(cls, name, value)
 
-    def register_variable(cls, registry):
+    def registervariable(cls, registry):
         setattr(getattr(registry, cls._opts.module), cls._opts.name, cls())
 
 
 class Variable(six.with_metaclass(VariableBase)):
     _value = None
+
+    def internal_type(self):
+        return 'string'
+
+    def short_type(self):
+        return 's'
 
     def _calculate_value(self):
         """
@@ -135,12 +141,6 @@ class Variable(six.with_metaclass(VariableBase)):
 
 class StringVar(Variable):
 
-    def internal_type(self):
-        return 'string'
-
-    def short_type(self):
-        return 's'
-
     def validate(self, value):
         super(StringVar, self).validate(value)
 
@@ -199,3 +199,35 @@ class BooleanVar(Variable):
 
     def to_python(self, value):
         return bool(value)
+
+class ListVar(Variable):
+
+    def internal_type(self):
+        return 'list'
+
+    def short_type(self):
+        return 'l'
+
+    def validate(self, value):
+        super(ListVar, self).validate(value)
+
+        if not isinstance(value, (list, tuple)):
+            raise ValidationErrorException
+
+    def to_python(self, value):
+        return list(value)
+
+
+class TableVar(Variable):
+
+    def internal_type(self):
+        return 'table'
+
+    def short_type(self):
+        return 't'
+
+    def validate(self, value):
+        super(TableVar, self).validate(value)
+
+        if not isinstance(value, (list, tuple)):
+            raise ValidationErrorException
