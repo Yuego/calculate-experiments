@@ -25,6 +25,9 @@ class Node(object):
             return '(NOT (%s: %s))' % (self.connector, ', '.join([str(x) for x in self.children]))
         return '(%s: %s)' % (self.connector, ', '.join([str(x) for x in self.children]))
 
+    def __repr__(self):
+        return self.__str__()
+
     def __len__(self):
         return len(self.children)
 

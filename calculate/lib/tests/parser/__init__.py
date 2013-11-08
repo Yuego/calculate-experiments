@@ -1,9 +1,4 @@
 #coding: utf-8
 from __future__ import unicode_literals, absolute_import
 
-conf = {
-    'token': [
-        None,
-        []
-    ]
-}
+from .condition import *

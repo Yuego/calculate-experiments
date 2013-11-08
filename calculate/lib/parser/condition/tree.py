@@ -7,9 +7,9 @@ import operator
 
 class ConditionNode(Node):
 
-    AND = 'AND'
-    OR = 'OR'
-    default = AND
+    AND = '&&'
+    OR = '||'
+    default = OR
 
     _eval = {
         AND: all,
@@ -68,7 +68,7 @@ class ExpressionNode(Node):
 
     def _combine(self, other, connector):
         if not type(other) == self.__class__:
-            raise TypeError(other)
+            return False
 
         obj = self.__class__(self.children)
         obj.add(other, connector)
