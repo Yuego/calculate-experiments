@@ -8,10 +8,12 @@ from calculate.lib.parser.parser import SyntaxParser
 from calculate.lib.parser.condition.tree import *
 from calculate.lib.registry import registry
 
+
 def __convert_result(res):
     if isinstance(res, ParseResults):
         return res.asList()[0]
     return res
+
 
 def _num_atom(s, l, tok):
     try:
@@ -26,14 +28,17 @@ def _var_atom(s, l, tok):
     var = tok[0]
     return registry[var]
 
+
 def _ver_atom(s, l, tok):
     pass
+
 
 def _func_atom(s, l, tok):
     t = tok[0]
     fn = t[0]
     args = ','.join(map(lambda x: str(x), t[1:]))
     return '{0}: {1}'.format(fn, args)
+
 
 def _expr_atom(s, l, tok):
     _op = {
@@ -53,20 +58,29 @@ def _expr_atom(s, l, tok):
             node = _op[token[i*2]](node, token[i*2+1])
     return node
 
+
 def _math_atom(s, l, tok):
     _op = {
         '+': operator.add,
         '-': operator.sub,
         '*': operator.mul,
         '/': operator.div,
+        #'^': operator.pow,
     }
+    _op_priority = (
+        #{'^'},
+        {'*', '/'},
+        {'+', '-'},
+    )
     tok = map(__convert_result, tok)
 
-    node = tok[0]
-    token = tok[1:]
-    for i in range(len(token)/2):
-        node = _op[token[i*2]](node, token[i*2+1])
-    return node
+    for oset in _op_priority:
+        for op in oset & set(tok):
+            _op_idx = tok.index(op)
+            tok[_op_idx-1:_op_idx+2] = [_op[tok[_op_idx]](tok[_op_idx-1], tok[_op_idx+1])]
+
+    return tok[0]
+
 
 def _cond_atom(s, l, tok):
     _op = {
@@ -100,7 +114,6 @@ def _cond_atom(s, l, tok):
     return __process_token(tok)
 
 
-
 class ConditionParser(SyntaxParser):
 
     def get_syntax(self):
@@ -115,7 +128,7 @@ class ConditionParser(SyntaxParser):
         _point = Literal('.')
 
         _identifier = Word(alphas + '_', alphanums + '_')
-        _variable = Combine(Suppress('#-') + _identifier + _point + _identifier + Suppress('-#')).setParseAction(_var_atom)
+        _variable = Combine(_identifier + _point + _identifier).setParseAction(_var_atom)
 
 
         number = Word('+-' + nums, nums).setParseAction(_num_atom)
