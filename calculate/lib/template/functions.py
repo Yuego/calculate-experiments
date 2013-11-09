@@ -2,13 +2,10 @@
 from __future__ import unicode_literals, absolute_import
 
 
-
-
-
 class Function(object):
 
-    def __init__(self, expression):
-        self.expression = expression
+    def __init__(self, *args):
+        self._args = args
 
     def apply(self):
         raise NotImplementedError
@@ -28,24 +25,6 @@ class Function(object):
     def __repr__(self):
         return self.__str__()
 
-    def __eq__(self, other):
-        return self.result == other
-
-    def __ne__(self, other):
-        return not self.__eq__(other)
-
-    def __gt__(self, other):
-        return self.result > other
-
-    def __ge__(self, other):
-        return self.result >= other
-
-    def __lt__(self, other):
-        return self.result < other
-
-    def __le__(self, other):
-        return self.result <= other
-
 
 class MergeFunction(Function):
 
@@ -56,8 +35,10 @@ class MergeFunction(Function):
         """
         pass
 
+
 class LoadFunction(Function):
     pass
+
 
 class PKGFunction(Function):
     pass

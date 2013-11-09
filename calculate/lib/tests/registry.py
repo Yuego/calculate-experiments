@@ -4,39 +4,10 @@ from __future__ import unicode_literals, absolute_import
 from unittest import TestCase
 
 from calculate.lib.registry import registry
-from calculate.lib.registry.registry import SectionDescriptor
+
 
 class TestRegistryInterface(TestCase):
-
-    def setUp(self):
-        self.r = registry
-
-    def test_public_interface(self):
-        """
-        Тестирует работу с переменными, как атрибутами класса Registry
-
-        интерфейс обеспечивает получение значений переменных
-        и присвоение переменным новых значений:
-
-        value = registry.variable_name
-        registry.variable_name = value
-        """
-        self.assertIsInstance(self.r.cl_env_path, basestring)
-        self.assertIsInstance(self.r.cl_env_read_only, int)
-        self.assertIsInstance(self.r.cl_env_flag, bool)
-
-        self.r.cl_env_path = 100
-        self.assertIsInstance(self.r.cl_env_path, basestring)
-        self.assertEqual(self.r.cl_env_path, '100')
-
-        self.r.cl_env_flag = 'some_text'
-        self.assertIsInstance(self.r.cl_env_flag, bool)
-        self.assertEqual(self.r.cl_env_flag, True)
-
-        def _func(value):
-            self.r.cl_env_read_only = value
-
-        self.assertRaises(ValueError, _func, *(1,))
+    r = registry
 
     def test_index_interface(self):
         """
@@ -68,13 +39,10 @@ class TestRegistryInterface(TestCase):
         self.assertIsInstance(self.r['main.cl_env_read_only'], int)
         self.assertIsInstance(self.r['main.cl_env_flag'], bool)
 
-        self.assertIsInstance(self.r['main'], SectionDescriptor)
-        self.assertIsInstance(self.r['core'], SectionDescriptor)
+        def _func():
+            return self.r['main.cl_some_var']
 
-        def _func(value):
-            self.r['main.cl_env_path'] = value
-
-        self.assertRaises(IndexError, _func, *('str',))
+        self.assertRaises(IndexError, _func)
 
     def test_forced_variable_set(self):
         """
@@ -86,11 +54,11 @@ class TestRegistryInterface(TestCase):
 
         # присвоение обычной переменной
         self.r.set('main.cl_env_path', '/some/path')
-        self.assertEqual(self.r.cl_env_path, '/some/path')
+        self.assertEqual(self.r['cl_env_path'], '/some/path')
 
         # присвоение read_only-переменной
         self.r.set('main.cl_env_read_only', 50)
-        self.assertEqual(self.r.cl_env_read_only, 50)
+        self.assertEqual(self.r['cl_env_read_only'], 50)
 
         # а вот системной переменной значение присвоить нельзя никак
         # под системными я понимаю различные служебные переменные, которые
@@ -104,56 +72,55 @@ class TestRegistryInterface(TestCase):
 
         # Строковая переменная. Может принимать любые значения, которые
         # можно сконвертировать в строку:
-        self.r.cl_env_path = self.r.cl_env_path
 
         class LikeString(object):
             def __unicode__(self):
                 return 'like string'
 
-        self.r.cl_env_path = 'str'
-        self.assertEqual(self.r.cl_env_path, 'str')
+        self.r['cl_env_path'] = 'str'
+        self.assertEqual(self.r['cl_env_path'], 'str')
 
-        self.r.cl_env_path = LikeString()
-        self.assertEqual(self.r.cl_env_path, 'like string')
+        self.r['cl_env_path'] = LikeString()
+        self.assertEqual(self.r['cl_env_path'], 'like string')
 
-        self.r.cl_env_path = 50
-        self.assertEqual(self.r.cl_env_path, '50')
+        self.r['cl_env_path'] = 50
+        self.assertEqual(self.r['cl_env_path'], '50')
 
         # Целочисленная переменная
 
-        self.r.cl_env_number = 100
-        self.assertEqual(self.r.cl_env_number, 100)
+        self.r['cl_env_number'] = 100
+        self.assertEqual(self.r['cl_env_number'], 100)
 
-        self.r.cl_env_number = 100.5
-        self.assertEqual(self.r.cl_env_number, 100)
+        self.r['cl_env_number'] = 100.5
+        self.assertEqual(self.r['cl_env_number'], 100)
 
-        self.r.cl_env_number = '200'
-        self.assertEqual(self.r.cl_env_number, 200)
+        self.r['cl_env_number'] = '200'
+        self.assertEqual(self.r['cl_env_number'], 200)
 
         def _func(value):
-            self.r.cl_env_number = value
+            self.r['cl_env_number'] = value
 
         self.assertRaises(ValueError, _func, *('str',))
 
         # Булева переменная
 
-        self.r.cl_env_flag = True
-        self.assertEqual(self.r.cl_env_flag, True)
+        self.r['cl_env_flag'] = True
+        self.assertEqual(self.r['cl_env_flag'], True)
 
-        self.r.cl_env_flag = 5
-        self.assertEqual(self.r.cl_env_flag, True)
+        self.r['cl_env_flag'] = 5
+        self.assertEqual(self.r['cl_env_flag'], True)
 
-        self.r.cl_env_flag = 'str'
-        self.assertEqual(self.r.cl_env_flag, True)
+        self.r['cl_env_flag'] = 'str'
+        self.assertEqual(self.r['cl_env_flag'], True)
 
-        self.r.cl_env_flag = object
-        self.assertEqual(self.r.cl_env_flag, True)
+        self.r['cl_env_flag'] = object
+        self.assertEqual(self.r['cl_env_flag'], True)
 
-        self.r.cl_env_flag = False
-        self.assertEqual(self.r.cl_env_flag, False)
+        self.r['cl_env_flag'] = False
+        self.assertEqual(self.r['cl_env_flag'], False)
 
-        self.r.cl_env_flag = None
-        self.assertEqual(self.r.cl_env_flag, False)
+        self.r['cl_env_flag'] = None
+        self.assertEqual(self.r['cl_env_flag'], False)
 
-        self.r.cl_env_flag = ''
-        self.assertEqual(self.r.cl_env_flag, False)
+        self.r['cl_env_flag'] = ''
+        self.assertEqual(self.r['cl_env_flag'], False)

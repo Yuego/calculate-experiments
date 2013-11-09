@@ -2,22 +2,14 @@
 from __future__ import unicode_literals, absolute_import
 
 from importlib import import_module
+import six
 
 from calculate.lib.registry.variable import Variable
+
 
 class ModuleNotFoundException(Exception):
     pass
 
-class VariableDescriptor(object):
-
-    def __init__(self, var):
-        self._var = var
-
-    def __get__(self, instance, owner):
-        return self._var._get()
-
-    def __set__(self, instance, value):
-        self._var._set(value)
 
 class SectionDescriptor(object):
 
@@ -38,12 +30,22 @@ class Registry(object):
     _section_classes = {}
     _imported_modules = []
 
-    def __init__(self):
-        # load default section
-        self._load_section('lib')
+    def __init__(self, default_section='main', also_load=None):
+        self._default_section = default_section
 
-    def __get_module(self, name):
-        return self._sections.get(name, None)
+        # load sections
+        _to_load = ['lib']
+        if self._default_section != 'main':
+            _to_load.append(self._default_section)
+        if also_load is not None:
+            if isinstance(also_load, (list, tuple)):
+                _to_load.extend(also_load)
+            elif isinstance(also_load, six.string_types):
+                _to_load.append(also_load)
+            else:
+                raise ValueError('Wrong value of `also_load` attr: "{0}"'.format(also_load))
+        for s in _to_load:
+            self._load_section(s)
 
     def _load_section(self, name):
         if not name in self._sections and name not in self._imported_modules:
@@ -76,7 +78,6 @@ class Registry(object):
                         variable._opts.section = section_name
 
                         setattr(m, variable_name, variable)
-                        setattr(Registry, variable_name, VariableDescriptor(variable))
 
                     return self._sections[section_name]
                 raise ImportError('No variables in section `{0}`'.format(name))
@@ -88,17 +89,31 @@ class Registry(object):
 
         if '.' in item:
             section, var = item.split('.', 1)
-            self.__getitem__(section)
-            return getattr(self, var)
-        elif item in self._sections:
-            return self._sections[item]
-        elif hasattr(self, item):
-            return getattr(self, item)
+            if section in self._sections:
+                s = self._sections[section]
+            else:
+                s = self._load_section(section)
+
+            try:
+                return getattr(s, var)._get()
+            except AttributeError:
+                raise IndexError('Unknown variable `{0}`'.format(item))
         else:
-            return self._load_section(item)
+            return self.__getitem__('{0}.{1}'.format(self._default_section, item))
 
     def __setitem__(self, key, value):
-        raise IndexError('Module or variable can`t be defined via it`s index!')
+        assert not isinstance(key, (int, slice)), 'Indexing isn`t supported!'
+
+        if '.' not in key:
+            section, var = self._default_section, key
+        else:
+            section, var = key.split('.', 1)
+
+        s = self._sections.get(section, self._load_section(section))
+        if hasattr(s, var):
+            getattr(s, var)._set(value)
+        else:
+            raise IndexError('Unknown variable `{0}`'.format(key))
 
     def set(self, variable, value):
         """
@@ -111,8 +126,9 @@ class Registry(object):
             if '.' not in variable:
                 raise ValueError('Variable name must contain module name')
 
-            s, v = variable.split('.', 1)
-            section = self.__getitem__(s)
-            var = getattr(section, v)
+            section, var_name = variable.split('.', 1)
+            s = self._sections.get(section, self._load_section(section))
+
+            var = getattr(s, var_name)
         var._set(value, force=True)
 
