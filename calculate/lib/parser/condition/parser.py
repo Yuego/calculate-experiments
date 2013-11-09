@@ -83,25 +83,12 @@ def _math_atom(s, l, tok):
 
 
 def _cond_atom(s, l, tok):
-    _op = {
-        '&&': operator.and_,
-        '||': operator.or_,
-    }
     tok = map(__convert_result, tok)
 
     def __process_token(tok):
-        token_len = len(tok)
-        if token_len == 1:
-            return ConditionNode(tok)
-        else:
-            node = ConditionNode([tok[0], tok[2]], tok[1])
-
-        if token_len > 3:
-            token = tok[3:]
-            for i in range(len(token)/2):
-                node = _op[token[i*2]](node, ConditionNode(token[i*2+1]))
-
-        return node
+        while len(tok) > 1:
+            tok[0:3] = [ConditionNode([tok[0], tok[2]], tok[1])]
+        return tok[0]
 
     if '||' in tok:
         _and_lst = []
@@ -110,7 +97,7 @@ def _cond_atom(s, l, tok):
             _or_tok, tok = tok[0:_and_idx], tok[_and_idx+1:]
             _and_lst.append(__process_token(_or_tok))
         _and_lst.append(__process_token(tok))
-        return reduce(lambda x, y: x | y, _and_lst)
+        return ConditionNode(_and_lst, ConditionNode.OR)
     return __process_token(tok)
 
 
