@@ -39,9 +39,12 @@ class TestConditionParser(TestCase):
         self.assertFalse(self.p.evaluate('(1 > 2 || 2 >= 2) && (5 == 4 || 7 < 4 && 8 == 8) '))
 
     def test_variable_compute(self):
-        self.assertTrue(self.p.evaluate('#-main.cl_env_number-# == 1'))
-        self.assertTrue(self.p.evaluate('#-main.cl_env_read_only-# == 100'))
-        self.assertTrue(self.p.evaluate('#-main.cl_env_path-# == "/var/calculate"'))
+        self.assertTrue(self.p.evaluate('main.cl_env_number == 1'))
+        self.assertTrue(self.p.evaluate('main.cl_env_read_only == 100'))
+
+        self.assertTrue(self.p.evaluate('main.cl_env_read_only / 50 + 8 == 10 && main.cl_env_number > 0'))
+
+        self.assertTrue(self.p.evaluate('main.cl_env_path == "/var/calculate"'))
 
     def test_simple_math(self):
         self.assertTrue(self.p.evaluate('5 == 3 + 2'))
@@ -54,8 +57,8 @@ class TestConditionParser(TestCase):
         self.assertFalse(self.p.evaluate('5 != 5/1'))
 
     def test_nested_math(self):
-        self.assertTrue(self.p.evaluate('15 == 5 + (5*2)'))
-        self.assertTrue(self.p.evaluate('20 == 5 + (5*(2+1))'))
+        self.assertTrue(self.p.evaluate('15 == 5 + 5*2'))
+        self.assertTrue(self.p.evaluate('20 == 5 + 5*(2+1)'))
 
     def test_function_execution(self):
         raise NotImplementedError
