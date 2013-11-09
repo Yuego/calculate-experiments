@@ -5,6 +5,7 @@ from calculate.lib.tree import Node
 
 import operator
 
+
 class ConditionNode(Node):
 
     AND = '&&'
@@ -101,23 +102,3 @@ class ExpressionNode(Node):
             self.children.extend(node.children)
         else:
             self.children.append(node)
-
-class MathNode(Node):
-
-    ADD = '+'
-    SUB = '-'
-    MUL = '*'
-    DIV = '/'
-    default = ADD
-
-    def __add__(self, other):
-        return self._combine(other, self.ADD)
-
-    def __sub__(self, other):
-        return self._combine(other, self.SUB)
-
-    def __mul__(self, other):
-        return self._combine(other, self.MUL)
-
-    def __div__(self, other):
-        return self._combine(other, self.DIV)
