@@ -18,4 +18,5 @@ class SyntaxParser(object):
         return res.asList()
 
     def evaluate(self, s):
+        #print self.parse(s)
         return self.parse(s)[0].evaluate()

@@ -60,8 +60,16 @@ class TestConditionParser(TestCase):
         self.assertTrue(self.p.evaluate('15 == 5 + 5*2'))
         self.assertTrue(self.p.evaluate('20 == 5 + 5*(2+1)'))
 
+        self.assertTrue(self.p.evaluate('(20 *5 +30) / 2 + (31 - 1) + 5 == 1 + 2 + 3 + 4 + 5*5 + 6*5 + (1 + 2*2)*7'))
+
     def test_function_execution(self):
-        raise NotImplementedError
+        self.assertTrue(self.p.evaluate('merge(app-misc/mc) == 1.2.3'))
+        self.assertTrue(self.p.evaluate('test(app-misc/mc,main.cl_env_read_only , 40/2+3) == 40/8'))
 
     def test_version_compare(self):
-        raise NotImplementedError
+        self.assertTrue(self.p.evaluate('1!='))
+        self.assertTrue(self.p.evaluate('1.3 > 1.2'))
+        self.assertTrue(self.p.evaluate('1.3_rc4 > 1.3_rc1'))
+        self.assertTrue(self.p.evaluate('1.3 > 1.3_rc1'))
+
+        self.assertTrue(self.p.evaluate('1.5_rc1-r3!=&&(20 *5 +30) / 2 + (31 - 1) + 5 == 1 + 2 + 3 + 4 + 5*5 + 6*5 + (1 + 2*2)*7'))

@@ -138,6 +138,53 @@ class Variable(six.with_metaclass(VariableBase)):
         """
         return value
 
+    def __repr__(self):
+        return '.'.join([self._opts.section, self._opts.name])
+
+    def __hash__(self):
+        return hash(self._get())
+
+    def __eq__(self, other):
+        return self._get() == other
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __gt__(self, other):
+        return self._get() > other
+
+    def __lt__(self, other):
+        return self._get() < other
+
+    def __ge__(self, other):
+        return not self.__lt__(other)
+
+    def __le__(self, other):
+        return not self.__gt__(other)
+
+    def __add__(self, other):
+        return self._get() + other
+
+    def __radd__(self, other):
+        return other + self._get()
+
+    def __sub__(self, other):
+        return self._get() - other
+
+    def __rsub__(self, other):
+        return other - self._get()
+
+    def __mul__(self, other):
+        return self._get() * other
+
+    def __rmul__(self, other):
+        return other * self._get()
+
+    def __div__(self, other):
+        return self._get() / other
+
+    def __rdiv__(self, other):
+        return other / self._get()
 
 class StringVar(Variable):
 

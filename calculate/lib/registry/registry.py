@@ -84,20 +84,23 @@ class Registry(object):
             except ImportError as e:
                 raise ModuleNotFoundException(e.message)
 
+    def _get_variable(self, item):
+        section, var = item.split('.', 1)
+        if section in self._sections:
+            s = self._sections[section]
+        else:
+            s = self._load_section(section)
+
+        try:
+            return getattr(s, var)
+        except AttributeError:
+            raise IndexError('Unknown variable `{0}`'.format(item))
+
     def __getitem__(self, item):
         assert not isinstance(item, (int, slice)), 'Indexing isn`t supported!'
 
         if '.' in item:
-            section, var = item.split('.', 1)
-            if section in self._sections:
-                s = self._sections[section]
-            else:
-                s = self._load_section(section)
-
-            try:
-                return getattr(s, var)._get()
-            except AttributeError:
-                raise IndexError('Unknown variable `{0}`'.format(item))
+            return self._get_variable(item)._get()
         else:
             return self.__getitem__('{0}.{1}'.format(self._default_section, item))
 

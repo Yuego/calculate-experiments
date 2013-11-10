@@ -7,12 +7,22 @@ from calculate.lib.parser.parser import SyntaxParser
 
 from calculate.lib.parser.condition.tree import *
 from calculate.lib.registry import registry
+from calculate.lib.registry.version import Version
+from calculate.lib.template.functions import functions
 
 
 def __convert_result(res):
     if isinstance(res, ParseResults):
         return res.asList()[0]
     return res
+
+
+def _empty_string_atom(s, l, tok):
+    return ''
+
+
+def _bool_atom(s, l, tok):
+    return tok[0].lower() in ('true', 'on', 'yes')
 
 
 def _num_atom(s, l, tok):
@@ -26,19 +36,16 @@ def _num_atom(s, l, tok):
 
 def _var_atom(s, l, tok):
     var = tok[0]
-    return registry[var]
+    return registry._get_variable(var)
 
 
 def _ver_atom(s, l, tok):
-    pass
+    return Version(tok[0])
 
 
 def _func_atom(s, l, tok):
-    t = tok[0]
-    fn = t[0]
-    args = ','.join(map(lambda x: str(x), t[1:]))
-    return '{0}: {1}'.format(fn, args)
-
+    fn, args = tok[0], tok[1:]
+    return functions[fn](*args)
 
 def _expr_atom(s, l, tok):
     _op = {
@@ -60,27 +67,8 @@ def _expr_atom(s, l, tok):
 
 
 def _math_atom(s, l, tok):
-    _op = {
-        '+': operator.add,
-        '-': operator.sub,
-        '*': operator.mul,
-        '/': operator.div,
-        #'^': operator.pow,
-    }
-    _op_priority = (
-        #{'^'},
-        {'*', '/'},
-        {'+', '-'},
-    )
     tok = map(__convert_result, tok)
-
-    for oset in _op_priority:
-        for op in oset & set(tok):
-            _op_idx = tok.index(op)
-            tok[_op_idx-1:_op_idx+2] = [_op[tok[_op_idx]](tok[_op_idx-1], tok[_op_idx+1])]
-
-    return tok[0]
-
+    return MathNode(tok)
 
 def _cond_atom(s, l, tok):
     tok = map(__convert_result, tok)
@@ -100,7 +88,6 @@ def _cond_atom(s, l, tok):
         return ConditionNode(_and_lst, ConditionNode.OR)
     return __process_token(tok)
 
-
 class ConditionParser(SyntaxParser):
 
     def get_syntax(self):
@@ -119,9 +106,21 @@ class ConditionParser(SyntaxParser):
 
 
         number = Word('+-' + nums, nums).setParseAction(_num_atom)
-        version = Combine(Word('+-' + nums, nums) + ZeroOrMore(_point + Word(nums))).setParseAction(_ver_atom)
+        _sv = (Literal('_')
+                     + (Literal('pre') | Literal('p') | Literal('beta') | Literal('alpha') | Literal('rc'))
+                     + Word(nums)
+        )
+        _rev = (Literal('-r') + Word(nums))
 
-        _math_operand = _variable | number | version | func | Group(_lpar + math + _rpar)
+        version = Combine(
+            Word(nums)
+            + OneOrMore(_point + Word(nums))
+            + Optional(Word(alphas))
+            + Optional(_sv)
+            + Optional(_rev)
+            ).setParseAction(_ver_atom)
+
+        _math_operand = _variable | number | func | Group(_lpar + math + _rpar)
 
         _plus = Literal('+')
         _minus = Literal('-')
@@ -136,15 +135,20 @@ class ConditionParser(SyntaxParser):
             QuotedString('"', escChar='\\', unquoteResults=True) | QuotedString("'", escChar='\\', unquoteResults=True)
         )
         unqouted_string = _identifier
+        package_atom = Regex(r'[\w+][\w+.-]*/[\w+][\w+-]*')
 
-        _func_param = atom | unqouted_string
+        _func_param = _variable | math | number | quoted_string | package_atom | unqouted_string | func
 
         func << (_identifier + _lpar + Optional(
             _func_param + ZeroOrMore(Suppress(',') + _func_param)
         ) + _rpar)
 
-        atom << (math | number | _variable | quoted_string | func)
+        atom << (math | _variable | version | number | quoted_string | func)
 
+        _bool = (CaselessLiteral('on') | CaselessLiteral('off')
+                 | CaselessLiteral('yes') | CaselessLiteral('no')
+                 | CaselessLiteral('true') | CaselessLiteral('false')
+        ).setParseAction(_bool_atom)
 
         _eq = Literal('==')
         _neq = Literal('!=')
@@ -154,7 +158,7 @@ class ConditionParser(SyntaxParser):
         _lte = Literal('<=')
         _expr_operator = (_eq | _neq | _gte | _lte | _gt | _lt)
 
-        expr << (atom + _expr_operator + atom)
+        expr << (atom + _expr_operator + (atom | Empty().setParseAction(_empty_string_atom)))
 
         _and = Literal('&&')
         _or = Literal('||')

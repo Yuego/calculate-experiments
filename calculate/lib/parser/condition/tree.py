@@ -102,3 +102,109 @@ class ExpressionNode(Node):
             self.children.extend(node.children)
         else:
             self.children.append(node)
+
+
+class MathNode(Node):
+
+    ADD = '+'
+    SUB = '-'
+    MUL = '*'
+    DIV = '/'
+    #POW = '^'
+    default = None
+
+    _op = {
+        ADD: operator.add,
+        SUB: operator.sub,
+        MUL: operator.mul,
+        DIV: operator.div,
+        #POW: operator.pow,
+    }
+    _op_priority = (
+        #{POW},
+        {MUL, DIV},
+        {ADD, SUB},
+    )
+
+    def __init__(self, children, connector=None, negated=False):
+        if connector is not None:
+            raise NotImplementedError
+        else:
+            self.children = children
+
+    def evaluate(self):
+        l = self.children[:]
+        _evaluate = lambda x, y: x[y].evaluate() if isinstance(x[y], MathNode) else x[y]
+
+        for oset in self._op_priority:
+            for op in oset & set(l):
+                while op in l:
+                    _op_idx = l.index(op)
+                    l[_op_idx-1:_op_idx+2] = [self._op[l[_op_idx]](_evaluate(l, _op_idx-1), _evaluate(l, _op_idx+1))]
+
+        return l[0]
+
+    def __str__(self):
+        return '({0})'.format(''.join(map(str, self.children)))
+
+    def _combine(self, other, connector):
+        self.children.extend([connector, other])
+
+
+    def _rcombine(self, other, connector):
+        l = len(self.children)
+        ret = self
+        if len(self.children):
+            self.children = [other, connector, self.children[0]]
+        else:
+            if len({self.children[1::2]}) == 1 and self.children[1] == connector:
+                self.children.extend([connector, other])
+            else:
+                obj = MathNode([other])
+                obj._combine(self, connector)
+                ret = obj
+
+        return ret
+
+
+    def __add__(self, other):
+        return self._combine(other, MathNode.ADD)
+
+    def __radd__(self, other):
+        return self._rcombine(other, MathNode.ADD)
+
+    def __sub__(self, other):
+        return self._combine(other, MathNode.SUB)
+
+    def __rsub__(self, other):
+        return self._rcombine(other, MathNode.SUB)
+
+    def __mul__(self, other):
+        return self._combine(other, MathNode.MUL)
+
+    def __rmul__(self, other):
+        return self._rcombine(other, MathNode.MUL)
+
+    def __div__(self, other):
+        return self._combine(other, MathNode.DIV)
+
+    def __rdiv__(self, other):
+        return self._rcombine(other, MathNode.MUL)
+
+    def __eq__(self, other):
+        return self.evaluate() == other
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __gt__(self, other):
+        return self.evaluate() > other
+
+    def __lt__(self, other):
+        return self.evaluate() < other
+
+    def __ge__(self, other):
+        return not self.__lt__(other)
+
+    def __le__(self, other):
+        return not self.__gt__(other)
