@@ -4,6 +4,7 @@ from __future__ import unicode_literals, absolute_import
 from calculate.lib.tree import Node
 
 import operator
+import six
 
 
 class ConditionNode(Node):
@@ -117,7 +118,7 @@ class MathNode(Node):
         ADD: operator.add,
         SUB: operator.sub,
         MUL: operator.mul,
-        DIV: operator.div,
+        DIV: operator.div if six.PY2 else operator.truediv,
         #POW: operator.pow,
     }
     _op_priority = (
@@ -166,6 +167,8 @@ class MathNode(Node):
 
         return ret
 
+    def __hash__(self):
+        return hash(self.__str__())
 
     def __add__(self, other):
         return self._combine(other, MathNode.ADD)
@@ -190,6 +193,13 @@ class MathNode(Node):
 
     def __rdiv__(self, other):
         return self._rcombine(other, MathNode.MUL)
+
+    # python 3 division support
+    def __truediv__(self, other):
+        return self.__div__(other)
+
+    def __rtruediv__(self, other):
+        return self.__rdiv__(other)
 
     def __eq__(self, other):
         return self.evaluate() == other

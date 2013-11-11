@@ -1,9 +1,8 @@
 #coding: utf-8
 from __future__ import unicode_literals, absolute_import
-
-from calculate.lib.parser.condition.parser import ConditionParser
-
 from unittest import TestCase
+
+from calculate.lib.template.parser import ConditionParser
 
 
 class TestConditionParser(TestCase):

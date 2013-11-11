@@ -2,6 +2,7 @@
 from __future__ import unicode_literals, absolute_import
 
 from unittest import TestCase
+import six
 
 from calculate.lib.registry import registry
 
@@ -31,12 +32,12 @@ class TestRegistryInterface(TestCase):
          - вызовет исключение.
 
         """
-        self.assertIsInstance(self.r['cl_env_path'], basestring)
-        self.assertIsInstance(self.r['cl_env_read_only'], int)
+        self.assertIsInstance(self.r['cl_env_path'], six.string_types)
+        self.assertIsInstance(self.r['cl_env_read_only'], six.integer_types)
         self.assertIsInstance(self.r['cl_env_flag'], bool)
 
-        self.assertIsInstance(self.r['main.cl_env_path'], basestring)
-        self.assertIsInstance(self.r['main.cl_env_read_only'], int)
+        self.assertIsInstance(self.r['main.cl_env_path'], six.string_types)
+        self.assertIsInstance(self.r['main.cl_env_read_only'], six.integer_types)
         self.assertIsInstance(self.r['main.cl_env_flag'], bool)
 
         def _func():

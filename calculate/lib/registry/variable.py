@@ -186,6 +186,13 @@ class Variable(six.with_metaclass(VariableBase)):
     def __rdiv__(self, other):
         return other / self._get()
 
+    # python 3 division support
+    def __truediv__(self, other):
+        return self.__div__(other)
+
+    def __rtruediv__(self, other):
+        return self.__rdiv__(other)
+
 class StringVar(Variable):
 
     def validate(self, value):

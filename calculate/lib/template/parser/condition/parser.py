@@ -3,18 +3,17 @@ from __future__ import unicode_literals, absolute_import
 
 from pyparsing import *
 
-from calculate.lib.parser.parser import SyntaxParser
+from calculate.lib.template.parser.parser import SyntaxParser
 
-from calculate.lib.parser.condition.tree import *
+from calculate.lib.template.parser.condition.tree import *
 from calculate.lib.registry import registry
 from calculate.lib.registry.version import Version
 from calculate.lib.template.functions import functions
 
 
 def __convert_result(res):
-    if isinstance(res, ParseResults):
-        return res.asList()[0]
-    return res
+    __convert = lambda x: x.asList()[0] if isinstance(x, ParseResults) else x
+    return list(map(__convert, res))
 
 
 def _empty_string_atom(s, l, tok):
@@ -67,11 +66,11 @@ def _expr_atom(s, l, tok):
 
 
 def _math_atom(s, l, tok):
-    tok = map(__convert_result, tok)
+    tok = __convert_result(tok)
     return MathNode(tok)
 
 def _cond_atom(s, l, tok):
-    tok = map(__convert_result, tok)
+    tok = __convert_result(tok)
 
     def __process_token(tok):
         while len(tok) > 1:
@@ -87,6 +86,7 @@ def _cond_atom(s, l, tok):
         _and_lst.append(__process_token(tok))
         return ConditionNode(_and_lst, ConditionNode.OR)
     return __process_token(tok)
+
 
 class ConditionParser(SyntaxParser):
 
