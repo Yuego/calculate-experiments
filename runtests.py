@@ -3,7 +3,7 @@ from __future__ import unicode_literals, absolute_import
 
 import unittest
 
-from calculate.lib.tests import *
+from calculate_next.lib.tests import *
 
 if __name__ == '__main__':
     unittest.main()

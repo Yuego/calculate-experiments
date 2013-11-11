@@ -3,10 +3,10 @@ from setuptools import setup, find_packages
 import sys
 sys.path.insert(0, '..')
 
-from calculate.lib import __version__
+from calculate_next.lib import __version__
 
 setup(
-    name='calculate_elib',
+    name='calculate_next',
     version=__version__,
     author='Artem Vlasov',
     author_email='root@proscript.ru',
