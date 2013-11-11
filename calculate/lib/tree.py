@@ -6,8 +6,6 @@ class Node(object):
 
     default = 'DEFAULT'
 
-    _eval = {}
-
     def __init__(self, children=None, connector=None, negated=False):
         self.children = children and children[:] or []
         self.connector = connector or self.default

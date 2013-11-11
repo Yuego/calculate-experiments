@@ -7,7 +7,7 @@ from calculate.lib.template.parser.parser import SyntaxParser
 
 from calculate.lib.template.parser.condition.tree import *
 from calculate.lib.registry import registry
-from calculate.lib.registry.version import Version
+from calculate.lib.version import Version
 from calculate.lib.template.functions import functions
 
 

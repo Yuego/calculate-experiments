@@ -19,7 +19,10 @@ class ConditionNode(Node):
     }
 
     def evaluate(self):
-        return self._eval[self.connector](map(lambda x: x, self.children))
+        res = self._eval[self.connector](map(lambda x: x, self.children))
+        if self.negated:
+            res = not res
+        return res
 
     def __or__(self, other):
         return self._combine(other, self.OR)
@@ -28,10 +31,8 @@ class ConditionNode(Node):
         return self._combine(other, self.AND)
 
     def __invert__(self):
-        obj = self.__class__()
-        obj.add(self, self.AND)
-        obj.negate()
-        return obj
+        self.negated = not self.negated
+        return self
 
 
 class ExpressionNode(Node):
@@ -69,10 +70,10 @@ class ExpressionNode(Node):
         return self._eval[self.connector](*self.children)
 
     def _combine(self, other, connector):
-        if not type(other) == self.__class__:
+        if type(other) != self.__class__:
             return False
 
-        obj = self.__class__(self.children)
+        obj = self.__class__(self.children[:])
         obj.add(other, connector)
         return obj
 
@@ -129,9 +130,12 @@ class MathNode(Node):
 
     def __init__(self, children, connector=None, negated=False):
         if connector is not None:
-            raise NotImplementedError
+            raise ValueError('connector setting isn`t supported here')
         else:
-            self.children = children
+            if isinstance(children, (list, tuple)):
+                self.children = children and children[:] or []
+            else:
+                self.children = [children]
 
     def evaluate(self):
         l = self.children[:]
@@ -149,23 +153,24 @@ class MathNode(Node):
         return '({0})'.format(''.join(map(str, self.children)))
 
     def _combine(self, other, connector):
-        self.children.extend([connector, other])
-
+        children = self.children[:]
+        children.extend([connector, other])
+        return self.__class__(children)
 
     def _rcombine(self, other, connector):
         l = len(self.children)
-        ret = self
-        if len(self.children):
-            self.children = [other, connector, self.children[0]]
+
+        if len(self.children) == 1:
+            return MathNode([other, connector, self.children[0]])
         else:
             if len({self.children[1::2]}) == 1 and self.children[1] == connector:
-                self.children.extend([connector, other])
+                children = [other, connector]
+                children.extend(self.children)
+                return MathNode(children)
             else:
                 obj = MathNode([other])
-                obj._combine(self, connector)
-                ret = obj
+                return obj._combine(self, connector)
 
-        return ret
 
     def __hash__(self):
         return hash(self.__str__())
@@ -192,7 +197,7 @@ class MathNode(Node):
         return self._combine(other, MathNode.DIV)
 
     def __rdiv__(self, other):
-        return self._rcombine(other, MathNode.MUL)
+        return self._rcombine(other, MathNode.DIV)
 
     # python 3 division support
     def __truediv__(self, other):

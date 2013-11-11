@@ -4,9 +4,8 @@ from __future__ import unicode_literals, absolute_import
 from portage.versions import vercmp
 import six
 
+
 class Version(six.text_type):
-    def __init__(self, string, encoding=None, errors='strict'):
-        super(Version, self).__init__(string, encoding, errors)
 
     def __gt__(self, other):
         return vercmp(self, other) > 0
