@@ -4,6 +4,8 @@ from __future__ import unicode_literals, absolute_import
 from pyparsing import *
 
 from calculate.lib.template.parser.parser import SyntaxParser
+from calculate.lib.template.parser.rules import identifier, quoted_string, package_atom
+from calculate.lib.template.parser.utils import convert_result
 
 from calculate.lib.template.parser.condition.tree import *
 from calculate.lib.registry import registry
@@ -11,9 +13,7 @@ from calculate.lib.version import Version
 from calculate.lib.template.functions import functions
 
 
-def __convert_result(res):
-    __convert = lambda x: x.asList()[0] if isinstance(x, ParseResults) else x
-    return list(map(__convert, res))
+
 
 
 def _empty_string_atom(s, l, tok):
@@ -47,30 +47,15 @@ def _func_atom(s, l, tok):
     return functions[fn](*args)
 
 def _expr_atom(s, l, tok):
-    _op = {
-        '==': operator.eq,
-        '!=': operator.ne,
-        '>': operator.gt,
-        '>=': operator.ge,
-        '<': operator.lt,
-        '<=': operator.le,
-    }
-
-    node = ExpressionNode([tok[0], tok[2]], tok[1])
-
-    if len(tok) > 3:
-        token = tok[3:]
-        for i in range(len(token)/2):
-            node = _op[token[i*2]](node, token[i*2+1])
-    return node
+    return ExpressionNode([tok[0], tok[2]], tok[1])
 
 
 def _math_atom(s, l, tok):
-    tok = __convert_result(tok)
+    tok = convert_result(tok)
     return MathNode(tok)
 
 def _cond_atom(s, l, tok):
-    tok = __convert_result(tok)
+    tok = convert_result(tok)
 
     def __process_token(tok):
         while len(tok) > 1:
@@ -101,8 +86,7 @@ class ConditionParser(SyntaxParser):
         _rpar = Suppress(')')
         _point = Literal('.')
 
-        _identifier = Word(alphas + '_', alphanums + '_')
-        _variable = Combine(_identifier + _point + _identifier).setParseAction(_var_atom)
+        _variable = Combine(identifier + _point + identifier).setParseAction(_var_atom)
 
 
         number = Word('+-' + nums, nums).setParseAction(_num_atom)
@@ -130,16 +114,12 @@ class ConditionParser(SyntaxParser):
 
         math << (_math_operand + OneOrMore(_math_operator + _math_operand))
 
+        unqouted_string = identifier
 
-        quoted_string = (
-            QuotedString('"', escChar='\\', unquoteResults=True) | QuotedString("'", escChar='\\', unquoteResults=True)
-        )
-        unqouted_string = _identifier
-        package_atom = Regex(r'[\w+][\w+.-]*/[\w+][\w+-]*')
 
         _func_param = _variable | math | number | quoted_string | package_atom | unqouted_string | func
 
-        func << (_identifier + _lpar + Optional(
+        func << (identifier + _lpar + Optional(
             _func_param + ZeroOrMore(Suppress(',') + _func_param)
         ) + _rpar)
 

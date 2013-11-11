@@ -64,46 +64,16 @@ class ExpressionNode(Node):
             self.children = [children]
 
         self.connector = connector or self.default
-        self.negated = negated
+        self.negated = False
 
     def evaluate(self):
         return self._eval[self.connector](*self.children)
 
-    def _combine(self, other, connector):
-        if type(other) != self.__class__:
-            return False
+    def __and__(self, other):
+        return ConditionNode([self]) & other
 
-        obj = self.__class__(self.children[:])
-        obj.add(other, connector)
-        return obj
-
-    def __eq__(self, other):
-        return self._combine(other, self.EQ)
-
-    def __ne__(self, other):
-        return self._combine(other, self.NE)
-
-    def __gt__(self, other):
-        return self._combine(other, self.GT)
-
-    def __ge__(self, other):
-        return self._combine(other, self.GE)
-
-    def __lt__(self, other):
-        return self._combine(other, self.LT)
-
-    def __le__(self, other):
-        return self._combine(other, self.LE)
-
-    def add(self, node, connector):
-        assert len(self.children) < 2, 'Only 2 items can be compared!'
-
-        self.connector = connector
-
-        if isinstance(node, Node) and (node.connector == connector or len(node) == 1):
-            self.children.extend(node.children)
-        else:
-            self.children.append(node)
+    def __or__(self, other):
+        return ConditionNode([self]) | other
 
 
 class MathNode(Node):

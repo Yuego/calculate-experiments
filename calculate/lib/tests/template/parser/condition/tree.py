@@ -61,41 +61,6 @@ class TestExpressionNode(TestCase):
 
         self.assertRaises(ValueError, ExpressionNode, *([1, 2, 3],))
 
-    def test_operations(self):
-        n1 = ExpressionNode(1)
-        n2 = ExpressionNode(2)
-
-        def _compare(n, connector):
-            self.assertIsInstance(n, ExpressionNode)
-            self.assertNotEqual(id(n), id(n1))
-            self.assertNotEqual(id(n), id(n2))
-            self.assertListEqual(n.children, [1, 2])
-            self.assertEqual(n.connector, connector)
-
-        n3 = n1 == n2
-        _compare(n3, ExpressionNode.EQ)
-        self.assertFalse(n3.evaluate())
-
-        n4 = n1 != n2
-        _compare(n4, ExpressionNode.NE)
-        self.assertTrue(n4.evaluate())
-
-        n5 = n1 > n2
-        _compare(n5, ExpressionNode.GT)
-        self.assertFalse(n5.evaluate())
-
-        n6 = n1 >= n2
-        _compare(n6, ExpressionNode.GE)
-        self.assertFalse(n6.evaluate())
-
-        n7 = n1 < n2
-        _compare(n7, ExpressionNode.LT)
-        self.assertTrue(n7.evaluate())
-
-        n8 = n1 <= n2
-        _compare(n8, ExpressionNode.LE)
-        self.assertTrue(n8.evaluate())
-
 
 class TestMathNode(TestCase):
 

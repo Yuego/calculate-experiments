@@ -61,9 +61,6 @@ class Node(object):
         raise NotImplementedError
 
     def _combine(self, other, connector):
-        if not type(other) == self.__class__:
-            raise TypeError(other)
-
         obj = self.__class__()
         obj.add(self, connector)
         obj.add(other, connector)
