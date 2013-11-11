@@ -6,6 +6,7 @@ import six
 
 from calculate_next.lib.registry.variable import Variable
 
+from calculate.lib.datavars import DataVars, DataVarsError
 
 
 class ModuleNotFoundException(Exception):
@@ -47,6 +48,13 @@ class Registry(object):
                 raise ValueError('Wrong value of `also_load` attr: "{0}"'.format(also_load))
         for s in _to_load:
             self._load_section(s)
+
+        # Временно попользуемся DataVars
+        self._dv = DataVars()
+        self._dv.importVariables()
+        for s in _to_load[1:]:
+            self._dv.importVariables('calculate.{0}.variables'.format(s))
+        self._dv.defaultModule = self._default_section
 
     def _load_section(self, name):
         if not name in self._sections and name not in self._imported_modules:
@@ -101,7 +109,15 @@ class Registry(object):
         assert not isinstance(item, (int, slice)), 'Indexing isn`t supported!'
 
         if '.' in item:
-            return self._get_variable(item)._get()
+            # Попытаемся извлечь переменную из DataVars
+            try:
+                return self._get_variable(item)._get()
+            except IndexError as e:
+                print ('Warning: getting variable {0} from DataVars'.format(item))
+                try:
+                    return self._dv.Get(item)
+                except DataVarsError:
+                    raise IndexError(e)
         else:
             return self.__getitem__('{0}.{1}'.format(self._default_section, item))
 
