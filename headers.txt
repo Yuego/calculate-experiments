@@ -1,0 +1,2106 @@
+# Calculate path=/etc/env.d/python name=config
+# Calculate comment=#
+# Calculate link=../../../etc/resolv.conf mirror
+# Calculate path=/var/calculate
+# Calculate append=skip ac_assemble_prepare==up
+# Calculate format=patch
+# Calculate link=/etc/shadow mirror force
+# Calculate format=patch
+# Calculate comment=# format=samba
+# Calculate comment=#
+# Calculate name=make.profile link=#-os_assemble_profile-# symbolic force
+# Calculate format=openrc
+# Calculate append=skip ac_assemble_setup==up
+# Calculate path=/var/cache append=clear
+# Calculate append=skip cl_name==calculate-assemble
+# Calculate format=openrc
+# Calculate format=patch
+# Calculate link=/etc/init.d/calculate symbolic
+# Calculate format=patch cl_builder_live_set==off
+# Calculate name=net.eth0 link=net.lo symbolic pkg(net-misc/networkmanager)==
+# Calculate comment=# format=samba
+# Calculate path=/etc
+# Calculate format=openrc
+# Calculate format=patch
+# Calculate comment=#
+# Calculate append=remove
+# Calculate format=openrc
+# Calculate append=remove name=#-cl_builder_initrd_install-# cl_builder_initrd_install!=initramfs-#-cl_builder_kernel_suffix-#-install
+# Calculate append=remove name=#-cl_builder_kernel-# cl_builder_kernel!=vmlinuz-#-cl_builder_kernel_suffix-#
+# Calculate link=/boot/#-cl_builder_kernel_systemmap-# name=System.map-#-cl_builder_kernel_suffix-# cl_builder_kernel_systemmap!=System.map-#-cl_builder_kernel_suffix-# mirror force
+# Calculate append=remove name=#-cl_builder_kernel_config-# cl_builder_kernel_config!=config-#-cl_builder_kernel_suffix-#
+# Calculate link=/boot/#-cl_builder_kernel-# name=vmlinuz-#-cl_builder_kernel_suffix-# mirror force cl_builder_kernel!=vmlinuz-#-cl_builder_kernel_suffix-#
+# Calculate link=/boot/#-cl_builder_initrd_install-# name=initramfs-#-cl_builder_kernel_suffix-#-install mirror force cl_builder_initrd_install!=initramfs-#-cl_builder_kernel_suffix-#-install
+# Calculate link=/boot/#-cl_builder_kernel_config-# name=config-#-cl_builder_kernel_suffix-# cl_builder_kernel_config!=config-#-cl_builder_kernel_suffix-# mirror force
+# Calculate append=remove name=#-cl_builder_kernel_systemmap-# cl_builder_kernel_systemmap!=System.map-#-cl_builder_kernel_suffix-#
+# Calculate os_builder_linux_system!= append=skip
+# Calculate append=replace path=/var/lib/portage
+# Calculate append=skip ac_builder_squash==up
+# Calculate append=skip cl_name==calculate-builder
+# Calculate path=/var/log/portage name=elog append=clear
+# Calculate append=clear
+# Calculate append=remove
+# Calculate path=/ name=tmp append=clear
+# Calculate path=/var/cache name=revdep-rebuild append=clear
+# Calculate path=/var/calculate/remote name=distfiles append=clear
+# Calculate path=/var/log name=calculate append=clear
+# Calculate path=/var/tmp name=portage append=clear
+# Calculate append=skip ac_builder_squash==up
+# Calculate append=remove
+# Calculate path=/var/log name=clamav append=clear
+# Calculate append=remove
+# Calculate path=/var/calculate name=tmp append=clear
+# Calculate path=/var/lib/gentoo name=news append=clear
+# Calculate belong()!=&&pkg(sys-apps/memtest86+)>=4.0 append=skip
+# Calculate link=#-cl_builder_squash_path-#/boot/memtest86plus/memtest.bin mirror
+# Calculate belong()!=&&pkg(sys-kernel/calculate-sources)!= name=boot
+# Calculate link=#-cl_builder_squash_path-#/boot/initramfs-#-cl_builder_kernel_suffix-#-install mirror force
+# Calculate append=replace format=bin link=#-cl_builder_squash_path-#/boot/vmlinuz-#-cl_builder_kernel_suffix-# mirror force
+# Calculate append=skip ac_builder_iso==up
+# Calculate belong()!=&&pkg(sys-boot/calcboot)!= append=skip
+# Calculate format=patch name=vga.cfg os_builder_linux_system!=server
+# Calculate link=/isolinux/lang.cfg mirror
+# Calculate format=patch name=syslinux.cfg
+# Calculate link=/isolinux/isolinux.cfg mirror
+# Calculate link=/isolinux/keymap.cfg mirror
+# Calculate link=/isolinux/f1.txt mirror
+# Calculate format=patch name=lang.cfg
+# Calculate link=/isolinux/common.cfg mirror
+# Calculate link=#-cl_builder_squash_path-#/usr/share/syslinux/calcmenu.c32 mirror
+# Calculate link=/isolinux/video.cfg mirror os_builder_linux_system!=server
+# Calculate link=/isolinux/timezone.cfg mirror
+# Calculate format=patch name=timezone.cfg
+# Calculate link=#-cl_builder_squash_path-#/boot/boot.jpg mirror
+# Calculate format=patch name=video.cfg os_builder_linux_system!=server
+# Calculate link=/isolinux/vga.cfg mirror os_builder_linux_system!=server
+# Calculate format=patch name=keymap.cfg
+# Calculate name=isolinux.cfg os_builder_linux_system==server&&pkg(sys-kernel/calculate-sources)>=2.6.32.33&&pkg(sys-kernel/calculate-sources)<2.6.33||os_builder_linux_system==server&&pkg(sys-kernel/calculate-sources)>=2.6.37.4
+# Calculate link=#-cl_builder_squash_path-#/usr/share/syslinux/calcmenu.c32 mirror
+# Calculate os_builder_linux_system!=server
+# Calculate name=isolinux.cfg os_builder_linux_system==server&&pkg(sys-kernel/calculate-sources)<2.6.32.33||os_builder_linux_system==server&&pkg(sys-kernel/calculate-sources)>2.6.33&&pkg(sys-kernel/calculate-sources)<2.6.37.4
+# Calculate name=isolinux.cfg os_builder_linux_system==desktop&&pkg(sys-kernel/calculate-sources)<2.6.32.33||os_builder_linux_system==desktop&&pkg(sys-kernel/calculate-sources)>2.6.33&&pkg(sys-kernel/calculate-sources)<2.6.37.4
+# Calculate link=#-cl_builder_squash_path-#/boot/boot.jpg mirror
+# Calculate name=isolinux.cfg os_builder_linux_system==desktop&&pkg(sys-kernel/calculate-sources)>=2.6.32.33&&pkg(sys-kernel/calculate-sources)<2.6.33||os_builder_linux_system==desktop&&pkg(sys-kernel/calculate-sources)>=2.6.37.4
+# Calculate os_builder_linux_system!=server
+# Calculate belong()!=&&pkg(sys-boot/syslinux)!= append=skip
+# Calculate link=#-cl_builder_squash_path-#/usr/share/syslinux/isolinux.bin mirror
+# Calculate belong()!= append=skip
+# Calculate format=ldap append=replace chmod=0644 chown=root:root path=/etc/pam.d
+# Calculate belong()!=&&pkg(kde-base/kdm)!= append=skip
+# Calculate format=kde pkg(kde-base/kdm)!= path=/usr/share/config/kdm
+# Calculate belong()!= append=skip
+# Calculate format=ldap append=replace chmod=0644 chown=root:root path=/etc
+# Calculate format=samba path=/etc/xdg/xfce4/kiosk
+# Calculate belong()!=&&pkg(xfce-base/xfdesktop)!= append=skip
+# Calculate append=skip ac_client_domain==down
+# Calculate path=/etc/ssh
+# Calculate belong()!= append=skip
+# Calculate format=ldap append=replace chmod=0644 chown=root:root path=/etc
+# Calculate format=kde path=/etc/X11/gdm
+# Calculate belong()!=&&pkg(gnome-base/gdm)!= append=skip
+# Calculate path=/etc/X11/gdm
+# Calculate append=remove name=Default.old
+# Calculate name=Default link=/etc/X11/gdm/Init/Default.old mirror load(/etc/X11/gdm/Init/Default.old)!= force
+# Calculate belong()!= append=skip
+# Calculate format=ldap append=replace chmod=0644 chown=root:root path=/etc/pam.d
+# Calculate belong()!=&&pkg(kde-base/kdm)!= append=skip
+# Calculate format=kde path=/usr/share/config/kdm 
+# Calculate belong()!= append=skip
+# Calculate format=ldap append=replace chmod=0644 chown=root:root path=/etc
+# Calculate format=samba path=/etc/xdg/xfce4/kiosk
+# Calculate belong()!=&&pkg(xfce-base/xfdesktop)!= append=skip
+# Calculate append=skip ac_client_domain==up&&os_remote_auth!=
+# Calculate path=/etc/ssh
+# Calculate belong()!= append=skip
+# Calculate format=ldap append=replace chmod=0644 chown=root:root path=/etc
+# Calculate format=kde path=/etc/X11/gdm
+# Calculate belong()!=&&pkg(gnome-base/gdm)!= append=skip
+# Calculate path=/etc/X11/gdm
+# Calculate append=replace chmod=755 name=Default force
+# Calculate name=Default.old link=/etc/X11/gdm/Init/Default mirror load(/etc/X11/gdm/Init/Default.old)== force
+# Calculate append=skip cl_name==calculate-client&&cl_ver>=2.2.1
+# Calculate format=samba
+# Calculate append=skip belong(mc)!=&&ini(update.mc)!=off&&ini(ver.mc)==&&pkg(app-misc/mc)>=4.7
+# Calculate format=kde
+# Calculate append=replace os_root_type==livecd
+# Calculate format=samba
+# Calculate append=skip belong(bash)!=&&os_root_type==livecd&&ini(update.bash)!=off&&ini(ver.bash)==&&pkg(app-shells/bash)>=4.0
+# Calculate format=samba
+# Calculate append=skip belong(git)!=&&ini(update.git)!=off&&ini(ver.git)==&&pkg(dev-vcs/git)>=1.7.0
+# Calculate path=~ name= chmod=0700 chown=#-ur_login-#:#-ur_group-# cl_chroot_status==off&&ur_login==root&&ac_desktop_desktop==up&&ini(main.update)!=off
+# Calculate format=samba
+# Calculate append=skip belong(qt-gui)!=&&ini(update.qt-gui)!=off&&ini(ver.qt-gui)<=4.7.4&&pkg(x11-libs/qt-gui)>=4.7
+# Calculate format=raw path=~/.config
+# Calculate format=raw
+# Calculate format=samba
+# Calculate append=skip belong(xscreensaver)!=&&ini(update.xscreensaver)!=off&&ini(ver.xscreensaver)==&&pkg(x11-misc/xscreensaver)>=5.10
+# Calculate format=samba
+# Calculate append=skip belong(chromium)!=&&exists(~/.config/chromium)==&&ini(update.chromium)!=off&&ini(ver.chromium)==&&pkg(www-client/chromium)>=6.0
+# Calculate os_locale_language!=ru name=Bookmarks
+# Calculate path=/tmp pkg(www-apps/chromium-adblock)!= exec=/bin/bash name=adblock-install-#-ur_login-#.sh
+# Calculate os_locale_language==ru name=Bookmarks
+# Calculate format=samba
+# Calculate path=~/.xbmc/userdata
+# Calculate append=skip belong(xbmc)!=&&ini(update.xbmc)!=off&&ini(ver.xbmc)==&&pkg(media-tv/xbmc)>=10.0
+# Calculate path=~/.xbmc/userdata
+# Calculate format=samba
+# Calculate append=skip belong(bash)!=&&ini(update.bash)!=off&&ini(ver.bash)==&&pkg(app-shells/bash)>=3.0
+# Calculate format=samba
+# Calculate append=skip belong(mc)!=&&ini(update.mc)!=off&&ini(ver.mc)==&&pkg(app-misc/mc)>=4.7
+# Calculate format=kde
+# Calculate path=~/.gqview
+# Calculate format=samba
+# Calculate append=skip belong(gqview)!=&&ini(update.gqview)!=off&&ini(ver.gqview)==&&pkg(media-gfx/gqview)>=2.1
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(kdenlive)!=&&ini(update.kdenlive)!=off&&ini(ver.kdenlive)==&&pkg(media-video/kdenlive)>=0.7
+# Calculate format=kde path=~/.kde4/share/config
+# Calculate format=kde
+# Calculate format=plasma 
+# Calculate format=kde
+# Calculate format=samba
+# Calculate append=skip belong(kdelibs)!=&&ini(update.kde)!=off&&ini(ver.kde)!=&&ini(ver.kde)>=4.3&&ini(ver.kde)<4.4&&pkg(kde-base/kdelibs)>=4.4&&pkg(kde-base/kdelibs)<4.5
+# Calculate format=kde
+# Calculate format=compiz
+# Calculate append=remove
+# Calculate format=samba link=/usr/share/apps/kio_desktop/DesktopLinks/Home.desktop mirror env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate os_root_type==livecd chmod=0755
+# Calculate append=remove
+# Calculate format=kde link=/usr/share/applications/kde4/konversation.desktop mirror os_root_type==livecd chmod=0755
+# Calculate name=Home.desktop format=samba env(client.os_remote_auth)!=&&ur_domain_set==on append=replace
+# Calculate format=kde chmod=0755 link=/usr/share/applications/cl-install-gui-kde.desktop os_root_type==livecd mirror
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate name= path="#-ini(resource.desktop)-#"
+# Calculate format=kde link=/usr/share/applications/kde4/partitionmanager.desktop os_root_type==livecd mirror chmod=0755
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate env(client.os_remote_auth)!=&&ur_domain_set==on&&server(jabber.host)!=
+# Calculate format=samba
+# Calculate append=skip belong(pidgin)!=&&ini(update.pidgin)!=off&&ini(ver.pidgin)==&&pkg(net-im/pidgin)>=2.6
+# Calculate format=samba
+# Calculate append=skip belong(skype)!=&&ini(update.skype)!=off&&ini(ver.skype)==&&pkg(net-im/skype)>=2.2
+# Calculate format=kde env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=kde
+# Calculate format=plasma
+# Calculate format=kde
+# Calculate format=plasma
+# Calculate format=kde
+# Calculate chmod=0400 pkg(kde-misc/gtk-kde4)!=
+# Calculate format=kde
+# Calculate format=plasma append=replace
+# Calculate format=kde
+# Calculate link=gtkrc symbolic pkg(kde-misc/gtk-kde4)!=
+# Calculate format=kde
+# Calculate format=kde append=replace
+# Calculate format=kde
+# Calculate chmod=0700 pkg(x11-themes/gtk-engines-qtcurve)!=
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(kdelibs)!=&&ini(update.kde)!=off&&ini(ver.kde)==&&pkg(kde-base/kdelibs)>=4.5&&pkg(kde-base/kdelibs)<4.6
+# Calculate format=kde
+# Calculate format=kde link=/usr/share/applications/kde4/kopete.desktop mirror env(client.os_remote_auth)!=&&ur_domain_set==on&&server(jabber.host)!=&&ur_jid!=
+# Calculate pkg(x11-themes/gtk-engines-qtcurve)!=
+# Calculate format=kde link=/usr/share/applications/goldendict.desktop mirror
+# Calculate format=kde link=/usr/share/applications/kde4/konversation.desktop mirror
+# Calculate format=kde link=/usr/share/applications/bsh-console-bsh.desktop mirror
+# Calculate format=compiz
+# Calculate format=kde link=/usr/share/applications/kde4/partitionmanager.desktop os_root_type==livecd mirror
+# Calculate format=samba link=/usr/share/apps/kio_desktop/DesktopLinks/Home.desktop mirror env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate os_root_type==livecd chmod=0755
+# Calculate format=kde link=/usr/share/applications/kde4/konversation.desktop mirror os_root_type==livecd chmod=0755
+# Calculate append=replace name=Home.desktop format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=kde chmod=0755 link=/usr/share/applications/cl-install-gui-kde.desktop os_root_type==livecd mirror
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate name= path="#-ini(resource.desktop)-#"
+# Calculate format=kde link=/usr/share/applications/kde4/partitionmanager.desktop os_root_type==livecd mirror chmod=0755
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate chmod=0600 pkg(x11-themes/gtk-engines-qtcurve)!=
+# Calculate format=samba
+# Calculate append=skip belong(transmission)!=&&ini(update.transmission)!=off&&ini(ver.transmission)==&&pkg(net-p2p/transmission)>=1.8
+# Calculate format=samba
+# Calculate append=skip belong(mozilla-firefox)!=&&ini(update.firefox)!=off&&ini(ver.firefox)==&&pkg(www-client/firefox)>=3.5
+# Calculate pkg(www-plugins/adblock-mozilla-plugin)!=
+# Calculate name=patterns.ini os_locale_lang==ru_RU
+# Calculate name=patterns.ini os_locale_lang!=ru_RU
+# Calculate format=kde name=mozilla-firefox-3.6.desktop
+# Calculate format=kde link=/usr/share/applications/mozilla-firefox-3.6.desktop mirror name=mozilla-firefox.desktop
+# Calculate format=kde link=/usr/share/applications/mozilla-firefox-3.5.desktop mirror name=mozilla-firefox.desktop
+# Calculate format=kde name=mozilla-firefox-3.5.desktop
+# Calculate format=samba
+# Calculate append=skip belong(qt-gui)!=&&ini(update.qtgui)!=off&&ini(ver.qtgui)==&&pkg(x11-libs/qt-gui)>=4.6
+# Calculate format=raw path=~/.config
+# Calculate format=samba
+# Calculate append=skip belong(gimp)!=&&ini(update.gimp)!=off&&ini(ver.gimp)==&&pkg(media-gfx/gimp)>=2.6
+# Calculate format=kde link=/usr/share/applications/gimp.desktop mirror
+# Calculate format=samba
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=samba
+# Calculate append=skip belong(libgnome)!=&&ini(update.gnome)!=off&&ini(ver.gnome)==&&pkg(gnome-base/libgnome)>=2.30
+# Calculate format=samba
+# Calculate append=remove name=fusion-icon-autostart pkg(x11-apps/fusion-icon)==
+# Calculate format=kde link=/usr/share/applications/fusion-icon.desktop mirror pkg(x11-apps/fusion-icon)!=
+# Calculate format=xml_gconf
+# Calculate format=xml_gconf append=join
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==de_DE
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==pt_BR
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==pt_PT
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==it_IT
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==en_US
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==fr_FR
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==ro_RO
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==ru_RU
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==pl_PL
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==es_ES
+# Calculate format=xml_gconf append=join
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==uk_UA
+# Calculate format=xml_gconf append=join
+# Calculate format=xml_gconf
+# Calculate env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=xml_gconf
+# Calculate os_root_type==livecd
+# Calculate format=xml_gconf
+# Calculate
+# Calculate format=xml_gconf
+# Calculate env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=xml_gconf
+# Calculate name=objects
+# Calculate env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate format=xml_gconf
+# Calculate env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=xml_gconf
+# Calculate name=objects
+# Calculate format=xml_gconf
+# Calculate format=xml_gconf hr_cdrom_set==on
+# Calculate format=xml_gconf
+# Calculate name=applets
+# Calculate format=xml_gconf
+# Calculate name=objects
+# Calculate env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=xml_gconf
+# Calculate env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=xml_gconf
+# Calculate name=applets
+# Calculate format=xml_gconf
+# Calculate format=kde link=/usr/share/applications/xchat.desktop mirror
+# Calculate format=kde link=/usr/share/applications/bsh-console-bsh.desktop mirror
+# Calculate format=kde link=/usr/share/applications/gfloppy.desktop mirror
+# Calculate format=kde link=/usr/share/applications/gnomecc.desktop mirror
+# Calculate format=kde link=/usr/share/applications/gparted.desktop mirror
+# Calculate format=kde link=/usr/share/desktop-directories/AudioVideo.directory mirror
+# Calculate format=kde link=/usr/share/desktop-directories/Settings-System.directory mirror
+# Calculate format=kde link=/usr/share/desktop-directories/Utility.directory mirror
+# Calculate format=kde link=/usr/share/desktop-directories/Settings.directory mirror
+# Calculate name=file:%2F%2F#-ini(resource.desktop,,purl)-#.xml
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on chmod=0755
+# Calculate os_root_type==livecd chmod=0755
+# Calculate format=kde link=/usr/share/applications/xchat.desktop mirror os_root_type==livecd
+# Calculate format=kde link=/usr/share/applications/cl-install-gui.desktop os_root_type==livecd mirror
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!= chmod=0755
+# Calculate name= path="#-ini(resource.desktop)-#"
+# Calculate format=kde link=/usr/share/applications/gparted.desktop mirror os_root_type==livecd
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on chmod=0755
+# Calculate format=kde path=~/.kde4/share/config
+# Calculate format=samba
+# Calculate append=skip belong(kmail)!=&&ini(update.kmail)!=off&&ini(ver.kmail)==&&pkg(kde-base/kmail)>=4.7
+# Calculate path=~/.kde4/share/apps/kopete
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(kopete)!=&&ini(update.kopete)!=off&&ini(ver.kopete)==&&pkg(kde-base/kopete)>=4.6
+# Calculate format=kde path=~/.kde4/share/config
+# Calculate format=kde append=replace path=~/.kde4/share/config
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(calculate-utilities)!=&&ini(update.patch)!=off&&ini(ver.patch)<2.2.12
+# Calculate comment=# chmod=0600 pkg(x11-themes/gtk-engines-qtcurve)!=||pkg(x11-themes/oxygen-gtk)!=
+# Calculate format=samba
+# Calculate append=remove name=Share.desktop env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=samba  env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate append=remove name=FTP.desktop  env(client.os_remote_auth)==||ur_domain_set==off||server(ftp.host)==
+# Calculate append=skip belong(libgnome)!=&&ini(update.gnome)!=off&&pkg(gnome-base/libgnome)>=2.26&&ini(domain)!=#-env(client.os_remote_auth)-#||belong(libgnome)!=&&ini(update.gnome)!=off&&pkg(gnome-base/libgnome)>=2.26&&ini(xsession)!=#-cl_desktop_xsession-#
+# Calculate format=xml_gconf
+# Calculate name=objects
+# Calculate append=remove name=%gconf.xml env(client.os_remote_auth)==||ur_domain_set==off||server(ftp.host)==
+# Calculate format=xml_gconf env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate append=remove name=%gconf.xml env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=xml_gconf env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=xml_gconf
+# Calculate name=objects
+# Calculate env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=xml_gconf
+# Calculate pkg(gnome-base/libgnome)>=2.26&&pkg(gnome-base/libgnome)<2.30
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on chmod=0755 append=replace
+# Calculate append=remove name=Share.desktop env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!= chmod=0755 append=replace
+# Calculate name= path="#-ini(resource.desktop)-#" cl_desktop_xsession==gnome
+# Calculate append=remove name=Home.desktop env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on chmod=0755 append=replace
+# Calculate append=remove name=FTP.desktop env(client.os_remote_auth)==||ur_domain_set==off||server(ftp.host)==
+# Calculate format=samba
+# Calculate append=skip belong(akregator)!=&&exists(~/.kde4/share/apps/akregator)==&&ini(update.akregator)!=off&&ini(ver.akregator)==&&pkg(kde-base/akregator)>=1.7
+# Calculate format=samba
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=samba
+# Calculate append=skip belong(libgnome)!=&&ini(update.gnome)!=off&&ini(ver.gnome)==&&pkg(gnome-base/libgnome)>=2.26&&pkg(gnome-base/libgnome)<2.30
+# Calculate format=samba
+# Calculate append=remove name=fusion-icon-autostart pkg(x11-apps/fusion-icon)==
+# Calculate format=kde link=/usr/share/applications/fusion-icon.desktop mirror pkg(x11-apps/fusion-icon)!=
+# Calculate format=xml_gconf
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==de_DE
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==pt_BR
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==pt_PT
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==it_IT
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==en_US
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==fr_FR
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==ro_RO
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==ru_RU
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==pl_PL
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==es_ES
+# Calculate format=xml_gconf append=join
+# Calculate name=%gconf.xml format=xml_gconf append=join os_locale_lang==uk_UA
+# Calculate format=xml_gconf append=join
+# Calculate format=xml_gconf
+# Calculate env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=xml_gconf
+# Calculate os_root_type==livecd
+# Calculate format=xml_gconf
+# Calculate env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=xml_gconf
+# Calculate name=objects
+# Calculate env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate format=xml_gconf
+# Calculate env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=xml_gconf
+# Calculate name=objects
+# Calculate format=xml_gconf
+# Calculate format=xml_gconf hr_cdrom_set==on
+# Calculate format=xml_gconf
+# Calculate name=applets
+# Calculate format=xml_gconf
+# Calculate name=objects
+# Calculate env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=xml_gconf
+# Calculate env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=xml_gconf
+# Calculate name=applets
+# Calculate format=xml_gconf
+# Calculate format=kde link=/usr/share/applications/xchat.desktop mirror
+# Calculate format=kde link=/usr/share/applications/bsh-console-bsh.desktop mirror
+# Calculate format=kde link=/usr/share/applications/gfloppy.desktop mirror
+# Calculate format=kde link=/usr/share/applications/gnomecc.desktop mirror
+# Calculate format=kde link=/usr/share/applications/gparted.desktop mirror
+# Calculate format=kde link=/usr/share/desktop-directories/AudioVideo.directory mirror
+# Calculate format=kde link=/usr/share/desktop-directories/Settings-System.directory mirror
+# Calculate format=kde link=/usr/share/desktop-directories/Utility.directory mirror
+# Calculate format=kde link=/usr/share/desktop-directories/Settings.directory mirror
+# Calculate os_root_type==livecd
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on chmod=0755
+# Calculate os_root_type==livecd chmod=0755
+# Calculate format=kde link=/usr/share/applications/xchat.desktop mirror os_root_type==livecd
+# Calculate format=kde link=/usr/share/applications/cl-install-gui.desktop os_root_type==livecd mirror
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!= chmod=0755
+# Calculate name= path="#-ini(resource.desktop)-#"
+# Calculate format=kde link=/usr/share/applications/gparted.desktop mirror os_root_type==livecd
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on chmod=0755
+# Calculate format=kde
+# Calculate format=samba
+# Calculate append=skip belong(kdelibs)!=&&ini(update.kde)!=off&&ini(ver.kde)!=&&ini(ver.kde)>=4.6&&ini(ver.kde)<4.7&&pkg(kde-base/kdelibs)>=4.7&&pkg(kde-base/kdelibs)<4.8
+# Calculate format=procmail
+# Calculate comment=#
+# Calculate format=samba
+# Calculate append=skip belong(xchat)!=&&ini(update.xchat)!=off&&ini(ver.xchat)==&&pkg(net-irc/xchat)>=2.8
+# Calculate format=plasma path=~/.kde4/share/config
+# Calculate format=plasma append=replace path=~/.kde4/share/config
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(plasma-workspace)!=&&ini(update.plasma)!=off&&ini(ver.plasma)==&&pkg(kde-base/plasma-workspace)>=4.7
+# Calculate format=kde env(client.os_remote_auth)==&&ini(domain)!=#-env(client.os_remote_auth)-#||ur_domain_set==off&&ini(domain)!=#-env(client.os_remote_auth)-#
+# Calculate name=plasma-desktop-appletsrc format=plasma ini(resolution)!=#-os_x11_standart-#
+# Calculate format=plasma ini(domain)!=#-env(client.os_remote_auth)-#
+# Calculate append=skip belong(kdelibs)!=&&ini(update.kde)!=off&&pkg(kde-base/kdelibs)>=4.4
+# Calculate format=samba link=/usr/share/apps/kio_desktop/DesktopLinks/Home.desktop mirror env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate append=replace name=Home.desktop format=samba env(client.os_remote_auth)!=&&ur_domain_set==on append=replace
+# Calculate append=remove name=Share.desktop env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=kde env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!= append=replace
+# Calculate name= path="#-ini(resource.desktop)-#" ini(domain)!=#-env(client.os_remote_auth)-#&&cl_desktop_xsession==kde||ini(xsession)!=#-cl_desktop_xsession-#&&cl_desktop_xsession==kde
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on append=replace
+# Calculate append=remove name=FTP.desktop env(client.os_remote_auth)==||ur_domain_set==off||server(ftp.host)==
+# Calculate
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(xorg-server)!=&&ini(update.xorg)!=off&&ini(ver.xorg)==&&pkg(x11-base/xorg-server)>=1.7
+# Calculate format=compiz path=~/.local/share/applications
+# Calculate path=~/.config
+# Calculate format=samba
+# Calculate append=skip belong(openoffice)!=&&ini(update.openoffice)!=off&&ini(ver.openoffice)==&&pkg(app-office/openoffice)>=3.2&&pkg(kde-base/kdelibs)!=
+# Calculate format=kde env(client.cl_remote_auth)==
+# Calculate format=kde
+# Calculate format=plasma
+# Calculate format=kde
+# Calculate format=plasma
+# Calculate format=kde
+# Calculate chmod=0400 pkg(kde-misc/gtk-kde4)!=
+# Calculate format=kde
+# Calculate format=plasma
+# Calculate format=kde
+# Calculate link=gtkrc symbolic pkg(kde-misc/gtk-kde4)!=
+# Calculate format=kde
+# Calculate format=kde append=replace
+# Calculate format=kde
+# Calculate chmod=0700 pkg(x11-themes/gtk-engines-qtcurve)!=
+# Calculate format=samba
+# Calculate append=skip belong(kdelibs)!=&&ini(update.kde)!=off&&ini(ver.kde)==&&pkg(kde-base/kdelibs)>=4.3&&pkg(kde-base/kdelibs)<4.4
+# Calculate format=kde
+# Calculate format=kde 
+# Calculate format=kde link=/usr/share/applications/kde4/kopete.desktop mirror env(client.os_remote_auth)!=&&ur_domain_set==on&&server(jabber.host)!=&&ur_jid!=
+# Calculate pkg(x11-themes/gtk-engines-qtcurve)!=
+# Calculate format=kde link=/usr/share/applications/goldendict.desktop mirror
+# Calculate format=kde link=/usr/share/applications/kde4/konversation.desktop mirror
+# Calculate format=kde link=/usr/share/applications/cl-install-gui-kde.desktop os_root_type==livecd mirror
+# Calculate format=kde link=/usr/share/applications/bsh-console-bsh.desktop mirror
+# Calculate format=compiz
+# Calculate format=kde link=/usr/share/applications/kde4/partitionmanager.desktop os_root_type==livecd mirror
+# Calculate format=kde link=/usr/share/applications/xv-xv.desktop mirror
+# Calculate format=kde link=/usr/share/applications/gcstar.desktop mirror
+# Calculate chmod=0600 pkg(x11-themes/gtk-engines-qtcurve)!=
+# Calculate format=samba
+# Calculate append=skip belong(git)!=&&ini(update.git)!=off&&ini(ver.git)==&&pkg(dev-vcs/git)>=1.7.0
+# Calculate exists(~/.config/xfce4/panel/launcher-36/10000000036.desktop)!=&&exists(/usr/share/applications/calculate-calculator.desktop)!= link=/usr/share/applications/calculate-calculator.desktop path=~/.config/xfce4/panel/launcher-36 name=10000000036.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-31/10000000031.desktop)!=&&exists(/usr/share/applications/calculate-mail.desktop)!= link=/usr/share/applications/calculate-mail.desktop path=~/.config/xfce4/panel/launcher-31 name=10000000031.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-42/10000000042.desktop)!=&&exists(/usr/share/applications/calculate-dict.desktop)!= link=/usr/share/applications/calculate-dict.desktop path=~/.config/xfce4/panel/launcher-42 name=10000000042.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-44/10000000044.desktop)!=&&exists(/usr/share/applications/calculate-terminal.desktop)!= link=/usr/share/applications/calculate-terminal.desktop path=~/.config/xfce4/panel/launcher-44 name=10000000044.desktop symbolic force
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(calculate-utilities)!=&&ini(update.patch)!=off&&ini(ver.patch)<2.2.23
+# Calculate exists(~/.config/xfce4/panel/launcher-37/10000000037.desktop)!=&&exists(/usr/share/applications/calculate-imageedit.desktop)!= link=/usr/share/applications/calculate-imageedit.desktop path=~/.config/xfce4/panel/launcher-37 name=10000000037.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-30/10000000030.desktop)!=&&exists(/usr/share/applications/calculate-browser.desktop)!= link=/usr/share/applications/calculate-browser.desktop path=~/.config/xfce4/panel/launcher-30 name=10000000030.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-33/10000000033.desktop)!=&&exists(/usr/share/applications/calculate-im.desktop)!= link=/usr/share/applications/calculate-im.desktop path=~/.config/xfce4/panel/launcher-33 name=10000000033.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-34/10000000034.desktop)!=&&exists(/usr/share/applications/calculate-writer.desktop)!= link=/usr/share/applications/calculate-writer.desktop path=~/.config/xfce4/panel/launcher-34 name=10000000034.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-38/10000000038.desktop)!=&&exists(/usr/share/applications/calculate-imageview.desktop)!= link=/usr/share/applications/calculate-imageview.desktop path=~/.config/xfce4/panel/launcher-38 name=10000000038.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-41/10000000041.desktop)!=&&exists(/usr/share/applications/calculate-imageburn.desktop)!= link=/usr/share/applications/calculate-imageburn.desktop path=~/.config/xfce4/panel/launcher-41 name=10000000041.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-43/10000000043.desktop)!=&&exists(/usr/share/applications/calculate-textedit.desktop)!= link=/usr/share/applications/calculate-textedit.desktop path=~/.config/xfce4/panel/launcher-43 name=10000000043.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-35/10000000035.desktop)!=&&exists(/usr/share/applications/calculate-calc.desktop)!= link=/usr/share/applications/calculate-calc.desktop path=~/.config/xfce4/panel/launcher-35 name=10000000035.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-32/10000000032.desktop)!=&&exists(/usr/share/applications/calculate-chat.desktop)!= link=/usr/share/applications/calculate-chat.desktop path=~/.config/xfce4/panel/launcher-32 name=10000000032.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-40/10000000040.desktop)!=&&exists(/usr/share/applications/calculate-videoplayer.desktop)!= link=/usr/share/applications/calculate-videoplayer.desktop path=~/.config/xfce4/panel/launcher-40 name=10000000040.desktop symbolic force
+# Calculate exists(~/.config/xfce4/panel/launcher-39/10000000039.desktop)!=&&exists(/usr/share/applications/calculate-audioplayer.desktop)!= link=/usr/share/applications/calculate-audioplayer.desktop path=~/.config/xfce4/panel/launcher-39 name=10000000039.desktop symbolic force
+# Calculate format=kde env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=kde
+# Calculate format=plasma
+# Calculate format=kde
+# Calculate format=plasma
+# Calculate format=kde
+# Calculate chmod=0400 pkg(kde-misc/gtk-kde4)!=
+# Calculate format=kde
+# Calculate format=plasma append=replace
+# Calculate format=kde
+# Calculate link=gtkrc symbolic pkg(kde-misc/gtk-kde4)!=
+# Calculate format=kde
+# Calculate format=kde append=replace
+# Calculate format=kde
+# Calculate chmod=0700 pkg(x11-themes/gtk-engines-qtcurve)!=
+# Calculate format=samba
+# Calculate append=skip belong(kdelibs)!=&&ini(update.kde)!=off&&ini(ver.kde)==&&pkg(kde-base/kdelibs)>=4.4&&pkg(kde-base/kdelibs)<4.5
+# Calculate format=kde
+# Calculate format=kde link=/usr/share/applications/kde4/kopete.desktop mirror env(client.os_remote_auth)!=&&ur_domain_set==on&&server(jabber.host)!=&&ur_jid!=
+# Calculate pkg(x11-themes/gtk-engines-qtcurve)!=
+# Calculate format=kde link=/usr/share/applications/goldendict.desktop mirror
+# Calculate format=kde link=/usr/share/applications/kde4/konversation.desktop mirror
+# Calculate format=kde link=/usr/share/applications/bsh-console-bsh.desktop mirror
+# Calculate format=compiz
+# Calculate format=kde link=/usr/share/applications/kde4/partitionmanager.desktop os_root_type==livecd mirror
+# Calculate format=samba link=/usr/share/apps/kio_desktop/DesktopLinks/Home.desktop mirror env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate os_root_type==livecd chmod=0755
+# Calculate format=kde link=/usr/share/applications/kde4/konversation.desktop mirror os_root_type==livecd chmod=0755
+# Calculate append=replace name=Home.desktop format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=kde chmod=0755 link=/usr/share/applications/cl-install-gui-kde.desktop os_root_type==livecd mirror
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate name= path="#-ini(resource.desktop)-#"
+# Calculate format=kde link=/usr/share/applications/kde4/partitionmanager.desktop os_root_type==livecd mirror chmod=0755
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate chmod=0600 pkg(x11-themes/gtk-engines-qtcurve)!=
+# Calculate append=skip belong(xfdesktop)!=&&ini(domain)!=#-env(client.os_remote_auth)-#&&pkg(xfce-base/xfdesktop)>=4.6&&pkg(xfce-base/xfdesktop)<4.8||belong(xfdesktop)!=&&ini(xsession)!=#-cl_desktop_xsession-#&&pkg(xfce-base/xfdesktop)>=4.6&&pkg(xfce-base/xfdesktop)<4.8
+# Calculate format=samba append=replace
+# Calculate format=kde
+# Calculate format=xml_xfcepanel
+# Calculate format=samba append=replace
+# Calculate append=remove name=Share.desktop env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!= append=replace
+# Calculate name= path="#-ini(resource.desktop)-#" cl_desktop_xsession==xfce
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on append=replace
+# Calculate append=remove name=FTP.desktop server(ftp.host)==||env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate path=~ name= chmod=0700 chown=#-ur_login-#:#-ur_group-# cl_chroot_status==off&&ur_login!=root&&ac_desktop_desktop==up&&ini(main.update)!=off
+# Calculate name=feedlist.opml os_locale_language==ru
+# Calculate name=feedlist.opml os_locale_language!=ru
+# Calculate format=samba
+# Calculate append=skip belong(liferea)!=&&exists(~/.liferea_1.7)==&&ini(update.liferea)!=off&&ini(ver.liferea)==&&pkg(net-news/liferea)>=1.7
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(kwallet)!=&&ini(update.kwallet)!=off&&ini(ver.kwallet)==&&pkg(kde-base/kwallet)>=4.6
+# Calculate path=~/.kde4/share/apps
+# Calculate format=kde path=~/.kde4/share/config
+# Calculate append=skip belong(compiz)!=&&ini(update.compiz)!=off&&pkg(x11-wm/compiz)>=0.8.4
+# Calculate format=samba
+# Calculate path=~
+# Calculate format=samba pkg(x11-apps/fusion-icon)!=
+# Calculate ini(composite)!=#-os_x11_composite-#
+# Calculate append=remove name=fusion-icon-autostart pkg(x11-apps/fusion-icon)==
+# Calculate format=kde link=/usr/share/applications/fusion-icon.desktop mirror pkg(x11-apps/fusion-icon)!=
+# Calculate format=samba
+# Calculate append=skip belong(vim)!=&&ini(update.vim)!=off&&ini(ver.vim)==&&pkg(app-editors/vim)>=7.0
+# Calculate format=raw
+# Calculate append=skip
+# Calculate append=skip env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate append=skip
+# Calculate append=skip env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate path=~ name=.dmrc append=remove belong(calculate-desktop)!=
+# Calculate append=skip
+# Calculate format=samba
+# Calculate append=skip belong(claws-mail)!=&&ini(update.claws-mail)!=off&&ini(ver.claws-mail)==&&pkg(mail-client/claws-mail)>=3.7
+# Calculate format=kde path=~/.kde4/share/config
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(amarok)!=&&ini(update.amarok)!=off&&ini(ver.amarok)==&&pkg(media-sound/amarok)>=2.3
+# Calculate append=remove
+# Calculate format=kde
+# Calculate append=skip env(client.os_remote_auth)!=&&ur_domain_set==on&&server(mail.type)==imap
+# Calculate format=samba
+# Calculate append=skip belong(akonadi-server)!=&&ini(update.akonadi)!=off&&ini(ver.akonadi)==&&pkg(app-office/akonadi-server)>=1.6
+# Calculate format=samba
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=samba
+# Calculate append=skip belong(libgnome)!=&&ini(update.gnome)!=off&&ini(ver.gnome)!=&&ini(ver.gnome)>=2.28&&ini(ver.gnome)<2.30&&pkg(gnome-base/libgnome)>=2.30
+# Calculate format=xml_gconf
+# Calculate
+# Calculate format=xml_gconf
+# Calculate name=objects
+# Calculate append=remove
+# Calculate name=file:%2F%2F%2Fhome%2F#-ur_login-#%2FDesktop.xml
+# Calculate os_root_type==livecd
+# Calculate path=~/.config/eiskaltdc++
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(eiskaltdcpp)!=&&ini(update.eiskaltdcpp)!=off&&ini(ver.eiskaltdcpp)==&&pkg(net-p2p/eiskaltdcpp)>=2.1
+# Calculate format=kde path=~/.config/eiskaltdc++
+# Calculate format=plasma path=~/.kde4/share/config
+# Calculate format=plasma append=replace path=~/.kde4/share/config
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(plasma-workspace)!=&&ini(update.plasma)!=off&&ini(ver.plasma)==&&pkg(kde-base/plasma-workspace)>=4.6&&pkg(kde-base/plasma-workspace)<4.7
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(fbreader)!=&&ini(update.fbreader)!=off&&ini(ver.fbreader)==&&pkg(app-text/fbreader)>=0.12
+# Calculate
+# Calculate pkg(www-client/chromium)!=
+# Calculate
+# Calculate format=samba
+# Calculate append=skip belong(evolution)!=&&ini(update.evolution)!=off&&ini(ver.evolution)==&&pkg(mail-client/evolution)>=2.26
+# Calculate format=xml_gconf env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=xml_gconf
+# Calculate format=kde env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=kde
+# Calculate chmod=0400 pkg(kde-misc/gtk-kde4)!=
+# Calculate format=kde
+# Calculate link=gtkrc symbolic pkg(kde-misc/gtk-kde4)!=
+# Calculate format=kde
+# Calculate format=kde append=replace
+# Calculate format=kde
+# Calculate chmod=0700 pkg(x11-themes/gtk-engines-qtcurve)!=||pkg(x11-themes/oxygen-gtk)!=
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(kdelibs)!=&&ini(update.kde)!=off&&ini(ver.kde)==&&pkg(kde-base/kdelibs)>=4.6&&pkg(kde-base/kdelibs)<4.7
+# Calculate format=kde
+# Calculate format=kde link=/usr/share/applications/kde4/kopete.desktop mirror env(client.os_remote_auth)!=&&ur_domain_set==on&&server(jabber.host)!=&&ur_jid!=
+# Calculate pkg(x11-themes/gtk-engines-qtcurve)!=
+# Calculate format=kde link=/usr/share/applications/goldendict.desktop mirror
+# Calculate format=kde link=/usr/share/applications/bsh-console-bsh.desktop mirror
+# Calculate format=compiz
+# Calculate format=kde link=/usr/share/applications/kde4/partitionmanager.desktop os_root_type==livecd mirror
+# Calculate format=samba link=/usr/share/apps/kio_desktop/DesktopLinks/Home.desktop mirror env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate os_root_type==livecd chmod=0755
+# Calculate format=kde link=/usr/share/applications/calculate-chat.desktop mirror os_root_type==livecd chmod=0755
+# Calculate append=replace name=Home.desktop format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=kde chmod=0755 link=/usr/share/applications/cl-install-gui-kde.desktop os_root_type==livecd mirror
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate name= path="#-ini(resource.desktop)-#"
+# Calculate format=kde link=/usr/share/applications/kde4/partitionmanager.desktop os_root_type==livecd mirror chmod=0755
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate comment=# chmod=0600 pkg(x11-themes/gtk-engines-qtcurve)!=||pkg(x11-themes/oxygen-gtk)!=
+# Calculate format=kde env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=kde
+# Calculate chmod=0400 pkg(kde-misc/gtk-kde4)!=
+# Calculate format=kde
+# Calculate link=gtkrc symbolic pkg(kde-misc/gtk-kde4)!=
+# Calculate format=kde
+# Calculate format=kde append=replace
+# Calculate format=kde
+# Calculate chmod=0700 pkg(x11-themes/gtk-engines-qtcurve)!=||pkg(x11-themes/oxygen-gtk)!=
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(kdelibs)!=&&ini(update.kde)!=off&&ini(ver.kde)==&&pkg(kde-base/kdelibs)>=4.7
+# Calculate format=kde
+# Calculate format=kde link=/usr/share/applications/kde4/kopete.desktop mirror env(client.os_remote_auth)!=&&ur_domain_set==on&&server(jabber.host)!=&&ur_jid!=
+# Calculate pkg(x11-themes/gtk-engines-qtcurve)!=
+# Calculate format=kde link=/usr/share/applications/goldendict.desktop mirror
+# Calculate format=kde link=/usr/share/applications/bsh-console-bsh.desktop mirror
+# Calculate format=compiz
+# Calculate format=kde link=/usr/share/applications/kde4/partitionmanager.desktop os_root_type==livecd mirror
+# Calculate format=samba link=/usr/share/apps/kio_desktop/DesktopLinks/Home.desktop mirror env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate os_root_type==livecd chmod=0755
+# Calculate format=kde link=/usr/share/applications/calculate-chat.desktop mirror os_root_type==livecd chmod=0755
+# Calculate append=replace name=Home.desktop format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=kde chmod=0755 link=/usr/share/applications/cl-install-gui-kde.desktop os_root_type==livecd mirror
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate name= path="#-ini(resource.desktop)-#"
+# Calculate format=kde link=/usr/share/applications/kde4/partitionmanager.desktop os_root_type==livecd mirror chmod=0755
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate comment=# chmod=0600 pkg(x11-themes/gtk-engines-qtcurve)!=||pkg(x11-themes/oxygen-gtk)!=
+# Calculate format=samba
+# Calculate append=skip belong(gnome-keyring)!=&&exists(~/.gnome2/keyrings/default)==&&ini(update.gnomekeyring)!=off&&ini(ver.gnomekeyring)==&&pkg(gnome-base/gnome-keyring)>=2.30.3
+# Calculate format=samba
+# Calculate append=skip belong(compiz)!=&&ini(update.compiz)!=off&&ini(ver.compiz)==&&pkg(x11-wm/compiz)>=0.8.4
+# Calculate format=samba pkg(x11-apps/fusion-icon)!=
+# Calculate append=remove name=fusion-icon-autostart pkg(x11-apps/fusion-icon)==
+# Calculate format=kde link=/usr/share/applications/fusion-icon.desktop mirror pkg(x11-apps/fusion-icon)!=
+# Calculate format=xml_gconf
+# Calculate format=kde path=~/.kde4/share/config
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(digikam)!=&&ini(update.digikam)!=off&&ini(ver.digikam)==&&pkg(media-gfx/digikam)>=1.5
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(calculate-utilities)!=&&ini(update.patch)!=off&&ini(ver.patch)<2.2.22
+# Calculate format=samba path=~/.calculate name=ini.env ini(ver.kde)!=
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(calculate-utilities)!=&&ini(update.patch)!=off&&ini(ver.patch)<2.2.13
+# Calculate chmod=0700 pkg(x11-themes/gtk-engines-qtcurve)!=||pkg(x11-themes/oxygen-gtk)!= path=~/.kde4/env
+# Calculate format=kde
+# Calculate format=samba
+# Calculate append=skip belong(kmail)!=&&ini(update.kmail)!=off&&ini(ver.kmail)==&&pkg(kde-base/kmail)>=4.4&&pkg(kde-base/kmail)<4.7
+# Calculate format=samba
+# Calculate append=skip belong(xfdesktop)!=&&ini(update.xfce)!=off&&ini(ver.xfce)==&&pkg(xfce-base/xfdesktop)>=4.8
+# Calculate format=samba
+# Calculate format=xml_xfce
+# Calculate format=procmail
+# Calculate exists(/usr/share/applications/calculate-mail.desktop)!= link=/usr/share/applications/calculate-mail.desktop name=10000000031.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-textedit.desktop)!= link=/usr/share/applications/calculate-textedit.desktop name=10000000043.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-audioplayer.desktop)!= link=/usr/share/applications/calculate-audioplayer.desktop name=10000000039.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-videoplayer.desktop)!= link=/usr/share/applications/calculate-videoplayer.desktop name=10000000040.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-calc.desktop)!= link=/usr/share/applications/calculate-calc.desktop name=10000000035.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-dict.desktop)!= link=/usr/share/applications/calculate-dict.desktop name=10000000042.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-imageedit.desktop)!= link=/usr/share/applications/calculate-imageedit.desktop name=10000000037.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-terminal.desktop)!= link=/usr/share/applications/calculate-terminal.desktop name=10000000044.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-im.desktop)!= link=/usr/share/applications/calculate-im.desktop name=10000000033.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-imageview.desktop)!= link=/usr/share/applications/calculate-imageview.desktop name=10000000038.desktop symbolic force
+# Calculate hr_cdrom_set==on
+# Calculate exists(/usr/share/applications/calculate-imageburn.desktop)!= link=/usr/share/applications/calculate-imageburn.desktop name=10000000041.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-calculator.desktop)!= link=/usr/share/applications/calculate-calculator.desktop name=10000000036.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-chat.desktop)!= link=/usr/share/applications/calculate-chat.desktop name=10000000032.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-browser.desktop)!= link=/usr/share/applications/calculate-browser.desktop name=10000000030.desktop symbolic force
+# Calculate exists(/usr/share/applications/calculate-writer.desktop)!= link=/usr/share/applications/calculate-writer.desktop name=10000000034.desktop symbolic force
+# Calculate format=kde
+# Calculate format=compiz link=/usr/share/applications/Thunar.desktop mirror
+# Calculate format=compiz
+# Calculate format=kde link=/usr/share/applications/xscreensaver-properties.desktop mirror
+# Calculate format=compiz link=/usr/share/applications/xfce4-taskmanager.desktop mirror
+# Calculate format=kde link=/usr/share/applications/epdfview.desktop mirror
+# Calculate format=kde link=/usr/share/applications/xfce4-about.desktop mirror
+# Calculate format=kde link=/usr/share/applications/gparted.desktop mirror
+# Calculate format=kde link=/usr/share/applications/xfrun4.desktop mirror
+# Calculate format=kde link=/usr/share/applications/xfce-keyboard-settings.desktop mirror
+# Calculate format=kde link=/usr/share/desktop-directories/xfce-multimedia.directory mirror
+# Calculate format=kde link=/usr/share/desktop-directories/xfce-network.directory mirror
+# Calculate format=kde link=/usr/share/desktop-directories/xfce-accessories.directory mirror
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on append=replace
+# Calculate os_root_type==livecd chmod=0755
+# Calculate format=kde link=/usr/share/applications/calculate-chat.desktop mirror os_root_type==livecd
+# Calculate format=kde link=/usr/share/applications/cl-install-gui.desktop os_root_type==livecd mirror
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate name= path="#-ini(resource.desktop)-#"
+# Calculate format=kde link=/usr/share/applications/gparted.desktop mirror os_root_type==livecd
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate format=samba
+# Calculate append=skip belong(stardict)!=&&ini(update.stardict)!=off&&ini(ver.stardict)==&&pkg(app-text/stardict)>=3.0
+# Calculate format=xml_gconf
+# Calculate format=compiz link=/usr/share/applications/stardict.desktop mirror
+# Calculate chmod=755 comment=#
+# Calculate format=kde
+# Calculate format=samba
+# Calculate append=skip belong(konversation)!=&&ini(update.konversation)!=off&&ini(ver.konversation)==&&pkg(net-irc/konversation)>=1.2
+# Calculate format=samba path=~/.calculate
+# Calculate path=~/.config/deluge
+# Calculate append=skip belong(deluge)!=&&ini(update.deluge)!=off&&ini(ver.deluge)==&&pkg(net-p2p/deluge)>=1.2
+# Calculate path=~/.config/deluge
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(smplayer)!=&&ini(update.smplayer)!=off&&ini(ver.smplayer)==&&pkg(media-video/smplayer)>=0.6
+# Calculate format=kde path=~/.config/smplayer
+# Calculate format=samba path=~/.calculate
+# Calculate append=skip belong(calculate-utilities)!=&&ini(update.patch)!=off&&ini(ver.patch)<2.2.10
+# Calculate chmod=0600 pkg(x11-themes/gtk-engines-qtcurve)!=||pkg(x11-themes/oxygen-gtk)!=
+# Calculate format=samba
+# Calculate append=skip belong(xfdesktop)!=&&ini(update.xfce)!=off&&ini(ver.xfce)==&&pkg(xfce-base/xfdesktop)>=4.6&&pkg(xfce-base/xfdesktop)<4.8
+# Calculate format=samba
+# Calculate format=kde
+# Calculate format=samba
+# Calculate format=xml_xfce
+# Calculate format=xml_xfce link=/etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-session.xml mirror
+# Calculate format=xml_xfce
+# Calculate append=replace
+# Calculate format=kde
+# Calculate format=procmail
+# Calculate format=kde
+# Calculate format=procmail
+# Calculate format=kde
+# Calculate format=procmail
+# Calculate format=kde
+# Calculate format=procmail
+# Calculate format=xml_xfcepanel
+# Calculate format=kde
+# Calculate format=procmail
+# Calculate format=kde
+# Calculate format=procmail
+# Calculate format=kde
+# Calculate format=compiz link=/usr/share/applications/Thunar.desktop mirror
+# Calculate format=kde link=/usr/share/applications/xfce4-help.desktop mirror
+# Calculate format=compiz
+# Calculate format=kde link=/usr/share/applications/xscreensaver-properties.desktop mirror
+# Calculate format=compiz link=/usr/share/applications/xfce4-taskmanager.desktop mirror
+# Calculate format=kde link=/usr/share/applications/epdfview.desktop mirror
+# Calculate format=kde link=/usr/share/applications/xfce4-run-program.desktop mirror
+# Calculate format=kde link=/usr/share/applications/gparted.desktop mirror
+# Calculate format=kde link=/usr/share/applications/xfce4-about-xfce.desktop mirror
+# Calculate format=kde link=/usr/share/applications/xfce-keyboard-settings.desktop mirror
+# Calculate format=kde link=/usr/share/desktop-directories/xfce-multimedia.directory mirror
+# Calculate format=kde link=/usr/share/desktop-directories/xfce-network.directory mirror
+# Calculate format=kde link=/usr/share/desktop-directories/xfce-accessories.directory mirror
+# Calculate format=samba
+# Calculate os_root_type==livecd chmod=0755
+# Calculate format=kde link=/usr/share/applications/xchat.desktop mirror os_root_type==livecd
+# Calculate format=kde link=/usr/share/applications/cl-install-gui.desktop os_root_type==livecd mirror
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!=
+# Calculate name= path="#-ini(resource.desktop)-#"
+# Calculate format=kde link=/usr/share/applications/gparted.desktop mirror os_root_type==livecd
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on
+# Calculate append=skip belong(xfdesktop)!=&&ini(domain)!=#-env(client.os_remote_auth)-#&&pkg(xfce-base/xfdesktop)>=4.8||belong(xfdesktop)!=&&ini(xsession)!=#-cl_desktop_xsession-#&&pkg(xfce-base/xfdesktop)>=4.8
+# Calculate format=samba append=replace
+# Calculate format=xml_xfce
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on append=replace
+# Calculate append=remove name=Share.desktop env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on&&server(ftp.host)!= append=replace
+# Calculate name= path="#-ini(resource.desktop)-#" cl_desktop_xsession==xfce
+# Calculate append=remove name=Home.desktop env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=samba env(client.os_remote_auth)!=&&ur_domain_set==on append=replace
+# Calculate append=remove name=FTP.desktop server(ftp.host)==||env(client.os_remote_auth)==||ur_domain_set==off
+# Calculate format=kde
+# Calculate name=speeddial.ini os_locale_language!=ru
+# Calculate name=bookmarks.adr os_locale_language!=ru
+# Calculate format=samba
+# Calculate append=skip belong(opera)!=&&exists(~/.opera)==&&ini(update.opera)!=off&&ini(ver.opera)==&&pkg(www-client/opera)>=10.6
+# Calculate format=samba
+# Calculate append=skip belong(leafpad)!=&&ini(update.leafpad)!=off&&ini(ver.leafpad)==&&pkg(app-editors/leafpad)>=0.8
+# Calculate ini(ver.xfce)!= path=~/.config/leafpad
+# Calculate format=samba path=~/.calculate
+# Calculate path=/tmp pkg(www-apps/chromium-adblock)!= exec=/bin/bash name=adblock-fix-#-ur_login-#.sh
+# Calculate append=skip belong(calculate-utilities)!=&&ini(update.patch)!=off&&ini(ver.patch)<2.2.24
+# Calculate append=skip cl_name==calculate-desktop&&cl_ver>=2.2.1
+# Calculate append=skip ac_desktop_merge==up
+# Calculate belong()!=&&pkg(kde-base/kdm)!= append=skip
+# Calculate format=kde path=/usr/share/config/kdm
+# Calculate append=skip ac_desktop_install==down
+# Calculate belong()!=&&pkg(x11-misc/slim)!= append=skip
+# Calculate format=proftpd path=/etc
+# Calculate path=/etc/X11/gdm
+# Calculate append=remove
+# Calculate belong()!=&&pkg(gnome-base/gdm)!= append=skip
+# Calculate path=/etc/X11/gdm
+# Calculate append=remove name=Default.old
+# Calculate name=Default link=/etc/X11/gdm/PostSession/Default.old mirror load(/etc/X11/gdm/PostSession/Default.old)!=
+# Calculate format=samba path=~/.calculate name=ini.env
+# Calculate name= path=#-ini(resource.templates)-#
+# Calculate append=skip exists(~/.kde4)==&&exists(~/.gconf)==&&exists(~/.config)==
+# Calculate name= path=#-ini(resource.pictures)-#
+# Calculate name= path=#-ini(resource.downloads)-#
+# Calculate format=samba path=~/.calculate name=ini.env
+# Calculate name= path=#-ini(resource.music)-#
+# Calculate name= path=#-ini(resource.public)-#
+# Calculate name= path=#-ini(resource.videos)-#
+# Calculate name= path=#-ini(resource.documents)-#
+# Calculate path=~ name= chmod=0700 chown=#-ur_login-#:#-ur_group-# cl_chroot_status==off&&ur_login!=root&&ac_desktop_desktop==up&&load(~/.calculate/ini.env)==
+# Calculate format=samba
+# Calculate name=.calculate exists(~/.kde4)!=||exists(~/.gconf)!=||exists(~/.config)!=
+# Calculate belong()!=&&pkg(kde-base/kdm)!= append=skip
+# Calculate format=kde path=/usr/share/config/kdm
+# Calculate append=skip ac_desktop_install==up
+# Calculate belong()!=&&pkg(x11-misc/slim)!= append=skip
+# Calculate format=proftpd path=/etc
+# Calculate path=/etc/X11/gdm
+# Calculate append=replace chmod=755 force
+# Calculate belong()!=&&pkg(gnome-base/gdm)!= append=skip
+# Calculate path=/etc/X11/gdm
+# Calculate append=replace chmod=755 name=Default force
+# Calculate name=Default.old link=/etc/X11/gdm/PostSession/Default mirror load(/etc/X11/gdm/PostSession/Default.old)== force
+# Calculate comment=#
+# Calculate pkg(x11-base/xorg-server)>=1.9.0
+# Calculate comment=# os_install_x11_video_drv!=other
+# Calculate comment=# os_install_x11_video_drv==other name=xorg.conf
+# Calculate comment=#
+# Calculate format=patch
+# Calculate belong()!=&&pkg(x11-base/xorg-server)!= name=etc
+# Calculate link=/etc/init.d/xdm symbolic pkg(gnome-base/gdm)!=||pkg(kde-base/kdm)!=||pkg(x11-misc/slim)!=||pkg(media-tv/xbmc)!=||cl_autologin!=&&os_install_root_type!=livecd
+# Calculate path=/etc/runlevels
+# Calculate append=remove pkg(gnome-base/gdm)==&&pkg(kde-base/kdm)==&&pkg(x11-misc/slim)==&&pkg(media-tv/xbmc)==&&cl_autologin==||pkg(gnome-base/gdm)==&&pkg(kde-base/kdm)==&&pkg(x11-misc/slim)==&&pkg(media-tv/xbmc)==&&os_install_root_type==livecd
+# Calculate comment=# chmod=0440
+# Calculate belong()!=&&pkg(app-admin/sudo)!= name=etc
+# Calculate belong()!=&&pkg(net-misc/ntp)!= path=/etc name=cron.hourly
+# Calculate os_install_ntp!= chmod=0755
+# Calculate comment=#
+# Calculate belong()!=&&pkg(x11-apps/xmessage)!= path=/usr/share/X11 name=app-defaults
+# Calculate belong()!=&&pkg(sys-power/upower)!= path=/usr/share/polkit-1 name=actions
+# Calculate path=/usr/share/kde4/services pkg(kde-base/kdelibs)!= format=kde
+# Calculate belong()!=&&pkg(net-misc/networkmanager)!= path=/etc
+# Calculate name=NetworkManager append=remove os_install_net_conf!=networkmanager&&exists(/etc/runlevels/default/NetworkManager)!=
+# Calculate link=/etc/init.d/NetworkManager symbolic os_install_net_conf==networkmanager
+# Calculate path=/etc/runlevels
+# Calculate name=Auto_#-list(os_install_net_interfaces,2)-# list(os_install_net_interfaces,2)!=&&os_install_net_conf==networkmanager chmod=0600
+# Calculate name=Auto_#-list(os_install_net_interfaces,0)-# list(os_install_net_interfaces,0)!=&&os_install_net_conf==networkmanager chmod=0600
+# Calculate path=/etc/NetworkManager os_install_net_settings!=networkmanager&&os_install_net_conf==networkmanager||ac_install_system==up&&os_install_net_conf==networkmanager||os_install_root_type==livecd&&os_install_net_conf==networkmanager
+# Calculate name=Auto_#-list(os_install_net_interfaces,1)-# list(os_install_net_interfaces,1)!=&&os_install_net_conf==networkmanager chmod=0600
+# Calculate name=Auto_#-list(os_install_net_interfaces,3)-# list(os_install_net_interfaces,3)!=&&os_install_net_conf==networkmanager chmod=0600
+# Calculate chmod=0755
+# Calculate path=/etc/NetworkManager
+# Calculate format=kde
+# Calculate pkg(gnome-base/gnome-session)== path=/usr/share/xsessions link=/usr/share/xsessions/KDE-4.desktop
+# Calculate pkg(xfce-base/xfce-utils)== path=/usr/share/xsessions link=/usr/share/xsessions/KDE-4.desktop
+# Calculate belong()!=&&pkg(kde-base/kdm)!= path=/usr/share/config
+# Calculate format=kde
+# Calculate link=/usr/share/apps/kdm/pics/users/default1.png path=/var/calculate/remote/share/faces/kdm mirror exists(/var/calculate/remote/share/faces/kdm/.default.face.icon)==&&exists(/usr/share/apps/kdm/pics/users/default1.png)!=&&env(client.os_remote_auth)==
+# Calculate format=plasma path=/usr/share/config
+# Calculate append=skip belong()!=&&pkg(kde-base/kdelibs)!=
+# Calculate belong()!=&&pkg(gnome-extra/nm-applet)!= path=/etc/xdg name=autostart
+# Calculate format=kde
+# Calculate format=patch os_install_x11_video_drv!=os_x11_video_drv&&cl_belong_pkg==&&ac_install_system!=up&&pkg(sys-kernel/calckernel)>=3.4.15-r5
+# Calculate belong()!=&&pkg(sys-boot/grub)!= path=/boot
+# Calculate belong()!=&&pkg(x11-apps/xinit)!= name=etc
+# Calculate format=openrc
+# Calculate belong()!=&&pkg(sys-apps/portage)!= name=etc
+# Calculate comment=# exists(/etc/make.conf,root)==||ac_install_system==up||os_install_root_type==livecd
+# Calculate link=/usr/share/zoneinfo/#-os_install_clock_timezone-# mirror force
+# Calculate format=patch
+# Calculate belong()!=&&pkg(sys-apps/baselayout)!= name=etc
+# Calculate append=replace os_install_locale_language==ru name=motd
+# Calculate append=replace os_install_locale_language!=ru name=motd
+# Calculate comment=#
+# Calculate belong()!=&&pkg(sys-power/acpid)!= path=/etc name=acpi
+# Calculate append=remove name=acpid hr_laptop==
+# Calculate path=/etc/runlevels
+# Calculate exec=/bin/bash path=/tmp ac_install_system!=up&&cl_belong_pkg!=
+# Calculate belong()!=&&pkg(sys-kernel/calckernel)!= path=/ name=etc
+# Calculate format=patch autoupdate
+# Calculate append=skip ac_install_live==up
+# Calculate format=samba path=/etc/calculate ac_install_system==up autoupdate
+# Calculate append=remove
+# Calculate path=/etc/runlevels os_install_scratch==on
+# Calculate chmod=0755 append=remove
+# Calculate path=/etc os_install_scratch==on
+# Calculate belong(calculate-install)!=&&pkg(sys-apps/calculate-install)!= append=skip
+# Calculate append=remove path=/
+# Calculate append=skip
+# Calculate exec=/bin/bash os_install_scratch==on path=/tmp
+# Calculate belong()!=&&pkg(media-video/mplayer)!= name=etc
+# Calculate format=samba path=/etc/mplayer autoupdate
+# Calculate comment=# format=patch os_install_root_type==livecd
+# Calculate format=squid
+# Calculate format=squid os_install_linux_system==server
+# Calculate belong()!=&&pkg(net-misc/openssh)!= name=etc
+# Calculate link=/etc/init.d/sshd symbolic
+# Calculate os_install_root_type!=livecd path=/etc/runlevels
+# Calculate comment=# format=openrc os_install_root_type!=livecd
+# Calculate belong()!=&&pkg(sys-devel/prelink)!= name=etc
+# Calculate format=patch
+# Calculate belong()!=&&pkg(x11-misc/slim)!= name=etc
+# Calculate format=proftpd
+# Calculate belong()!=&&pkg(sys-fs/lvm2)!= path=/etc/runlevels name=boot
+# Calculate os_install_lvm_set==on link=/etc/init.d/lvm symbolic
+# Calculate path=/tmp exec=/bin/bash os_install_root_type!=livecd&&exists(/sbin/grub-mkconfig,root)!=
+# Calculate format=openrc path=/etc/default name=grub os_install_root_type==usb-hdd
+# Calculate name=grub belong(grub)!=&&pkg(sys-boot/grub)>=1.99 path=/boot
+# Calculate format=openrc path=/etc/default name=grub os_install_root_type!=usb-hdd
+# Calculate pkg(gnome-base/gnome-session)==&&pkg(xfce-base/xfce-utils)!= path=/usr/share/xsessions link=/usr/share/xsessions/xfce.desktop symbolic
+# Calculate pkg(xfce-base/xfce-utils)!= path=/etc/X11/xinit name=Xclients link=/usr/bin/startxfce4 force symbolic
+# Calculate pkg(gnome-base/gnome-session)!=&&pkg(xfce-base/xfce-utils)== path=/usr/share/xsessions link=/usr/share/xsessions/gnome.desktop symbolic
+# Calculate format=kde
+# Calculate belong()!=&&pkg(gnome-base/gdm)!= path=/etc/X11
+# Calculate pkg(gnome-base/gnome-session)!= path=/etc/X11/xinit name=Xclients link=/usr/bin/gnome-session force symbolic
+# Calculate comment=# os_install_net_settings!=openrc&&os_install_net_conf==openrc||ac_install_system==up&&os_install_net_conf==openrc||os_install_root_type==livecd&&os_install_net_conf==openrc
+# Calculate os_install_linux_shortname!=CSS format=openrc
+# Calculate format=openrc
+# Calculate os_install_root_type==livecd&&pkg(sys-apps/openrc)<0.8.0 append=after comment=#
+# Calculate format=openrc
+# Calculate path=/etc/runlevels name=default
+# Calculate link=/etc/init.d/numlock symbolic hr_laptop==
+# Calculate os_install_root_type==livecd&&pkg(sys-apps/openrc)>=0.8.0 comment=# chmod=0755
+# Calculate append=remove name=net.#-list(os_install_net_interfaces,3)-# list(os_install_net_interfaces,3)!=&&os_install_net_conf!=openrc
+# Calculate append=remove name=net.#-list(os_install_net_interfaces,0)-# list(os_install_net_interfaces,0)!=&&os_install_net_conf!=openrc
+# Calculate append=remove name=net.#-list(os_install_net_interfaces,2)-# list(os_install_net_interfaces,2)!=&&os_install_net_conf!=openrc
+# Calculate append=remove name=net.#-list(os_install_net_interfaces,1)-# list(os_install_net_interfaces,1)!=&&os_install_net_conf!=openrc
+# Calculate name=net.#-list(os_install_net_interfaces,1)-# list(os_install_net_interfaces,1)!=&&os_install_net_conf==openrc link=net.lo symbolic
+# Calculate name=net.#-list(os_install_net_interfaces,2)-# list(os_install_net_interfaces,2)!=&&os_install_net_conf==openrc link=net.lo symbolic
+# Calculate name=net.#-list(os_install_net_interfaces,0)-# list(os_install_net_interfaces,0)!=&&os_install_net_conf==openrc link=net.lo symbolic
+# Calculate name=net.#-list(os_install_net_interfaces,3)-# list(os_install_net_interfaces,3)!=&&os_install_net_conf==openrc link=net.lo symbolic
+# Calculate belong()!=&&pkg(sys-apps/openrc)!= name=etc
+# Calculate format=openrc
+# Calculate path=/tmp name=reconfigure exec=/bin/bash ac_install_system!=up&&cl_belong_pkg!=
+# Calculate link=/etc/init.d/consolefont symbolic
+# Calculate path=/etc/runlevels name=boot
+# Calculate format=dovecot
+# Calculate belong()!=&&pkg(net-misc/wget)!= name=etc
+# Calculate append=remove path=/etc/udev/rules.d name=70-persistent-net.rules os_install_root_type==usb-hdd
+# Calculate belong()!=&&pkg(sys-fs/udev)!= path=/etc name=modprobe.d
+# Calculate format=openrc path=/etc/conf.d os_install_root_type==usb-hdd
+# Calculate comment=#
+# Calculate belong()!=&&pkg(x11-libs/gtk+)!= path=/etc name=gtk-2.0
+# Calculate belong()!=&&pkg(sys-fs/mdadm)!= path=/etc/runlevels name=boot
+# Calculate os_install_mdadm_set==on link=/etc/init.d/mdadm symbolic
+# Calculate belong()!=&&pkg(sys-apps/calculate-client)!= name=etc
+# Calculate path=/etc/runlevels env(client.cl_remote_host)!=
+# Calculate link=/etc/init.d/xdm symbolic
+# Calculate append=replace link=../../etc/wicd/ip-down.sh mirror force
+# Calculate append=replace link=../../etc/wicd/ip-up.sh mirror force
+# Calculate append=replace link=../../etc/wicd/wired-settings.conf mirror force
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(net-misc/wicd)!= path=/etc
+# Calculate append=replace link=../../etc/wicd/wireless-settings.conf mirror force
+# Calculate append=replace link=../../etc/wicd/manager-settings.conf mirror force
+# Calculate append=skip ac_install_system==up
+# Calculate append=replace link=../../etc/conf.d/net mirror force
+# Calculate path=/etc
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(sys-apps/openrc)!= name=etc
+# Calculate append=replace link=../../etc/resolv.conf mirror force
+# Calculate belong()!=&&pkg(net-wireless/wpa_supplicant)!= path=/etc
+# Calculate append=replace link=../../etc/wpa_supplicant/wpa_supplicant.conf mirror force
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(sys-fs/udev)!= path=/etc/udev name=rules.d 
+# Calculate append=replace link=../../etc/udev/rules.d/70-persistent-net.rules mirror force
+# Calculate append=skip cl_name==calculate-install&&cl_ver>=2.2.1
+# Calculate comment=# name=grub.conf os_install_scratch==off&&os_install_root_type!=usb-hdd&&pkg(sys-kernel/calculate-sources)<2.6.32.33||os_install_scratch==off&&os_install_root_type!=usb-hdd&&pkg(sys-kernel/calculate-sources)>=2.6.33&&pkg(sys-kernel/calculate-sources)<2.6.37.4
+# Calculate comment=# name=grub.conf os_install_scratch==off&&os_install_root_type==usb-hdd&&pkg(sys-kernel/calculate-sources)<2.6.32.33||os_install_scratch==off&&os_install_root_type==usb-hdd&&pkg(sys-kernel/calculate-sources)>=2.6.33&&pkg(sys-kernel/calculate-sources)<2.6.37.4
+# Calculate comment=# os_install_scratch==off&&os_install_root_type!=usb-hdd&&pkg(sys-kernel/calculate-sources)>=2.6.32.33&&pkg(sys-kernel/calculate-sources)<2.6.33||os_install_scratch==off&&os_install_root_type!=usb-hdd&&pkg(sys-kernel/calculate-sources)>=2.6.37.4
+# Calculate os_grub2_path==
+# Calculate belong()!=&&pkg(sys-boot/grub)!= path=/boot
+# Calculate comment=# name=grub.conf os_install_scratch==off&&os_install_root_type==usb-hdd&&pkg(sys-kernel/calculate-sources)>=2.6.32.33&&pkg(sys-kernel/calculate-sources)<2.6.33||os_install_scratch==off&&os_install_root_type==usb-hdd&&pkg(sys-kernel/calculate-sources)>=2.6.37.4
+# Calculate comment=# name=grub.conf os_install_scratch==on&&pkg(sys-kernel/calculate-sources)>=2.6.32.33&&pkg(sys-kernel/calculate-sources)<2.6.33||os_install_scratch==on&&pkg(sys-kernel/calculate-sources)>=2.6.37.4
+# Calculate comment=# name=grub.conf os_install_scratch==on&&pkg(sys-kernel/calculate-sources)<2.6.32.33||os_install_scratch==on&&pkg(sys-kernel/calculate-sources)>=2.6.33&&pkg(sys-kernel/calculate-sources)<2.6.37.4
+# Calculate append=remove
+# Calculate belong()!=&&pkg(sys-apps/baselayout)!= name=etc
+# Calculate comment=# 
+# Calculate append=skip ac_install_system==up
+# Calculate comment=# os_install_linux_system==server&&load(empty,/etc/conf.d/net)==
+# Calculate
+# Calculate os_install_scratch==on chmod=0755
+# Calculate belong()!=&&pkg(sys-apps/openrc)!= name=etc
+# Calculate path=/var/calculate
+# Calculate format=raw comment=# os_install_root_type==hdd||os_install_linux_ver>10.8.81
+# Calculate name=initrd-#-cl_install_kernel_uid-# link=#-os_install_initrd-# symbolic force
+# Calculate name=System.map-#-cl_install_kernel_uid-# link=#-os_install_system_map-# symbolic force
+# Calculate name=vmlinuz-#-cl_install_kernel_uid-# link=#-os_install_kernel-# symbolic force
+# Calculate path=/
+# Calculate name=initrd-#-cl_install_kernel_uid-#-install link=#-os_install_initrd_install-# symbolic force
+# Calculate belong()!=&&pkg(sys-apps/calculate-install)!= path=/etc name=calculate
+# Calculate belong()!=&&pkg(sys-apps/sysvinit)!= name=etc
+# Calculate format=patch
+# Calculate belong()!=&&pkg(kde-base/konqueror)!= append=skip
+# Calculate append=remove path=/usr/share/applications/kde4 name=Home.desktop
+# Calculate comment=#
+# Calculate belong()!=&&pkg(sys-auth/pambase)!= path=/etc name=pam.d
+# Calculate chmod=0644 chown=root:root comment=#
+# Calculate comment=#
+# Calculate path=/etc/splash
+# Calculate comment=#
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate belong()!=&&pkg(media-gfx/cld-themes)!= name=etc
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate belong()!=&&os_install_linux_system==server&&pkg(sys-libs/pam)!= path=/etc/security name=limits.d
+# Calculate comment=#
+# Calculate path=/etc/splash
+# Calculate comment=#
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate belong()!=&&pkg(media-gfx/cldx-themes)!= name=etc
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=openrc
+# Calculate belong()!=&&pkg(media-gfx/splashutils)!= name=etc
+# Calculate link=/etc/init.d/fbcondecor symbolic
+# Calculate path=/etc/runlevels
+# Calculate belong()!=&&pkg(net-print/cups)>=1.4 name=etc
+# Calculate link=/etc/init.d/cupsd symbolic
+# Calculate path=/etc/runlevels
+# Calculate link=/etc/init.d/calculate-builder symbolic
+# Calculate belong()!=&&cl_chroot_status==on&&pkg(sys-apps/calculate-builder)!= path=/etc name=runlevels
+# Calculate format=kde
+# Calculate belong()!=&&pkg(dev-db/desktopcouch)!= path=/usr/share name=applications
+# Calculate belong()!=&&pkg(media-gfx/gimp)!= path=/etc name=env.d
+# Calculate belong()!=&&pkg(sys-process/vixie-cron)!= name=etc
+# Calculate link=/etc/init.d/vixie-cron symbolic
+# Calculate path=/etc/runlevels
+# Calculate belong()!=&&pkg(net-nds/portmap)!= name=etc
+# Calculate link=/etc/init.d/portmap symbolic
+# Calculate path=/etc/runlevels
+# Calculate link=/etc/init.d/preload symbolic os_install_root_type!=livecd
+# Calculate path=/etc/runlevels
+# Calculate belong()!=&&pkg(sys-apps/preload)!= append=skip
+# Calculate link=/etc/init.d/syslog-ng symbolic
+# Calculate path=/etc/runlevels
+# Calculate belong()!=&&pkg(app-admin/syslog-ng)!= path=/etc
+# Calculate belong()!=&&pkg(sys-apps/hotplug)!= path=/etc
+# Calculate link=/etc/init.d/hotplug symbolic
+# Calculate path=/etc/runlevels
+# Calculate comment=# hr_laptop!=
+# Calculate belong()!=&&pkg(sys-power/acpid)!= path=/etc name=acpi
+# Calculate link=/etc/init.d/acpid symbolic hr_laptop!=
+# Calculate path=/etc/runlevels
+# Calculate format=openrc
+# Calculate belong()!=&&pkg(sys-apps/hdparm)!= path=/etc name=conf.d
+# Calculate comment=#
+# Calculate path=/etc/splash
+# Calculate comment=#
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate belong()!=&&pkg(media-gfx/cldg-themes)!= name=etc
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate comment=#
+# Calculate path=/etc/splash
+# Calculate comment=#
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate belong()!=&&pkg(media-gfx/cmc-themes)!= name=etc
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate append=skip ac_install_merge==up
+# Calculate format=patch
+# Calculate path=/etc/udev
+# Calculate belong()!=&&pkg(net-wireless/madwimax)!= name=etc
+# Calculate belong()!=&&pkg(sys-libs/gpm)!= path=/etc name=conf.d
+# Calculate format=patch os_install_root_type==livecd
+# Calculate belong()!=&&pkg(kde-base/kdebase-startkde)!= path=/usr name=bin
+# Calculate belong()!=&&pkg(sys-fs/mtools)!= path=/etc
+# Calculate comment=#
+# Calculate path=/etc/splash
+# Calculate comment=#
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate belong()!=&&pkg(media-gfx/cds-themes)!= name=etc
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate comment=#
+# Calculate belong()!=&&pkg(sys-libs/glibc)!= name=etc
+# Calculate link=net.lo symbolic
+# Calculate belong()!=&&pkg(sys-apps/openrc)!= name=etc
+# Calculate format=openrc
+# Calculate link=/etc/init.d/consolefont symbolic
+# Calculate path=/etc/runlevels name=boot
+# Calculate comment=#
+# Calculate path=/etc/splash
+# Calculate comment=#
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate belong()!=&&pkg(media-gfx/cls-themes)!= name=etc
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1600x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/640x480.cfg
+# Calculate format=patch link=/etc/splash/tty1/1368x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1360x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1200.cfg
+# Calculate format=patch link=/etc/splash/tty1/1440x900.cfg
+# Calculate format=patch link=/etc/splash/tty1/1680x945.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x576.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x1024.cfg
+# Calculate format=patch link=/etc/splash/tty1/1366x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/800x480.cfg
+# Calculate path=/etc/splash
+# Calculate format=patch link=/etc/splash/tty1/800x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/1400x1050.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1200x800.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1920x1080.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x768.cfg
+# Calculate format=patch link=/etc/splash/tty1/1280x720.cfg
+# Calculate format=patch link=/etc/splash/tty1/1024x600.cfg
+# Calculate format=patch link=/etc/splash/tty1/2048x1152.cfg
+# Calculate format=patch link=/etc/splash/tty1/2560x1440.cfg
+# Calculate format=kde
+# Calculate path=/usr/share
+# Calculate format=kde
+# Calculate belong()!=&&pkg(xfce-base/exo)!= append=skip
+# Calculate path=/usr/share/xfce4
+# Calculate belong()!=&&pkg(app-portage/eix)!= name=etc
+# Calculate comment=#
+# Calculate belong()!=&&pkg(sys-fs/udisks)!= path=/var/lib/polkit-1/localauthority name=50-local.d
+# Calculate path=/usr/share/polkit-1
+# Calculate belong()!=&&pkg(sys-fs/udev)!= path=/etc name=modprobe.d
+# Calculate path=/etc/runlevels
+# Calculate link=/etc/init.d/udev symbolic
+# Calculate format=patch comment=#
+# Calculate append=replace format=xml_gconf_tree
+# Calculate belong()!=&&pkg(gnome-base/gconf)!= path=/etc/gconf name=gconf.xml.mandatory
+# Calculate append=remove
+# Calculate belong()!=&&pkg(sys-power/cpufrequtils)!= path=/etc name=runlevels
+# Calculate link=/etc/init.d/cpufrequtils symbolic
+# Calculate format=kde link=/usr/share/applications/calc.desktop name=calculate-calc.desktop mirror pkg(app-office/libreoffice)>=3.3&&pkg(app-office/libreoffice)<3.4
+# Calculate append=skip exists(/usr/share/applications/calculate-calc.desktop,root)==||ini(desktop.calc)==||ini(desktop.calc)==libreoffice
+# Calculate format=kde link=/usr/share/applications/libreoffice-calc.desktop name=calculate-calc.desktop mirror pkg(app-office/libreoffice)>=3.4
+# Calculate belong()!=&&pkg(app-office/libreoffice)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/libreoffice-calc.desktop name=calculate-calc.desktop mirror pkg(app-office/libreoffice-bin)>=3.3
+# Calculate append=skip exists(/usr/share/applications/calculate-calc.desktop,root)==||ini(desktop.calc)==||ini(desktop.calc)==libreoffice-bin
+# Calculate belong()!=&&pkg(app-office/libreoffice-bin)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate format=kde link=/usr/share/applications/kde4/kopete.desktop name=calculate-im.desktop mirror pkg(kde-base/kopete)>=4.6
+# Calculate append=skip exists(/usr/share/applications/calculate-im.desktop,root)==||ini(desktop.im)==||ini(desktop.im)==kopete
+# Calculate belong()!=&&pkg(kde-base/kopete)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-im.desktop,root)==||ini(desktop.im)==||ini(desktop.im)==pidgin
+# Calculate format=kde link=/usr/share/applications/pidgin.desktop name=calculate-im.desktop mirror pkg(net-im/pidgin)>=2.9
+# Calculate belong()!=&&pkg(net-im/pidgin)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate append=skip exists(/usr/share/applications/calculate-browser.desktop,root)==||ini(desktop.browser)==||ini(desktop.browser)==chromium
+# Calculate format=kde link=/usr/share/applications/chromium-browser-chromium.desktop name=calculate-browser.desktop mirror pkg(www-client/chromium)>=11.0
+# Calculate belong()!=&&pkg(www-client/chromium)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/mozilla-firefox-3.6.desktop name=calculate-browser.desktop mirror pkg(www-client/firefox)>=3.6&&pkg(www-client/firefox)<4.0
+# Calculate append=skip exists(/usr/share/applications/calculate-browser.desktop,root)==||ini(desktop.browser)==||ini(desktop.browser)==firefox
+# Calculate format=kde link=/usr/share/applications/firefox.desktop name=calculate-browser.desktop mirror pkg(www-client/firefox)>=4.0
+# Calculate belong()!=&&pkg(www-client/firefox)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-browser.desktop,root)==||ini(desktop.browser)==||ini(desktop.browser)==opera
+# Calculate format=kde link=/usr/share/applications/opera-browser.desktop name=calculate-browser.desktop mirror pkg(www-client/opera)>=11.50
+# Calculate belong()!=&&pkg(www-client/opera)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate format=kde link=/usr/share/applications/firefox-bin.desktop name=calculate-browser.desktop mirror pkg(www-client/firefox-bin)>=3.6
+# Calculate append=skip exists(/usr/share/applications/calculate-browser.desktop,root)==||ini(desktop.browser)==||ini(desktop.browser)==firefox-bin
+# Calculate belong()!=&&pkg(www-client/firefox-bin)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-dict.desktop,root)==||ini(desktop.dict)==||ini(desktop.dict)==goldendict
+# Calculate format=kde link=/usr/share/applications/goldendict.desktop name=calculate-dict.desktop mirror pkg(app-text/goldendict)>=1.0
+# Calculate belong()!=&&pkg(app-text/goldendict)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate format=kde link=/usr/share/applications/stardict.desktop name=calculate-dict.desktop mirror pkg(app-text/stardict)>=3.0
+# Calculate append=skip exists(/usr/share/applications/calculate-dict.desktop,root)==||ini(desktop.dict)==||ini(desktop.dict)==stardict
+# Calculate belong()!=&&pkg(app-text/stardict)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate format=kde link=/usr/share/applications/quodlibet.desktop name=calculate-audioplayer.desktop mirror pkg(media-sound/quodlibet)>=2.2
+# Calculate append=skip exists(/usr/share/applications/calculate-audioplayer.desktop,root)==||ini(desktop.audioplayer)==||ini(desktop.audioplayer)==quodlibet
+# Calculate belong()!=&&pkg(media-sound/quodlibet)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/deadbeef.desktop name=calculate-audioplayer.desktop mirror pkg(media-sound/deadbeef)>=0.5
+# Calculate append=skip exists(/usr/share/applications/calculate-audioplayer.desktop,root)==||ini(desktop.audioplayer)==||ini(desktop.audioplayer)==deadbeef
+# Calculate belong()!=&&pkg(media-sound/deadbeef)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-audioplayer.desktop,root)==||ini(desktop.audioplayer)==||ini(desktop.audioplayer)==rhythmbox
+# Calculate format=kde link=/usr/share/applications/rhythmbox.desktop name=calculate-audioplayer.desktop mirror pkg(media-sound/rhythmbox)>=0.12
+# Calculate belong()!=&&pkg(media-sound/rhythmbox)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/audacious.desktop name=calculate-audioplayer.desktop mirror pkg(media-sound/audacious)>=2.5
+# Calculate format=kde link=/usr/share/applications/audacious2.desktop name=calculate-audioplayer.desktop mirror pkg(media-sound/audacious)>=2.4&&pkg(media-sound/audacious)<2.5
+# Calculate append=skip exists(/usr/share/applications/calculate-audioplayer.desktop,root)==||ini(desktop.audioplayer)==||ini(desktop.audioplayer)==audacious
+# Calculate belong()!=&&pkg(media-sound/audacious)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-audioplayer.desktop,root)==||ini(desktop.audioplayer)==||ini(desktop.audioplayer)==amarok
+# Calculate format=kde link=/usr/share/applications/kde4/amarok.desktop name=calculate-audioplayer.desktop mirror pkg(media-sound/amarok)>=2.3
+# Calculate belong()!=&&pkg(media-sound/amarok)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-textedit.desktop,root)==||ini(desktop.textedit)==||ini(desktop.textedit)==kwrite
+# Calculate format=kde link=/usr/share/applications/kde4/kwrite.desktop name=calculate-textedit.desktop mirror pkg(kde-base/kwrite)>=4.6
+# Calculate belong()!=&&pkg(kde-base/kwrite)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate append=skip exists(/usr/share/applications/calculate-textedit.desktop,root)==||ini(desktop.textedit)==||ini(desktop.textedit)==gedit
+# Calculate format=kde link=/usr/share/applications/gedit.desktop name=calculate-textedit.desktop mirror pkg(app-editors/gedit)>=2.30
+# Calculate belong()!=&&pkg(app-editors/gedit)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-textedit.desktop,root)==||ini(desktop.textedit)==||ini(desktop.textedit)==leafpad
+# Calculate format=kde link=/usr/share/applications/leafpad.desktop name=calculate-textedit.desktop mirror pkg(app-editors/leafpad)>=0.8
+# Calculate belong()!=&&pkg(app-editors/leafpad)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/totem.desktop name=calculate-videoplayer.desktop mirror pkg(media-video/totem)>=2.30
+# Calculate append=skip exists(/usr/share/applications/calculate-videoplayer.desktop,root)==||ini(desktop.videoplayer)==||ini(desktop.videoplayer)==totem
+# Calculate belong()!=&&pkg(media-video/totem)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/smplayer.desktop name=calculate-videoplayer.desktop mirror pkg(media-video/smplayer)>=0.6
+# Calculate append=skip exists(/usr/share/applications/calculate-videoplayer.desktop,root)==||ini(desktop.videoplayer)==||ini(desktop.videoplayer)==smplayer
+# Calculate belong()!=&&pkg(media-video/smplayer)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate format=kde link=/usr/share/applications/gnome-mplayer.desktop name=calculate-videoplayer.desktop mirror pkg(media-video/gnome-mplayer)>=1.0
+# Calculate append=skip exists(/usr/share/applications/calculate-videoplayer.desktop,root)==||ini(desktop.videoplayer)==||ini(desktop.videoplayer)==gnome-mplayer
+# Calculate belong()!=&&pkg(media-video/gnome-mplayer)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/claws-mail.desktop name=calculate-mail.desktop mirror pkg(mail-client/claws-mail)>=3.7
+# Calculate append=skip exists(/usr/share/applications/calculate-mail.desktop,root)==||ini(desktop.mail)==||ini(desktop.mail)==claws-mail
+# Calculate belong()!=&&pkg(mail-client/claws-mail)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/kde4/KMail.desktop name=calculate-mail.desktop mirror pkg(kde-base/kmail)>=4.4&&pkg(kde-base/kmail)<4.6
+# Calculate append=skip exists(/usr/share/applications/calculate-mail.desktop,root)==||ini(desktop.mail)==||ini(desktop.mail)==kmail
+# Calculate format=kde link=/usr/share/applications/kde4/KMail2.desktop name=calculate-mail.desktop mirror pkg(kde-base/kmail)>=4.6
+# Calculate belong()!=&&pkg(kde-base/kmail)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate format=kde link=/usr/share/applications/evolution.desktop name=calculate-mail.desktop mirror pkg(mail-client/evolution)>=2.30
+# Calculate append=skip exists(/usr/share/applications/calculate-mail.desktop,root)==||ini(desktop.mail)==||ini(desktop.mail)==evolution
+# Calculate belong()!=&&pkg(mail-client/evolution)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/zzz-gimp.desktop name=calculate-imageedit.desktop mirror pkg(media-gfx/gimp)>=2.6.11&&exists(/usr/share/applications/zzz-gimp.desktop)!=
+# Calculate format=kde link=/usr/share/applications/gimp.desktop name=calculate-imageedit.desktop mirror pkg(media-gfx/gimp)>=2.6.11
+# Calculate append=skip exists(/usr/share/applications/calculate-imageedit.desktop,root)==||ini(desktop.imageedit)==||ini(desktop.imageedit)==gimp
+# Calculate belong()!=&&pkg(media-gfx/gimp)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate format=kde link=/usr/share/applications/libreoffice-writer.desktop name=calculate-writer.desktop mirror pkg(app-office/libreoffice)>=3.4
+# Calculate append=skip exists(/usr/share/applications/calculate-writer.desktop,root)==||ini(desktop.writer)==||ini(desktop.writer)==libreoffice
+# Calculate format=kde link=/usr/share/applications/writer.desktop name=calculate-writer.desktop mirror pkg(app-office/libreoffice)>=3.3&&pkg(app-office/libreoffice)<3.4
+# Calculate belong()!=&&pkg(app-office/libreoffice)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-writer.desktop,root)==||ini(desktop.writer)==||ini(desktop.writer)==libreoffice-bin
+# Calculate format=kde link=/usr/share/applications/libreoffice-writer.desktop name=calculate-writer.desktop mirror pkg(app-office/libreoffice-bin)>=3.3
+# Calculate belong()!=&&pkg(app-office/libreoffice-bin)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate append=skip exists(/usr/share/applications/calculate-imageview.desktop,root)==||ini(desktop.imageview)==||ini(desktop.imageview)==gqview
+# Calculate format=kde link=/usr/share/applications/gqview.desktop name=calculate-imageview.desktop mirror pkg(media-gfx/gqview)>=2.1
+# Calculate belong()!=&&pkg(media-gfx/gqview)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/eog.desktop name=calculate-imageview.desktop mirror pkg(media-gfx/eog)>=2.30
+# Calculate append=skip exists(/usr/share/applications/calculate-imageview.desktop,root)==||ini(desktop.imageview)==||ini(desktop.imageview)==eog
+# Calculate belong()!=&&pkg(media-gfx/eog)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-imageview.desktop,root)==||ini(desktop.imageview)==||ini(desktop.imageview)==digikam
+# Calculate format=kde link=/usr/share/applications/kde4/digikam.desktop name=calculate-imageview.desktop mirror pkg(media-gfx/digikam)>=1.9
+# Calculate belong()!=&&pkg(media-gfx/digikam)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate append=skip exists(/usr/share/applications/calculate-calculator.desktop,root)==||ini(desktop.calculator)==||ini(desktop.calculator)==galculator
+# Calculate format=kde link=/usr/share/applications/galculator.desktop name=calculate-calculator.desktop mirror pkg(sci-calculators/galculator)>=1.3
+# Calculate belong()!=&&pkg(sci-calculators/galculator)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/kde4/kcalc.desktop name=calculate-calculator.desktop mirror pkg(kde-base/kcalc)>=4.6
+# Calculate append=skip exists(/usr/share/applications/calculate-calculator.desktop,root)==||ini(desktop.calculator)==||ini(desktop.calculator)==kcalc
+# Calculate belong()!=&&pkg(kde-base/kcalc)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate format=kde link=/usr/share/applications/gcalctool.desktop name=calculate-calculator.desktop mirror pkg(gnome-extra/gcalctool)>=5.32
+# Calculate append=skip exists(/usr/share/applications/calculate-calculator.desktop,root)==||ini(desktop.calculator)==||ini(desktop.calculator)==gcalctool
+# Calculate belong()!=&&pkg(gnome-extra/gcalctool)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate append=skip exists(/usr/share/applications/calculate-imageburn.desktop,root)==||ini(desktop.imageburn)==||ini(desktop.imageburn)==brasero
+# Calculate format=kde link=/usr/share/applications/brasero.desktop name=calculate-imageburn.desktop mirror pkg(app-cdr/brasero)>=2.30
+# Calculate belong()!=&&pkg(app-cdr/brasero)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-imageburn.desktop,root)==||ini(desktop.imageburn)==||ini(desktop.imageburn)==xfburn
+# Calculate format=kde link=/usr/share/applications/xfburn.desktop name=calculate-imageburn.desktop mirror pkg(app-cdr/xfburn)>=0.4
+# Calculate belong()!=&&pkg(app-cdr/xfburn)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/kde4/k3b.desktop name=calculate-imageburn.desktop mirror pkg(app-cdr/k3b)>=2.0
+# Calculate append=skip exists(/usr/share/applications/calculate-imageburn.desktop,root)==||ini(desktop.imageburn)==||ini(desktop.imageburn)==k3b
+# Calculate belong()!=&&pkg(app-cdr/k3b)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-terminal.desktop,root)==||ini(desktop.terminal)==||ini(desktop.terminal)==terminal
+# Calculate format=kde link=/usr/share/applications/Terminal.desktop name=calculate-terminal.desktop mirror pkg(x11-terms/terminal)>=0.4
+# Calculate belong()!=&&pkg(x11-terms/terminal)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate format=kde link=/usr/share/applications/kde4/konsole.desktop name=calculate-terminal.desktop mirror pkg(kde-base/konsole)>=4.6
+# Calculate append=skip exists(/usr/share/applications/calculate-terminal.desktop,root)==||ini(desktop.terminal)==||ini(desktop.terminal)==konsole
+# Calculate belong()!=&&pkg(kde-base/konsole)!= path=/usr/share name=applications
+# Calculate append=skip exists(/usr/share/applications/calculate-terminal.desktop,root)==||ini(desktop.terminal)==||ini(desktop.terminal)==gnome-terminal
+# Calculate format=kde link=/usr/share/applications/gnome-terminal.desktop name=calculate-terminal.desktop mirror pkg(x11-terms/gnome-terminal)>=2.30
+# Calculate belong()!=&&pkg(x11-terms/gnome-terminal)!= path=/usr/share name=applications
+# Calculate format=kde link=/usr/share/applications/xchat.desktop name=calculate-chat.desktop mirror pkg(net-irc/xchat)>=2.8
+# Calculate append=skip exists(/usr/share/applications/calculate-chat.desktop,root)==||ini(desktop.chat)==||ini(desktop.chat)==xchat
+# Calculate belong()!=&&pkg(net-irc/xchat)!= path=/usr/share name=applications
+# Calculate append=skip
+# Calculate append=skip exists(/usr/share/applications/calculate-chat.desktop,root)==||ini(desktop.chat)==||ini(desktop.chat)==konversation
+# Calculate format=kde link=/usr/share/applications/kde4/konversation.desktop name=calculate-chat.desktop mirror pkg(net-irc/konversation)>=1.3
+# Calculate belong()!=&&pkg(net-irc/konversation)!= path=/usr/share name=applications
+# Calculate belong()!=&&pkg(net-dialup/slmodem)!= path=/etc name=conf.d
+# Calculate comment=#
+# Calculate belong()!=&&pkg(app-editors/vim)!= path=/etc name=env.d
+# Calculate link=/etc/init.d/alsasound symbolic
+# Calculate path=/etc/runlevels
+# Calculate format=patch
+# Calculate belong()!=&&pkg(media-sound/alsa-utils)!= name=etc
+# Calculate append=skip pkg(sys-apps/calculate-install)>=2.2.1_rc12&&ac_install_flash==up
+# Calculate belong()!=&&pkg(sys-boot/calcboot)!= append=skip
+# Calculate link=../../usr/share/syslinux/calcmenu.c32 mirror
+# Calculate belong()!=&&pkg(sys-boot/syslinux)!= append=skip
+# Calculate link=../../usr/share/syslinux/isolinux.bin mirror
+# Calculate append=skip ac_install_live==up&&hr_laptop!=
+# Calculate format=patch path=/etc chmod=0440
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(app-admin/sudo)!= name=etc
+# Calculate append=skip hr_laptop==samsung pkg(sys-apps/calculate-lib)>=2.2.1_rc13-r1
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(xfce-base/libxfcegui4)!= path=/etc/xdg/xfce4/xfconf name=xfce-perchannel-xml
+# Calculate format=xml_xfce
+# Calculate load(char,/sys/bus/pci/devices/0000:00:02.0/vendor,root)==0x8086&&load(char,/sys/bus/pci/devices/0000:00:02.0/device,root)==0xa011||load(char,/sys/bus/pci/devices/0000:00:02.0/vendor,root)==0x8086&&load(char,/sys/bus/pci/devices/0000:00:02.0/device,root)==0x2a42
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(kde-base/khotkeys)!= path=/usr/share/apps
+# Calculate load(char,/sys/bus/pci/devices/0000:00:02.0/vendor,root)==0x8086&&load(char,/sys/bus/pci/devices/0000:00:02.0/device,root)==0xa011||load(char,/sys/bus/pci/devices/0000:00:02.0/vendor,root)==0x8086&&load(char,/sys/bus/pci/devices/0000:00:02.0/device,root)==0x2a42
+# Calculate path=/etc/runlevels
+# Calculate link=/etc/init.d/laptopd symbolic
+# Calculate path=/etc
+# Calculate comment=# chmod=0755
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(sys-apps/calculate-install)!= path=/ name=etc
+# Calculate chmod=0755 comment=#
+# Calculate chmod=0755 comment=# load(char,/sys/bus/pci/devices/0000:00:02.0/vendor,root)==0x8086&&load(char,/sys/bus/pci/devices/0000:00:02.0/device,root)==0xa011||load(char,/sys/bus/pci/devices/0000:00:02.0/vendor,root)==0x8086&&load(char,/sys/bus/pci/devices/0000:00:02.0/device,root)==0x2a42
+# Calculate path=/usr
+# Calculate chmod=0755 comment=#
+# Calculate format=xml_gconf_tree
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(gnome-base/gconf)!= path=/etc/gconf name=gconf.xml.mandatory
+# Calculate format=patch path=/etc chmod=0440
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(app-admin/sudo)!= name=etc
+# Calculate comment=#
+# Calculate belong()!=&&cl_chroot_status!=&&pkg(sys-kernel/calculate-sources)!= path=/etc name=modprobe.d
+# Calculate append=skip hr_laptop==lenovo
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(xfce-base/libxfcegui4)!= path=/etc/xdg/xfce4/xfconf name=xfce-perchannel-xml
+# Calculate format=xml_xfce
+# Calculate load(char,/sys/bus/pci/devices/0000:03:00.0/vendor,root)==0x8086&&load(char,/sys/bus/pci/devices/0000:03:00.0/device,root)==0x423d
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(kde-base/khotkeys)!= path=/usr/share/apps
+# Calculate os_install_root_type!=livecd
+# Calculate path=/etc/runlevels
+# Calculate link=/etc/init.d/laptopd symbolic
+# Calculate path=/etc
+# Calculate comment=# chmod=0755
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(sys-apps/calculate-install)!= path=/ name=etc
+# Calculate path=/usr
+# Calculate chmod=0755 comment=# load(char,/sys/bus/pci/devices/0000:03:00.0/vendor,root)==0x8086&&load(char,/sys/bus/pci/devices/0000:03:00.0/device,root)==0x423d
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(sys-fs/udev)!= path=/etc name=modprobe.d
+# Calculate format=patch comment=#
+# Calculate format=xml_gconf_tree
+# Calculate belong()!=&&cl_chroot_status==off&&pkg(gnome-base/gconf)!= path=/etc/gconf name=gconf.xml.mandatory
+# Calculate belong()!=&&pkg(net-nds/openldap)!= path=/etc name=openldap
+# Calculate append=skip cl_pass_step==1
+# Calculate format=ldap chmod=0640 chown=root:ldap append=replace
+# Calculate append=skip cl_pass_step==2
+# Calculate format=ldap chmod=0640 chown=root:ldap append=join
+# Calculate append=skip ac_ldap_setup==up
+# Calculate append=skip cl_name==calculate-ldap
+# Calculate belong()!=&&pkg(net-nds/openldap)!= path=/etc name=openldap
+# Calculate format=ldap chmod=0640 chown=root:ldap append=replace
+# Calculate append=skip ac_ldap_update==up&&sr_ldap_set==on

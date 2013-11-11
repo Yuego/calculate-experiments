@@ -11,3 +11,5 @@ reports
 
 .tox
 *.egg-info
+
+failed_headers.txt
