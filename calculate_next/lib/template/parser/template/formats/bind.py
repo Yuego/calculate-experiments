@@ -10,6 +10,7 @@ from calculate_next.lib.template.parser.template.parser import FormatParser
 
 class BindFormatParser(FormatParser):
     comment = ('#', '/*,*/')
+    indent_comments = True
 
     def _quoted_string_atom(self, s, l, tok):
         """
@@ -80,16 +81,16 @@ class BindFormatParser(FormatParser):
     def get_template_syntax(self):
         return None
 
-    def collapse_tree(self, d, indent=4, indent_comments=True, depth=0):
+    def collapse_tree(self, d, depth=0):
         comments = d.pop('__comments')
 
         result = []
         idx = 0
-        tab = ' '*depth*indent if indent is not None else ''
-        comment_tab = tab if indent_comments else ''
+        tab = self.indent * depth
+        comment_tab = tab if self.indent_comments else ''
 
         for k, v in d.items():
-            while(idx in comments):
+            while idx in comments:
                 result.extend(['\n', comment_tab, comments.pop(idx), '\n'])
                 idx += 1
             idx += 1
@@ -100,10 +101,7 @@ class BindFormatParser(FormatParser):
                 result.extend([tab, k, ' ', v, ';\n'])
             else:
                 result.extend([tab, k, ' {\n',
-                               self.collapse_tree(v,
-                                                  indent=indent,
-                                                  indent_comments=indent_comments,
-                                                  depth=depth+1),
+                               self.collapse_tree(v, depth=depth+1),
                                tab, '};\n'])
 
         for comment in comments.values():

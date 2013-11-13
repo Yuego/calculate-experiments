@@ -9,6 +9,7 @@ from .ini import INIFormatParser
 
 
 class SambaFormatParser(INIFormatParser):
+    indent = ' '*4
 
     def get_syntax(self):
         _command = Word('!^+-', exact=1)
@@ -30,9 +31,3 @@ class SambaFormatParser(INIFormatParser):
         syntax = ZeroOrMore(_comment | section)
 
         return syntax
-
-    def collapse_tree(self, d, indent=None, indent_comments=False, depth=0):
-        return super(SambaFormatParser, self).collapse_tree(d,
-                                                            indent=4,
-                                                            indent_comments=indent_comments,
-                                                            depth=depth)

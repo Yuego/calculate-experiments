@@ -52,12 +52,12 @@ class INIFormatParser(FormatParser):
     def get_template_syntax(self):
         return None
 
-    def collapse_tree(self, d, indent=None, indent_comments=False, depth=0):
+    def collapse_tree(self, d, depth=0):
         comments = d.pop('__comments')
         result = []
         idx = 0
-        tab = ' '*depth*indent if indent is not None else ''
-        comment_tab = tab if indent_comments else ''
+        tab = self.indent * depth
+        comment_tab = tab if self.indent_comments else ''
 
         for k, v in d.items():
             while(idx in comments):
@@ -69,10 +69,7 @@ class INIFormatParser(FormatParser):
                 result.extend([tab, k, '=', v, '\n'])
             else:
                 result.extend([
-                    tab, '\n', k, '\n', self.collapse_tree(v,
-                                                             indent=indent,
-                                                             indent_comments=indent_comments,
-                                                             depth=depth+1)
+                    tab, '\n', k, '\n', self.collapse_tree(v, depth=depth+1)
                 ])
 
         for comment in comments.values():

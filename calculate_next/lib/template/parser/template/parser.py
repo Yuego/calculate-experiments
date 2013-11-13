@@ -52,17 +52,28 @@ class FormatParser(object):
     comment = None
 
     # Отступ по-умолчанию
-    indent = 0
+    indent = ''
+    # Форматировать комментарии отступами
+    indent_comments = False
 
     # Сортировать ли дерево после слияния
     sort_keys = False
     # На какую глубину сортировать
     sort_depth = 0
 
-    def __init__(self, **kwargs):
+    # Стратегии слияния
+    REPLACE, REMOVE, BEFORE, AFTER = ('!', '-', '^', '+')
 
-        self._template_syntax = self.get_template_syntax()
-        self._original_syntax = self.get_syntax()
+
+    def __init__(self, **kwargs):
+        strategy = kwargs.pop('strategy', 'after')
+
+        self._default_add_strategy = {
+            'after': self.AFTER,
+            'before': self.BEFORE,
+        }.get(strategy, 'after')
+
+        self._syntax = self.get_syntax()
 
         self._comment_starts = self._get_comment_starts()
 
@@ -106,7 +117,6 @@ class FormatParser(object):
         elif ',' in comment:
             rule = Regex(r'{0}.*{1}'.format(*map(lambda x: re.escape(x), comment.split(','))), re.DOTALL)
         else:
-            #rule = Combine(Literal(comment) + restOfLine)
             rule = Regex(r'({0}.*[\n\r])+'.format(comment))
         return rule.setParseAction(self._comment_atom)
 
@@ -149,11 +159,9 @@ class FormatParser(object):
 
         return result
 
-    def collapse_tree(self, d, indent=None, indent_comments=False, depth=0):
+    def collapse_tree(self, d, depth=0):
         """
         Преобразует словарь обратно в строку
-
-        tab: @int
         """
         raise NotImplementedError
 
@@ -177,10 +185,10 @@ class FormatParser(object):
             # Ключ уже есть. Сливаем по указанной стратегии
             if dst_key in dst:
                 # Стратегия удаления. Удаляем элемент неглядя
-                if strategy == '-':
+                if strategy == self.REMOVE:
                     del dst[dst_key]
                 # Стратегия полной замены
-                elif strategy == '!':
+                elif strategy == self.REPLACE:
                     dst[dst_key] = src[src_key]
                 # Стратегия слияния
                 else:
@@ -191,7 +199,7 @@ class FormatParser(object):
                         new_src = self._merge(dst[dst_key], src[src_key], path.append(str(dst_key)))
 
                         # Слить и переместить в начало
-                        if strategy == '^':
+                        if strategy == self.BEFORE:
                             del dst[dst_key]
 
                             new_dst = OrderedDict({
@@ -200,7 +208,7 @@ class FormatParser(object):
                             new_dst.update(dst)
                             dst = new_dst
                         # Слить и переместить в конец
-                        elif strategy == '+':
+                        elif strategy == self.AFTER:
                             comments = dst.pop('__comments')
                             del dst[dst_key]
 
@@ -225,7 +233,11 @@ class FormatParser(object):
 
             # Ключа нет - просто добавляем
             else:
-                if strategy == '^':
+                if strategy is None:
+                    strategy = self._default_add_strategy
+
+                # Добавляем в начало
+                if strategy == self.BEFORE:
                     comments = dst.pop('__comments')
                     new_dst = OrderedDict({
                         dst_key: src[src_key]
@@ -233,6 +245,7 @@ class FormatParser(object):
                     new_dst.update(dst)
                     new_dst['__comments'] = comments
                     dst = new_dst
+                # Добавляем в конец
                 else:
                     comments = dst.pop('__comments')
                     dst[dst_key] = src[src_key]
@@ -250,3 +263,6 @@ class FormatParser(object):
             result = self._sort_keys(result)
 
         return result
+
+    def parse(self, content):
+        return self.expand_tree(self._syntax.parseString(content, parseAll=True))
