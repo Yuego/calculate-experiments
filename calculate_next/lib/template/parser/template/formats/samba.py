@@ -7,7 +7,6 @@ import six
 from .ini import INIFormatParser
 
 
-
 class SambaFormatParser(INIFormatParser):
     indent = ' '*4
 

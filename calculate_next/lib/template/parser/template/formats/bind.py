@@ -12,13 +12,15 @@ class BindFormatParser(FormatParser):
     comment = ('#', '/*,*/')
     indent_comments = True
 
-    def _quoted_string_atom(self, s, l, tok):
+    @classmethod
+    def _quoted_string_atom(cls, s, l, tok):
         """
         Приводим кавычки к двойным
         """
         return '"{0}"'.format(tok[0][1:-1])
 
-    def _value_atom(self, s, l, tok):
+    @classmethod
+    def _value_atom(cls, s, l, tok):
         return {tok[0]: tok[1]}
 
     def _simple_atom(self, s, l, tok):

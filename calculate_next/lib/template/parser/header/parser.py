@@ -1,7 +1,6 @@
 #coding: utf-8
 from __future__ import unicode_literals, absolute_import
 
-import pkgutil
 from pyparsing import *
 import six
 
@@ -11,12 +10,6 @@ from calculate_next.lib.template.parser.utils import convert_result
 
 _string_value = quoted_string | Word(printables)
 
-
-def _many_conditions_atom(s, l, tok):
-    if len(tok):
-        return six.moves.reduce(lambda x, y: x & y, convert_result(tok))
-    else:
-        return []
 
 class TemplateHeaderParser(ConditionParser):
     parameters = {
@@ -44,6 +37,13 @@ class TemplateHeaderParser(ConditionParser):
         'multiline': None,
     }
 
+    @classmethod
+    def _many_conditions_atom(cls, s, l, tok):
+        if len(tok):
+            return six.moves.reduce(lambda x, y: x & y, convert_result(tok))
+        else:
+            return []
+
     def get_syntax(self):
         cond = super(TemplateHeaderParser, self).get_syntax()
 
@@ -69,7 +69,7 @@ class TemplateHeaderParser(ConditionParser):
 
         params = six.moves.reduce(lambda x, y: x | y, rules)
 
-        header = prefix + Group(ZeroOrMore(params)) + Group(ZeroOrMore(cond).setParseAction(_many_conditions_atom))
+        header = prefix + Group(ZeroOrMore(params)) + Group(ZeroOrMore(cond).setParseAction(self._many_conditions_atom))
 
         return header
 

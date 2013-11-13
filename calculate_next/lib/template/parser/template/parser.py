@@ -64,7 +64,6 @@ class FormatParser(object):
     # Стратегии слияния
     REPLACE, REMOVE, BEFORE, AFTER = ('!', '-', '^', '+')
 
-
     def __init__(self, **kwargs):
         strategy = kwargs.pop('strategy', 'after')
 
@@ -77,7 +76,8 @@ class FormatParser(object):
 
         self._comment_starts = self._get_comment_starts()
 
-    def _comment_atom(self, s, l, t):
+    @classmethod
+    def _comment_atom(cls, s, l, t):
         """
         Обработка строки комментария
         """

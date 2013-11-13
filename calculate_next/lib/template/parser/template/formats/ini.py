@@ -12,10 +12,12 @@ from calculate_next.lib.template.parser.template.parser import FormatParser
 class INIFormatParser(FormatParser):
     comment = ('#', ';')
 
-    def _value_atom(self, s, l, t):
+    @classmethod
+    def _value_atom(cls, s, l, t):
         return OrderedDict({t[0].strip(): t[1].strip()})
 
-    def _section_atom(self, s, l, t):
+    @classmethod
+    def _section_atom(cls, s, l, t):
         v = convert_result(t[-1])
         comments = {}
         values = OrderedDict()
@@ -48,9 +50,6 @@ class INIFormatParser(FormatParser):
         syntax = ZeroOrMore(section | _comment)
 
         return syntax
-
-    def get_template_syntax(self):
-        return None
 
     def collapse_tree(self, d, depth=0):
         comments = d.pop('__comments')
