@@ -37,7 +37,11 @@ class FormatParser(object):
         __comments: { index: comment, index: comment, ... },
     }
 
-
+    Стратегии слияния:
+    ! :: заменить целиком (актуально только для блоков и переменных)
+    - :: удалить элемент или блок
+    ^ :: вставить в начало родительского блока (если уже существует - переместить в начало)
+    + :: добавить в конец родительского блока (если уже существует - переместить в конец)
     """
 
     # Символ, указывающий на начало комментария
@@ -136,7 +140,7 @@ class FormatParser(object):
         Проводит окончательную обработку результатов работы парсера
         """
         result = OrderedDict()
-        comments = OrderedDict()
+        comments = {}
         for i, val in enumerate(l):
             if isinstance(val, six.string_types):
                 comments[i] = val
@@ -153,3 +157,83 @@ class FormatParser(object):
         tab: @int
         """
         raise NotImplementedError
+
+    def merge(self, dst, src, path=None, strategy=None):
+        if path is None:
+            path = []
+
+        for src_key in src:
+            strategy = None
+            if src_key == '__comments':
+                continue
+
+            if src_key[0] in ('!', '+', '-', '^'):
+                strategy = src_key[0]
+                dst_key = src_key[1:]
+            else:
+                dst_key = src_key
+
+            # Ключ уже есть. Сливаем по указанной стратегии
+            if dst_key in dst:
+                # Стратегия удаления. Удаляем элемент неглядя
+                if strategy == '-':
+                    del dst[dst_key]
+                # Стратегия полной замены
+                elif strategy == '!':
+                    dst[dst_key] = src[src_key]
+                # Стратегия слияния
+                else:
+                    # Выполняем слияние содержимого
+                    if (isinstance(dst[dst_key], (dict, OrderedDict))
+                        and isinstance(src[src_key], (dict, OrderedDict))):
+
+                        new_src = self.merge(dst[dst_key], src[src_key], path.append(str(dst_key)), strategy)
+
+                        # Слить и переместить в начало
+                        if strategy == '^':
+                            del dst[dst_key]
+
+                            new_dst = OrderedDict({
+                                dst_key: new_src
+                            })
+                            new_dst.update(dst)
+                            dst = new_dst
+                        # Слить и переместить в конец
+                        elif strategy == '+':
+                            comments = dst.pop('__comments')
+                            del dst[dst_key]
+
+                            new_dst = OrderedDict()
+                            new_dst.update(dst)
+                            new_dst[dst_key] = new_src
+                            new_dst['__comments'] = comments
+                            dst = new_dst
+                        # Слить на месте
+                        else:
+                            dst[dst_key] = new_src
+
+                    # Элементы идентичны. Ничего не делаем
+                    elif dst[dst_key] == src[src_key]:
+                        pass
+                    # Не указана стратегия, но есть параметр с таким именем
+                    # Заменяем
+                    else:
+                        dst[dst_key] = src[src_key]
+                        #path.append(str(dst_key))
+                        #raise Exception('Conflict at {0}'.format('.'.join(path)))
+
+            # Ключа нет - просто добавляем
+            else:
+                if strategy == '^':
+                    comments = dst.pop('__comments')
+                    new_dst = OrderedDict({
+                        dst_key: src[src_key]
+                    })
+                    new_dst.update(dst)
+                    new_dst['__comments'] = comments
+                    dst = new_dst
+                else:
+                    comments = dst.pop('__comments')
+                    dst[dst_key] = src[src_key]
+                    dst['__comments'] = comments
+        return dst

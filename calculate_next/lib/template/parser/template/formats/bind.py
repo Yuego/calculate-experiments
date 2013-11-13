@@ -33,26 +33,25 @@ class BindFormatParser(FormatParser):
         return r
 
     def _statement_atom(self, s, l, tok):
-        #print tok
-        if len(tok) == 2:
-            return {tok[0]: tok[1]}
+        if isinstance(tok[1], six.string_types) and not self._is_comment(tok[1]):
+            key = ' '.join(tok[0:2])
+            values = tok[2:]
         else:
-            if isinstance(tok[1], six.string_types) and not self._is_comment(tok[1]):
-                key = ' '.join(tok[0:2])
-                values = tok[2:]
-            else:
-                key = tok[0]
-                values = tok[1:]
+            key = tok[0]
+            values = tok[1:]
 
-            res = OrderedDict()
-            comments = {}
-            for i, val in enumerate(values):
-                if isinstance(val, six.string_types):
-                    comments[i] = val
-                else:
-                    res.setdefault(key, OrderedDict({'__comments': {}})).update(val)
-            res['__comments'] = comments
-            return res
+        res = OrderedDict()
+        res[key] = OrderedDict()
+        comments = {}
+        for i, val in enumerate(values):
+            if isinstance(val, six.string_types):
+                comments[i] = val
+            else:
+
+                res[key].update(val)
+        res[key]['__comments'] = comments
+        res['__comments'] = {}
+        return res
 
     def get_original_syntax(self):
         _semicolon = Suppress(';')
@@ -63,17 +62,18 @@ class BindFormatParser(FormatParser):
 
         comment = self.get_comment_rules()
 
-        value = Word(alphanums + "-_.*!/") | quotedString.setParseAction(self._quoted_string_atom)
+        value = Word(alphanums + "-_.*!/+^") | quotedString.setParseAction(self._quoted_string_atom)
         key = (value + OneOrMore(value) + _semicolon).setParseAction(self._value_atom)
         simple = (OneOrMore((value + _semicolon) | comment)).setParseAction(self._simple_atom)
-        statement = (value
-                          + ZeroOrMore(value)
-                          + (_lbrace
-                                  + Optional(toplevel)
-                                  + _rbrace)
-                          + _semicolon).setParseAction(self._statement_atom)
 
-        toplevel << OneOrMore(comment | key | simple | statement)
+        statement = (value
+                     + ZeroOrMore(value)
+                     + (_lbrace
+                        + Optional(toplevel)
+                        + _rbrace)
+                     + _semicolon).setParseAction(self._statement_atom)
+
+        toplevel << OneOrMore(comment | statement | key | simple)
 
         return toplevel
 
@@ -81,7 +81,6 @@ class BindFormatParser(FormatParser):
         return None
 
     def collapse_tree(self, d, indent=4, indent_comments=True, depth=0):
-        #print d
         comments = d.pop('__comments')
 
         result = []

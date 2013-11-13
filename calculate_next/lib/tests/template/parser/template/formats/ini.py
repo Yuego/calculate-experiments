@@ -11,6 +11,12 @@ from ._mixin import ParserTestMixin
 class TestINIFormatParser(ParserTestMixin, TestCase):
     p = INIFormatParser()
     files = (
-        './data/tests/configs/simple.ini',
+        './data/tests/configs/ini_simple.ini',
+    )
+
+    merge_files = (
+        './data/tests/configs/ini_merge_dst.ini',
+        './data/tests/configs/ini_merge_src.ini',
+        './data/tests/configs/ini_merge_result.ini',
     )
 

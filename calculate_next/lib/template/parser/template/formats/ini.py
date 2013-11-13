@@ -13,11 +13,11 @@ class INIFormatParser(FormatParser):
     comment = ('#', ';')
 
     def _value_atom(self, s, l, t):
-        return {t[0].strip(): t[1].strip()}
+        return OrderedDict({t[0].strip(): t[1].strip()})
 
     def _section_atom(self, s, l, t):
         v = convert_result(t[-1])
-        comments = OrderedDict()
+        comments = {}
         values = OrderedDict()
         for i, val in enumerate(v):
             if isinstance(val, six.string_types):
@@ -29,6 +29,7 @@ class INIFormatParser(FormatParser):
         return six.moves.reduce(lambda x, y: {y: x}, t[::-1])
 
     def get_original_syntax(self):
+        _command = Word('!^+-', exact=1)
         _lbrack = Suppress('[')
         _rbrack = Suppress(']')
         _equals = Suppress('=')
@@ -38,7 +39,7 @@ class INIFormatParser(FormatParser):
         _section_name = Word(printables, excludeChars=']')
         _key = (~_lbrack + Word(printables, excludeChars='=') + _equals + restOfLine).setParseAction(self._value_atom)
 
-        _section = (_lbrack + _section_name + _rbrack)
+        _section = Combine(Optional(_command) + _lbrack + _section_name + _rbrack)
 
         section = (_section
                    + Group(ZeroOrMore(_key | _comment))
