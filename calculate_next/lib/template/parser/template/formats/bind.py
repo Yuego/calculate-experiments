@@ -53,7 +53,7 @@ class BindFormatParser(FormatParser):
         res['__comments'] = {}
         return res
 
-    def get_original_syntax(self):
+    def get_syntax(self):
         _semicolon = Suppress(';')
         _lbrace = Suppress('{')
         _rbrace = Suppress('}')

@@ -28,10 +28,10 @@ class INIFormatParser(FormatParser):
         t[-1] = values
         return six.moves.reduce(lambda x, y: {y: x}, t[::-1])
 
-    def get_original_syntax(self):
+    def get_syntax(self):
         _command = Word('!^+-', exact=1)
-        _lbrack = Suppress('[')
-        _rbrack = Suppress(']')
+        _lbrack = Literal('[')
+        _rbrack = Literal(']')
         _equals = Suppress('=')
 
         _comment = self.get_comment_rules()
@@ -69,7 +69,7 @@ class INIFormatParser(FormatParser):
                 result.extend([tab, k, '=', v, '\n'])
             else:
                 result.extend([
-                    tab, '\n[', k, ']\n', self.collapse_tree(v,
+                    tab, '\n', k, '\n', self.collapse_tree(v,
                                                              indent=indent,
                                                              indent_comments=indent_comments,
                                                              depth=depth+1)

@@ -1,24 +1,18 @@
 #coding: utf-8
 from __future__ import unicode_literals, absolute_import
 
-from collections import OrderedDict
 from pyparsing import *
 import six
 
-from calculate_next.lib.template.parser.utils import convert_result
 from .ini import INIFormatParser
 
 
-
 class PlasmaFormatParser(INIFormatParser):
+    sort_keys = True
 
-    def _section_atom(self, s, l, t):
-        t[0] = ']['.join(t[0])
-        return super(PlasmaFormatParser, self)._section_atom(s, l, t)
-
-    def get_original_syntax(self):
-        _lbrack = Suppress('[')
-        _rbrack = Suppress(']')
+    def get_syntax(self):
+        _command = Word('!^+-', exact=1)
+        _lbrack, _rbrack = map(Literal, '[]')
         _equals = Suppress('=')
 
         _comment = self.get_comment_rules()
@@ -28,10 +22,10 @@ class PlasmaFormatParser(INIFormatParser):
 
         _section = (_lbrack + _section_name + _rbrack)
 
-        section = (Group(_section + ZeroOrMore(_section))
-                   + Group(ZeroOrMore(_key | _comment))
-                   ).setParseAction(self._section_atom)
+        section = (Combine(Optional(_command) + _section + ZeroOrMore(_section) + White().suppress())
+                  + Group(ZeroOrMore(_comment | _key))
+                  ).setParseAction(self._section_atom)
 
-        syntax = ZeroOrMore(section | _comment)
+        syntax = ZeroOrMore(_comment | section)
 
         return syntax

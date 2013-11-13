@@ -15,3 +15,8 @@ class TestPlasmaFormatParser(ParserTestMixin, TestCase):
         './data/tests/configs/plasma_simple.ini',
         './data/tests/configs/plasma.ini',
     )
+    merge_files = (
+        './data/tests/configs/plasma_merge_dst.ini',
+        './data/tests/configs/plasma_merge_src.ini',
+        './data/tests/configs/plasma_merge_result.ini',
+    )

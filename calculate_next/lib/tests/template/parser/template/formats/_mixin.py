@@ -10,7 +10,8 @@ class ParserTestMixin(object):
     merge_files = ()
 
     def _open_file(self, f):
-        return codecs.open(f, mode='r', encoding='utf-8').read()
+        with codecs.open(f, mode='r', encoding='utf-8') as txt:
+            return txt.read()
 
     def _compare_dicts(self, d1, d2):
         for a, b in zip(d1.items(), d2.items()):
@@ -21,8 +22,8 @@ class ParserTestMixin(object):
                 else:
                     self.assertEqual(x, y)
 
-    def test_original_parser(self):
-        syntax = self.p.get_original_syntax()
+    def test_parse(self):
+        syntax = self.p.get_syntax()
 
         for f in self.files:
             first_content = self._open_file(f)
@@ -43,10 +44,13 @@ class ParserTestMixin(object):
         dst = self._open_file(self.merge_files[0])
         src = self._open_file(self.merge_files[1])
 
-        syntax = self.p.get_original_syntax()
+        syntax = self.p.get_syntax()
 
         dst_tree = self.p.expand_tree(syntax.parseString(dst, parseAll=True))
         src_tree = self.p.expand_tree(syntax.parseString(src, parseAll=True))
+
+        #print '!!!!!!!!!!!!!!!'
+        #print src_tree
 
         merged_tree = self.p.merge(dst_tree, src_tree)
 

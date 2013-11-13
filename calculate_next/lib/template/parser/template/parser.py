@@ -54,10 +54,15 @@ class FormatParser(object):
     # Отступ по-умолчанию
     indent = 0
 
+    # Сортировать ли дерево после слияния
+    sort_keys = False
+    # На какую глубину сортировать
+    sort_depth = 0
+
     def __init__(self, **kwargs):
 
         self._template_syntax = self.get_template_syntax()
-        self._original_syntax = self.get_original_syntax()
+        self._original_syntax = self.get_syntax()
 
         self._comment_starts = self._get_comment_starts()
 
@@ -123,13 +128,7 @@ class FormatParser(object):
         """
         raise NotImplementedError
 
-    def get_template_syntax(self):
-        """
-        Возвращает синтаксис для разбора шаблона
-        """
-        raise NotImplementedError
-
-    def get_original_syntax(self):
+    def get_syntax(self):
         """
         Возвращает синтаксис для разбора целевого файла
         """
@@ -158,7 +157,9 @@ class FormatParser(object):
         """
         raise NotImplementedError
 
-    def merge(self, dst, src, path=None, strategy=None):
+    def _merge(self, dst, src, path=None):
+        #TODO: пересортировывать комментарии при слиянии
+
         if path is None:
             path = []
 
@@ -187,7 +188,7 @@ class FormatParser(object):
                     if (isinstance(dst[dst_key], (dict, OrderedDict))
                         and isinstance(src[src_key], (dict, OrderedDict))):
 
-                        new_src = self.merge(dst[dst_key], src[src_key], path.append(str(dst_key)), strategy)
+                        new_src = self._merge(dst[dst_key], src[src_key], path.append(str(dst_key)))
 
                         # Слить и переместить в начало
                         if strategy == '^':
@@ -237,3 +238,15 @@ class FormatParser(object):
                     dst[dst_key] = src[src_key]
                     dst['__comments'] = comments
         return dst
+
+    def _sort_keys(self, d, depth=0):
+        #TODO: реализовать
+        return d
+
+    def merge(self, dst, src, path=None):
+        result = self._merge(dst=dst, src=src, path=path)
+
+        if self.sort_keys:
+            result = self._sort_keys(result)
+
+        return result
