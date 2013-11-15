@@ -26,6 +26,12 @@ class FormatParser(object):
             ...
             __comments: { index: comment, index: comment, ... },
             },
+        list_section: [
+            [list_section1 items],
+            [list_section2 items],
+            ...
+            [list_sectionN items],
+        ]
         key: value,
         key: value,
         ...
@@ -36,6 +42,27 @@ class FormatParser(object):
         ...
         __comments: { index: comment, index: comment, ... },
     }
+
+    list_section - список секций с повторяющимися именами:
+    pool { <pool 1 params> }
+    pool { <pool 2 params> }
+    ...
+    pool { <pool n params> }
+    такие секции внутри себя не могут иметь вложенных секций
+    только строки комметариев и параметров
+
+    При слиянии такие секции сравниваются по содержимому.
+    Две секции с хотя бы одним одинаковым параметром считаются одинаковыми:
+
+    pool {
+        allow members of "baz";
+        range 10.0.30.10 10.0.30.230;
+    }
+    pool {
+        allow members of "baz";
+        range 10.0.200.20 10.0.200.50;
+    }
+
 
     Стратегии слияния:
     ! :: заменить целиком (актуально только для блоков и переменных)
@@ -62,7 +89,8 @@ class FormatParser(object):
     sort_depth = 0
 
     # Стратегии слияния
-    REPLACE, REMOVE, BEFORE, AFTER = ('!', '-', '^', '+')
+    STRATS = ('!', '-', '^', '+')
+    REPLACE, REMOVE, BEFORE, AFTER = STRATS
 
     def __init__(self, **kwargs):
         strategy = kwargs.pop('strategy', 'after')
@@ -165,91 +193,110 @@ class FormatParser(object):
         """
         raise NotImplementedError
 
-    def _merge(self, dst, src, path=None):
+    def _merge(self, dst, src):
         #TODO: пересортировывать комментарии при слиянии
-
-        if path is None:
-            path = []
-
         for src_key in src:
             strategy = None
             if src_key == '__comments':
                 continue
 
-            if src_key[0] in ('!', '+', '-', '^'):
+            if src_key[0] in self.STRATS:
                 strategy = src_key[0]
                 dst_key = src_key[1:]
             else:
                 dst_key = src_key
 
-            # Ключ уже есть. Сливаем по указанной стратегии
-            if dst_key in dst:
-                # Стратегия удаления. Удаляем элемент неглядя
-                if strategy == self.REMOVE:
-                    del dst[dst_key]
-                # Стратегия полной замены
-                elif strategy == self.REPLACE:
-                    dst[dst_key] = src[src_key]
-                # Стратегия слияния
-                else:
-                    # Выполняем слияние содержимого
-                    if (isinstance(dst[dst_key], (dict, OrderedDict))
-                        and isinstance(src[src_key], (dict, OrderedDict))):
+            # Если ключ один для многих элементов,
+            # все они содержатся в списке.
+            # Списки сливаем по отдельному алгоритму
+            if isinstance(src[src_key], list):
+                _dst = dst[dst_key]
+                _src = src[src_key]
+                for s in _src:
+                    if s in _dst:
+                        s_idx = _dst.index(s)
 
-                        new_src = self._merge(dst[dst_key], src[src_key], path.append(str(dst_key)))
-
-                        # Слить и переместить в начало
-                        if strategy == self.BEFORE:
-                            del dst[dst_key]
-
-                            new_dst = OrderedDict({
-                                dst_key: new_src
-                            })
-                            new_dst.update(dst)
-                            dst = new_dst
-                        # Слить и переместить в конец
-                        elif strategy == self.AFTER:
-                            comments = dst.pop('__comments')
-                            del dst[dst_key]
-
-                            new_dst = OrderedDict()
-                            new_dst.update(dst)
-                            new_dst[dst_key] = new_src
-                            new_dst['__comments'] = comments
-                            dst = new_dst
-                        # Слить на месте
+                        if s.mode in (self.REMOVE, self.REPLACE, self.BEFORE):
+                            _dst.pop(s_idx)
+                            if s.mode == self.REPLACE:
+                                _dst.insert(s_idx, s)
+                            elif s.mode == self.BEFORE:
+                                _dst.insert(0, s)
                         else:
-                            dst[dst_key] = new_src
-
-                    # Элементы идентичны. Ничего не делаем
-                    elif dst[dst_key] == src[src_key]:
-                        pass
-                    # Не указана стратегия, но есть параметр с таким именем
-                    # Заменяем
+                            _dst.append(s)
                     else:
-                        dst[dst_key] = src[src_key]
-                        #path.append(str(dst_key))
-                        #raise Exception('Conflict at {0}'.format('.'.join(path)))
-
-            # Ключа нет - просто добавляем
+                        if s.mode == self.BEFORE:
+                            _dst.insert(0, s)
+                        else:
+                            _dst.append(s)
+            # Это словарь.
             else:
-                if strategy is None:
-                    strategy = self._default_add_strategy
+                # Ключ уже есть. Сливаем по указанной стратегии
+                if dst_key in dst:
+                    # Стратегия удаления. Удаляем элемент неглядя
+                    if strategy == self.REMOVE:
+                        del dst[dst_key]
+                    # Стратегия полной замены
+                    elif strategy == self.REPLACE:
+                        dst[dst_key] = src[src_key]
+                    # Стратегия слияния
+                    else:
+                        # Выполняем слияние содержимого
+                        if (isinstance(dst[dst_key], (dict, OrderedDict))
+                            and isinstance(src[src_key], (dict, OrderedDict))):
 
-                # Добавляем в начало
-                if strategy == self.BEFORE:
-                    comments = dst.pop('__comments')
-                    new_dst = OrderedDict({
-                        dst_key: src[src_key]
-                    })
-                    new_dst.update(dst)
-                    new_dst['__comments'] = comments
-                    dst = new_dst
-                # Добавляем в конец
+                            new_src = self._merge(dst[dst_key], src[src_key])
+
+                            # Слить и переместить в начало
+                            if strategy == self.BEFORE:
+                                del dst[dst_key]
+
+                                new_dst = OrderedDict({
+                                    dst_key: new_src
+                                })
+                                new_dst.update(dst)
+                                dst = new_dst
+                            # Слить и переместить в конец
+                            elif strategy == self.AFTER:
+                                comments = dst.pop('__comments')
+                                del dst[dst_key]
+
+                                new_dst = OrderedDict()
+                                new_dst.update(dst)
+                                new_dst[dst_key] = new_src
+                                new_dst['__comments'] = comments
+                                dst = new_dst
+                            # Слить на месте
+                            else:
+                                dst[dst_key] = new_src
+
+                        # Элементы идентичны. Ничего не делаем
+                        elif dst[dst_key] == src[src_key]:
+                            pass
+                        # Не указана стратегия, но есть параметр с таким именем
+                        # Заменяем
+                        else:
+                            dst[dst_key] = src[src_key]
+
+                # Ключа нет - просто добавляем
                 else:
-                    comments = dst.pop('__comments')
-                    dst[dst_key] = src[src_key]
-                    dst['__comments'] = comments
+                    if strategy is None:
+                        strategy = self._default_add_strategy
+
+                    # Добавляем в начало
+                    if strategy == self.BEFORE:
+                        comments = dst.pop('__comments')
+                        new_dst = OrderedDict({
+                            dst_key: src[src_key]
+                        })
+                        new_dst.update(dst)
+                        new_dst['__comments'] = comments
+                        dst = new_dst
+                    # Добавляем в конец
+                    else:
+                        comments = dst.pop('__comments')
+                        dst[dst_key] = src[src_key]
+                        dst['__comments'] = comments
         return dst
 
     def _sort_keys(self, d, depth=0):
@@ -257,7 +304,7 @@ class FormatParser(object):
         return d
 
     def merge(self, dst, src, path=None):
-        result = self._merge(dst=dst, src=src, path=path)
+        result = self._merge(dst=dst, src=src)
 
         if self.sort_keys:
             result = self._sort_keys(result)

@@ -10,10 +10,17 @@ from calculate_next.lib.template.parser.template.formats.dhcp import DHCPFormatP
 from ._mixin import ParserTestMixin
 
 
-class TestDHCPFormatParser(TestCase):
+class TestDHCPFormatParser(ParserTestMixin, TestCase):
     p = DHCPFormatParser()
     files = (
+        './data/tests/configs/dhcpd_simple.conf',
         './data/tests/configs/dhcpd.conf',
+    )
+
+    merge_files = (
+        './data/tests/configs/dhcpd_merge_dst.conf',
+        './data/tests/configs/dhcpd_merge_src.conf',
+        './data/tests/configs/dhcpd_merge_result.conf',
     )
 
 

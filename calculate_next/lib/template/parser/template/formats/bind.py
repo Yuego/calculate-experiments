@@ -10,6 +10,7 @@ from calculate_next.lib.template.parser.template.parser import FormatParser
 
 class BindFormatParser(FormatParser):
     comment = ('#', '/*,*/')
+    indent = ' '*4
     indent_comments = True
 
     @classmethod
@@ -57,9 +58,7 @@ class BindFormatParser(FormatParser):
         return res
 
     def get_syntax(self):
-        _semicolon = Suppress(';')
-        _lbrace = Suppress('{')
-        _rbrace = Suppress('}')
+        _semicolon, _lbrace, _rbrace = map(Suppress, ';{}')
 
         toplevel = Forward()
 

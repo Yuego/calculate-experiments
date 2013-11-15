@@ -41,6 +41,8 @@ class ParserTestMixin(object):
 
         #print '!!!!!!!!!!!!!!!'
         #print src_tree
+        #print '---------------'
+        #print dst_tree
 
         merged_tree = self.p.merge(dst_tree, src_tree)
         sample_tree = self.p.parse(self._open_file(self.merge_files[2]))
