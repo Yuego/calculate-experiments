@@ -4,11 +4,15 @@ from __future__ import unicode_literals, absolute_import
 import codecs
 from collections import OrderedDict
 from copy import deepcopy
+import os
 
 
 class ParserTestMixin(object):
     files = ()
-    merge_files = ()
+    merge_files = ('merge',)
+    basepath = 'data/tests/configs'
+    basename = ''
+    extension = ''
 
     def _open_file(self, f):
         with codecs.open(f, mode='r', encoding='utf-8') as txt:
@@ -24,7 +28,9 @@ class ParserTestMixin(object):
 
     def test_parse(self):
         for f in self.files:
-            first_tree = self.p.parse(self._open_file(f))
+            filepath = os.path.join(self.basepath, self.basename,
+                                    '{0}.{1}'.format(f, self.extension))
+            first_tree = self.p.parse(self._open_file(filepath))
 
             self.assertIsInstance(first_tree, OrderedDict)
 
@@ -34,25 +40,30 @@ class ParserTestMixin(object):
             self._compare_dicts(first_tree, second_tree)
 
     def test_merge(self):
-        self.assertEqual(len(self.merge_files), 3)
+        for f in self.merge_files:
+            src, dst, result = map(
+                lambda x: os.path.join(
+                    self.basepath, self.basename, f,
+                    '{0}.{1}'.format(x, self.extension)),
+                    ['src', 'dst', 'result'])
 
-        dst_tree = self.p.parse(self._open_file(self.merge_files[0]))
-        src_tree = self.p.parse(self._open_file(self.merge_files[1]))
+            dst_tree = self.p.parse(self._open_file(dst))
+            src_tree = self.p.parse(self._open_file(src))
 
-        #print '!!!!!!!!!!!!!!!'
-        #print src_tree
-        #print '---------------'
-        #print dst_tree
+            #print '!!!!!!!!!!!!!!!'
+            #print src_tree
+            #print '---------------'
+            #print dst_tree
 
-        merged_tree = self.p.merge(dst_tree, src_tree)
-        sample_tree = self.p.parse(self._open_file(self.merge_files[2]))
+            merged_tree = self.p.merge(dst_tree, src_tree)
+            sample_tree = self.p.parse(self._open_file(result))
 
-        #print '==============='
-        #print merged_tree
-        #print '---------------'
-        #print sample_tree
-        #print '==============='
+            #print '==============='
+            #print merged_tree
+            #print '---------------'
+            #print sample_tree
+            #print '==============='
 
-        self._compare_dicts(sample_tree, merged_tree)
+            self._compare_dicts(sample_tree, merged_tree)
 
 

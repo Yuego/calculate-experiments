@@ -17,3 +17,10 @@ class ItemList(list):
             return not bool(set(self) & set(other))
         else:
             return False
+
+    def __gt__(self, other):
+        raise NotImplementedError
+
+    __ge__ = __gt__
+    __lt__ = __gt__
+    __le__ = __gt__

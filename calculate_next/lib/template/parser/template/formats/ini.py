@@ -59,7 +59,7 @@ class INIFormatParser(FormatParser):
         comment_tab = tab if self.indent_comments else ''
 
         for k, v in d.items():
-            while(idx in comments):
+            while idx in comments:
                 result.extend([comment_tab, comments.pop(idx), '\n'])
                 idx += 1
             idx += 1

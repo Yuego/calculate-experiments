@@ -1,22 +1,21 @@
 #coding: utf-8
 from __future__ import unicode_literals, absolute_import
 
-from collections import OrderedDict
 from unittest import TestCase
 
-from calculate_next.lib.template.parser.template.formats.samba import SambaFormatParser
-
+from calculate_next.lib.template.parser.template.formats import SambaFormatParser
 from ._mixin import ParserTestMixin
 
 
 class TestSambaFormatParser(ParserTestMixin, TestCase):
     p = SambaFormatParser()
+    basename = 'smb'
+    extension = 'conf'
+
     files = (
-        './data/tests/configs/smb.conf',
+        'smb',
     )
 
     merge_files = (
-        './data/tests/configs/smb_merge_dst.conf',
-        './data/tests/configs/smb_merge_src.conf',
-        './data/tests/configs/smb_merge_result.conf',
+        'merge',
     )
