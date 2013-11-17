@@ -1,0 +1,6 @@
+dev-lang/php
+dev-python/django
+dev-python/eyeD3:0
+sys-boot/grub:0
+x11-themes/gtk-engines-qtcurve
+x11-themes/oxygen-gtk3

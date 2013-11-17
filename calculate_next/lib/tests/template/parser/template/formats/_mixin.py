@@ -27,9 +27,11 @@ class ParserTestMixin(object):
                     self.assertEqual(x, y)
 
     def test_parse(self):
+        extension = '.{0}'.format(self.extension) if self.extension else ''
+
         for f in self.files:
             filepath = os.path.join(self.basepath, self.basename,
-                                    '{0}.{1}'.format(f, self.extension))
+                                    f + extension)
             first_tree = self.p.parse(self._open_file(filepath))
 
             self.assertIsInstance(first_tree, OrderedDict)
@@ -40,11 +42,13 @@ class ParserTestMixin(object):
             self._compare_dicts(first_tree, second_tree)
 
     def test_merge(self):
+        extension = '.{0}'.format(self.extension) if self.extension else ''
+
         for f in self.merge_files:
             src, dst, result = map(
                 lambda x: os.path.join(
                     self.basepath, self.basename, f,
-                    '{0}.{1}'.format(x, self.extension)),
+                    x + extension),
                     ['src', 'dst', 'result'])
 
             dst_tree = self.p.parse(self._open_file(dst))

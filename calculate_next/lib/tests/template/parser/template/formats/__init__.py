@@ -7,3 +7,4 @@ from .ini import *
 from .openrc import *
 from .plasma import *
 from .samba import *
+from .world import *

@@ -7,6 +7,7 @@ from .ini import INIFormatParser
 from .openrc import OpenRCFormatParser
 from .plasma import PlasmaFormatParser
 from .samba import SambaFormatParser
+from .world import WorldFormatParser
 
 formats = {
     'ini': INIFormatParser,
