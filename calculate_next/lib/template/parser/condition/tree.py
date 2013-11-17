@@ -141,7 +141,6 @@ class MathNode(Node):
                 obj = MathNode([other])
                 return obj._combine(self, connector)
 
-
     def __hash__(self):
         return hash(self.__str__())
 
@@ -170,11 +169,8 @@ class MathNode(Node):
         return self._rcombine(other, MathNode.DIV)
 
     # python 3 division support
-    def __truediv__(self, other):
-        return self.__div__(other)
-
-    def __rtruediv__(self, other):
-        return self.__rdiv__(other)
+    __truediv__ = __div__
+    __rtruediv__ = __rdiv__
 
     def __eq__(self, other):
         return self.evaluate() == other

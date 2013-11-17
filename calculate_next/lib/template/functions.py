@@ -1,7 +1,6 @@
 #coding: utf-8
 from __future__ import unicode_literals, absolute_import
 
-from functools import wraps
 
 class Function(object):
     args = 0
@@ -33,8 +32,8 @@ class Function(object):
     def __nonzero__(self):
         return bool(self.apply())
 
-    def __bool__(self):
-        return self.__nonzero__()
+    # python3 support
+    __bool__ = __nonzero__
 
     def __eq__(self, other):
         return self.apply() == other
@@ -77,6 +76,10 @@ class Function(object):
 
     def __rdiv__(self, other):
         return other / self.apply()
+
+    # python3 support
+    __truediv__ = __div__
+    __rtruediv__ = __rdiv__
 
 
 class MergeFunction(Function):

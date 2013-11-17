@@ -2,7 +2,6 @@
 from __future__ import unicode_literals, absolute_import
 
 from pyparsing import *
-import six
 
 from .ini import INIFormatParser
 

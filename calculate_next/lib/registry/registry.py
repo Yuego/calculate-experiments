@@ -7,7 +7,6 @@ import six
 from calculate_next.lib.registry.variable import Variable
 
 
-
 class ModuleNotFoundException(Exception):
     pass
 

@@ -225,6 +225,7 @@ class StringVar(Variable):
 
         return value
 
+
 class ReadOnlyStringVar(ReadOnlyMixin, StringVar):
     pass
 
