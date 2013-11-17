@@ -5,6 +5,7 @@ from .bind import BindFormatParser
 from .compiz import CompizFormatParser
 from .desktop import DesktopFormatParser
 from .dhcp import DHCPFormatParser
+from .dovecot import DovecotFormatParser
 from .ini import INIFormatParser
 from .kde import KDEFormatParser
 from .openrc import OpenRCFormatParser

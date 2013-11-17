@@ -14,20 +14,20 @@ class BindFormatParser(FormatParser):
     indent_comments = True
 
     @classmethod
-    def _quoted_string_atom(cls, s, l, tok):
+    def _quoted_string_atom(cls, s, l, t):
         """
         Приводим кавычки к двойным
         """
-        return '"{0}"'.format(tok[0][1:-1])
+        return '"{0}"'.format(t[0][1:-1])
 
     @classmethod
-    def _value_atom(cls, s, l, tok):
-        return {tok[0]: tok[1]}
+    def _value_atom(cls, s, l, t):
+        return {t[0].strip(): t[1].strip()}
 
-    def _simple_atom(self, s, l, tok):
+    def _simple_atom(self, s, l, t):
         r = OrderedDict()
         comments = {}
-        for i, item in enumerate(tok):
+        for i, item in enumerate(t):
             if self._is_comment(item):
                 comments[i] = item
             else:
@@ -36,13 +36,13 @@ class BindFormatParser(FormatParser):
         r['__comments'] = comments
         return r
 
-    def _statement_atom(self, s, l, tok):
-        if isinstance(tok[1], six.string_types) and not self._is_comment(tok[1]):
-            key = ' '.join(tok[0:2])
-            values = tok[2:]
+    def _statement_atom(self, s, l, t):
+        if isinstance(t[1], six.string_types) and not self._is_comment(t[1]):
+            key = ' '.join(t[0:2])
+            values = t[2:]
         else:
-            key = tok[0]
-            values = tok[1:]
+            key = t[0]
+            values = t[1:]
 
         res = OrderedDict()
         res[key] = OrderedDict()
@@ -51,7 +51,6 @@ class BindFormatParser(FormatParser):
             if isinstance(val, six.string_types):
                 comments[i] = val
             else:
-
                 res[key].update(val)
         res[key]['__comments'] = comments
         res['__comments'] = {}

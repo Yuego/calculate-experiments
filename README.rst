@@ -13,11 +13,11 @@ TODO: парсеры
 
 * apache
 * **bind**
-* compiz
+* **compiz**
 * *desktop*
 * **dhcp**
 * diff
-* dovecot
+* **dovecot**
 * *ini*
 * **kde**
 * ldap

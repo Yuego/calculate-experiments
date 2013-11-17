@@ -143,9 +143,9 @@ class FormatParser(object):
             return None
 
         elif ',' in comment:
-            rule = Regex(r'{0}.*{1}'.format(*map(lambda x: re.escape(x), comment.split(','))), re.DOTALL)
+            rule = Regex(r'[ \t]*{0}.*{1}'.format(*map(lambda x: re.escape(x), comment.split(','))), re.DOTALL)
         else:
-            rule = Regex(r'({0}.*[\n\r])+'.format(comment))
+            rule = Regex(r'[ \t]*({0}[^\n\r]*)+'.format(comment))
         return rule.setParseAction(self._comment_atom)
 
     def get_comment_rules(self):
