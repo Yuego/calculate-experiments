@@ -2,6 +2,7 @@
 from __future__ import unicode_literals, absolute_import
 
 from .bind import BindFormatParser
+from .compiz import CompizFormatParser
 from .desktop import DesktopFormatParser
 from .dhcp import DHCPFormatParser
 from .ini import INIFormatParser
