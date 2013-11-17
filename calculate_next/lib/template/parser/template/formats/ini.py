@@ -38,7 +38,7 @@ class INIFormatParser(FormatParser):
 
         _comment = self.get_comment_rules()
 
-        _section_name = Word(printables, excludeChars=']')
+        _section_name = Word(printables + ' \t', excludeChars=']')
         _key = (~_lbrack + Word(printables, excludeChars='=') + _equals + restOfLine).setParseAction(self._value_atom)
 
         _section = Combine(Optional(_command) + _lbrack + _section_name + _rbrack)

@@ -1,0 +1,25 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=KonqPopupMenu/Plugin
+MimeType=image/tiff;image/png;image/jpeg;
+Actions=toCube;toSphere;
+X-KDE-Priority=TopLevel
+X-KDE-Submenu=Krpano
+Encoding=UTF-8
+Icon=luna
+
+[Desktop Action toCube]
+Exec=konsole -e ~/Data/apps/krpano/ktransform -config=ktransform.config %f
+Icon=/home/ego/Data/apps/krpano/img/transform-r.png
+Name[ru]=Сфера в куб
+Name=Сфера в куб
+Comment[ru]=Преобразовать сферическую панораму в набор граней куба
+Comment=Преобразовать сферическую панораму в набор граней куба
+
+[Desktop Action toSphere]
+Exec=konsole -e ~/Data/apps/krpano/kcube2sphere -config=ktransform.config %F
+Icon=/home/ego/Data/apps/krpano/img/transform-l.png
+Name[ru]=Куб в сферу
+Name=Куб в сферу
+Comment[ru]=Собрать грани куба в сферическую панораму
+Comment=Собрать грани куба в сферическую панораму

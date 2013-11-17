@@ -2,6 +2,7 @@
 from __future__ import unicode_literals, absolute_import
 
 from .bind import *
+from .desktop import *
 from .dhcp import *
 from .ini import *
 from .openrc import *

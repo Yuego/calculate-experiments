@@ -14,11 +14,12 @@ TODO: парсеры
 * apache
 * **bind**
 * compiz
+* *desktop*
 * **dhcp**
 * diff
 * dovecot
 * *ini*
-* kde
+* **kde**
 * ldap
 * **openrc**
 * patch
@@ -27,7 +28,7 @@ TODO: парсеры
 * procmail
 * **samba**
 * squid
-* world
+* **world**
 * xml_gconf
 * xml_gconf_tree
 * xml_xfce
