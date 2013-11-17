@@ -9,4 +9,5 @@ from .ini import *
 from .openrc import *
 from .plasma import *
 from .samba import *
+from .squid import *
 from .world import *

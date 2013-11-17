@@ -11,6 +11,7 @@ from .kde import KDEFormatParser
 from .openrc import OpenRCFormatParser
 from .plasma import PlasmaFormatParser
 from .samba import SambaFormatParser
+from .squid import SquidFormatParser
 from .world import WorldFormatParser
 
 formats = {
