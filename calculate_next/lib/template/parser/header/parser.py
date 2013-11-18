@@ -73,26 +73,29 @@ class TemplateHeaderParser(ConditionParser):
 
         return header
 
+    def parse(self, s):
+        p, c = super(TemplateHeaderParser, self).parse(s)
+
+        def _format_res(res):
+            return dict(((x[0], x[1]) if isinstance(x, list) else (x, True)) for x in res)
+
+        params = _format_res(p)
+        cond = c[0] if c else True
+
+        return params, cond
+
     def evaluate(self, s):
         """
         Разбирает строку заголовка и вычисляет условия.
         Если условий нет или вернулась Истина, возвращает список параметров,
         иначе возвращает None, указывая, что шаблон следует пропустить.
         """
-        result = self.parse(s)
-        params = result[0]
-        cond = result[1]
-
-        def _format_res(res):
-            return dict(((x[0], x[1]) if isinstance(x, list) else (x, True)) for x in res)
+        params, cond = self.parse(s)
 
         if cond:
-            if cond[0].evaluate():
-                return _format_res(params)
-            else:
-                return None
+            return params
         else:
-            return _format_res(params)
+            return None
 
 
 class DirectoryHeaderParser(TemplateHeaderParser):
