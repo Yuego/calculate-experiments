@@ -50,9 +50,9 @@ class DHCPFormatParser(BindFormatParser):
     @classmethod
     def _value_atom(cls, s, l, t):
         if t[0] in ('set', 'option', 'hardware'):
-            return {' '.join(t[0:2]): ' '.join(t[2:])}
+            return {' '.join(t[0:2]).strip(): ' '.join(t[2:]).strip()}
         else:
-            return {t[0]: ' '.join(t[1:])}
+            return {t[0].strip(): ' '.join(t[1:]).strip()}
 
     def get_syntax(self):
         _semicolon, _lbrace, _rbrace = map(Suppress, ';{}')

@@ -32,7 +32,8 @@ class ParserTestMixin(object):
         for f in self.files:
             filepath = os.path.join(self.basepath, self.basename,
                                     f + extension)
-            first_tree = self.p.parse(self._open_file(filepath))
+            first_content = self._open_file(filepath)
+            first_tree = self.p.parse(first_content)
 
             self.assertIsInstance(first_tree, OrderedDict)
 
@@ -69,5 +70,3 @@ class ParserTestMixin(object):
             #print '==============='
 
             self._compare_dicts(sample_tree, merged_tree)
-
-

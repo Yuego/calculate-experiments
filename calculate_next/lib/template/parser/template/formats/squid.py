@@ -13,14 +13,14 @@ class SquidFormatParser(FormatParser):
     def _value_atom(cls, s, l, t):
         if t[0] in ('acl', 'header_access', 'header_replace'):
             key = ' '.join(t[:2])
-            value = ' '.join(t[2:])
+            value = ' '.join(t[2:]).strip()
         elif t[0] in ('http_access',):
             key = ' '.join(t)
             value = None
         else:
             key = t[0]
-            value = ' '.join(t[1:])
-        return {key: value}
+            value = ' '.join(t[1:]).strip()
+        return {key.strip(): value}
 
     def get_syntax(self):
         _command = '!^+-'
